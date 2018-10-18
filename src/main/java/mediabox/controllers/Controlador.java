@@ -22,7 +22,7 @@ import mediabox.services.*;
 @Controller
 public class Controlador  {
 	@Autowired
-	private AnuncianteService anuncianteservice;
+	private PruebaService pruebaservice;
 	
 	
 	//*************************************PUBLIC AREA******************************************************************************
@@ -32,7 +32,7 @@ public class Controlador  {
 	@RequestMapping("/")
 	public String loadCategorias(HttpServletRequest request,HttpServletResponse response) {
 		System.out.println("Hola mundo");
-		System.out.println(anuncianteservice.checkUsername("Asraelh", "1234"));
+		pruebaservice.pruebaconexion();
 		
 		
 		return "index";

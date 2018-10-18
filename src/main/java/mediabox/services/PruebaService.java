@@ -19,7 +19,7 @@ public class PruebaService implements IPruebaService {
 
 	@Override
 	public void pruebaconexion() {
-		pruebarepository.pruebaconexion();
+		System.out.println(pruebarepository.pruebaconexion());
 	}
 	
 	
