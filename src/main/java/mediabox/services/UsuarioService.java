@@ -17,11 +17,17 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public String addusuario(String user, String password, String email,String alias, String nombre, String apellidos) {
-		
+		System.out.println("services");
 		boolean check=usuariosRepository.checkUser(user, password);
-		
+		System.out.println(check);
 		String mensaje;
-		if(check) {
+		if(!check) {
+			System.out.println(user);
+			System.out.println(password);
+			System.out.println(email);
+			System.out.println(alias);
+			System.out.println(nombre);
+			System.out.println(apellidos);
 			usuariosRepository.insertUser(user,password,email,alias,nombre,apellidos);
 			return mensaje="Usuario registrado correctamente";
 		}else {
