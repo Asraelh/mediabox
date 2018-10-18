@@ -1,7 +1,6 @@
 package mediabox.controllers;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
