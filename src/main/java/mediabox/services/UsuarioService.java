@@ -17,8 +17,6 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public String addusuario(String user, String password, String email,String alias, String nombre, String apellidos) {
-		// TODO Auto-generated method stub
-		
 		
 		boolean check=usuariosRepository.checkUser(user, password);
 		
