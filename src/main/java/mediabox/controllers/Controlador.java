@@ -24,7 +24,8 @@ import mediabox.services.*;
 public class Controlador  {
 	@Autowired
 	private PruebaService pruebaservice;
-	
+	@Autowired
+	private IUsuarioService usuarioservice;
 	
 	//*************************************PUBLIC AREA******************************************************************************
 	//*************************************************************************************************************************************
@@ -49,8 +50,7 @@ public class Controlador  {
 		return "registro";
 	}
 	
-	@Autowired
-	private IUsuarioService usuarioservice;
+	
 	
 	@RequestMapping("addusuario") 
 	public ModelAndView registrarse(HttpServletRequest req) {
