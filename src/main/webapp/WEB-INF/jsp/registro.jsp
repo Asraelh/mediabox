@@ -29,10 +29,8 @@
 
 	<body>
 
-		<div id="titulo">
-			<h1>
-				Registrate
-			</h1>
+		<div id="titulo" class="areas">
+			<h1> Registrase </h1>
 		</div>
 
 		<div id="formulario">

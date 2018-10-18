@@ -1,4 +1,4 @@
-<!-- 
+<!--
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -29,77 +29,86 @@
 
 	</head>
 	<body>
-		<div id="titulo">
+		<div id="titulo" class="areas">
+
+			<h3 id="media"> Media </h3>
 
 			<img id="logo" src="../../resources/img/logo.png" />
 
-			<h3> Media Box </h3>
+			<h3 id="box"> Box </h3>
 
 		</div>
 
 <!--		<% if (session.getAttribute("usr") == null ) { %>
 -->
-			<div id="login">
+			<div id="login" class="areas">
 				<h4>Inicio</h4>
 				<form action="/iniSesion" method="post">
 
-					<input type="text"     class="imp_gen" name="user"     placeholder="Usuario" /> <br><br>
+					<input type="text"     class="imp_gen" name="user"     placeholder="Usuario o email" />
+					<br><br>
 
-					<input type="password" class="imp_gen" name="password" placeholder="Contraseña" /> <br><br>
+					<input type="password" class="imp_gen" name="password" placeholder="Contraseña" />
+					<br><br>
 
 	 				<input type="submit" class="btns" id="impIni"  value="Enviar"/>
 
-	 				<a href="altausuarios"> 
-	 					<input class="btns" type="button" value="Regístrate"/> 
+					<p id="m_control"> ${ mensaje_login } </p>
+
+	 				<a href="altausuarios">
+	 					<input id="impReg" class="btns" type="button" value="Regístrate"/>
 	 				</a>
 				</form>
-				<br>
-				<p id="m_control"> ${ mensaje_login } </p>
 			</div>
 
 <!--		<% }else{ %>  -->
 
-			<div id="d_bienvenido">
-				<h3>
-					Bienvenido, 
-				</h3>	
+			<div id="d_bienvenido" class="areas">
+
+				<h3 id="media"> Media </h3>
+					<img id="logo" src="../../resources/img/logo.png" />
+				<h3 id="box"> Box </h3>
+
+				<h4>
+					Bienvenido,
+				</h4>
 
 				<a href="admin_usuario">
 					<input id="btns_admin" class="btns" type="button" value="Configura tu cuenta"/>
 				</a>
 
 				<a href="cerrarSesion">
-					<input id="btns_close" class="btns" type="button" value="Salir"/>
+					<input id="btns_close" class="btns" type="button" value="Cerrar sesión"/>
 				</a>
-				
+
 			</div>
 
-			<div id="menu">
+			<div id="menu" class="areas">
 
 				<div id="pelis">
-	 				<a href="pelis">
+	 				<a href="pelis" class="med_gen">
 	 					<img src=""/> Peliculas
 	 				</a> <br><br>
 				</div>
 
 				<div id="series">
-	 				<a href="series">
+	 				<a href="series" class="med_gen">
 	 					<img src=""/> Series
-	 				</a> 
+	 				</a>
  				</div>
 
 			</div>
 
-			<div id="favoritos">
-				
+			<div id="favoritos" class="areas">
+
 				<div id="fav_pelis">
-	 				<a href="fav_pelis">
+	 				<a href="fav_pelis" class="med_gen">
 	 					<img src=""/> Películas favoritas
 	 				</a>
 				</div>
-				
+
 				<div id="fav_series">
-	 				<a href="fav_series">
+	 				<a href="fav_series" class="med_gen">
 	 					<img src=""/> Series favoritas
 	 				</a>
 				</div>

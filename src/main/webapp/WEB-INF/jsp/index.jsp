@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,60 +27,85 @@
 
 	</head>
 	<body>
-		<div id="d_bienvenido">
-			<h1>
-				Media Box
-			</h1>
+
+		<div id="titulo" class="areas">
+
+			<h3 id="media"> Media </h3>
+
+			<img id="logo" src="../../resources/img/logo.png" />
+
+			<h3 id="box"> Box </h3>
+
 		</div>
+
 		<% if (session.getAttribute("usr") == null ) { %>
 
-			<div id="login">
-				<h4>Inicio sesión</h4>
-				<form action="/iniSesion"  method="post">
-					<input type="text"     class="imp_gen" name="user"     placeholder="Usuario" /> <br><br>
-					<input type="password" class="imp_gen" name="password" placeholder="Contraseña" /> <br><br>
-	 				<input type="submit"      id="impIni"  value="Enviar"/>
-	 				<a href="altausuarios"> <input type="button" value="Registro"/> </a>
+			<div id="login" class="areas">
+				<h4>Inicio</h4>
+				<form action="/iniSesion" method="post">
+
+					<input type="text"     class="imp_gen" name="user"     placeholder="Usuario" />
+					<br><br>
+
+					<input type="password" class="imp_gen" name="password" placeholder="Contraseña" />
+					<br><br>
+
+	 				<input type="submit" class="btns" id="impIni"  value="Enviar"/>
+
+	 				<a href="altausuarios">
+	 					<input class="btns" type="button" value="Regístrate"/>
+	 				</a>
 				</form>
 				<br>
 				<p id="m_control"> ${ mensaje_login } </p>
-			</div>	
+			</div>
 
 		<% }else{ %>
 
-			<div id="d_bienvenido">
+			<div id="d_bienvenido" class="areas">
 				<h3>
-					Bienvenido, <%=session.getAttribute("usr")%>
-					<a href="cerrarSesion"><input class="btns" type="button" value="Cerrar sesion"/></a>
+					Bienvenido,
 				</h3>
-			</div>
 
-			<div id="menu">
+				<a href="admin_usuario">
+					<input id="btns_admin" class="btns" type="button" value="Configura tu cuenta"/>
+				</a>
 
-				<h4>Menu</h4>
-
- 				<a href="pelis">
- 					<img src=""/>
- 				</a> <br><br>
-
- 				<a href="series">
- 					<img src=""/>
- 				</a> <br><br>
+				<a href="cerrarSesion">
+					<input id="btns_close" class="btns" type="button" value="Salir"/>
+				</a>
 
 			</div>
 
-			<div id="favoritos">
+			<div id="menu" class="areas">
 
-				<h4>Menu</h4>
+				<div id="pelis">
+	 				<a href="pelis" class="med_gen">
+	 					<img src=""/> Peliculas
+	 				</a> <br><br>
+				</div>
 
- 				<a href="fav_pelis">
- 					<img src=""/>
- 				</a> <br><br>
+				<div id="series">
+	 				<a href="series" class="med_gen">
+	 					<img src=""/> Series
+	 				</a>
+ 				</div>
 
- 				<a href="fav_series">
- 					<img src=""/>
- 				</a> <br><br>
+			</div>
 
+			<div id="favoritos" class="areas">
+
+				<div id="fav_pelis">
+	 				<a href="fav_pelis" class="med_gen">
+	 					<img src=""/> Películas favoritas
+	 				</a>
+				</div>
+
+				<div id="fav_series">
+	 				<a href="fav_series" class="med_gen">
+	 					<img src=""/> Series favoritas
+	 				</a>
+				</div>
 			</div>
 
 		<% } %>
