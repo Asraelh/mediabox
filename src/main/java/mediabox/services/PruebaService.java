@@ -22,7 +22,4 @@ public class PruebaService implements IPruebaService {
 		System.out.println(pruebarepository.pruebaconexion());
 	}
 	
-	
-	
-
 }

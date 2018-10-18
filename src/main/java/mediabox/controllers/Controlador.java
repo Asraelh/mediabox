@@ -30,15 +30,6 @@ public class Controlador  {
 	//*************************************************************************************************************************************
 	
 
-	/*@RequestMapping("/")
-	public String loadCategorias(HttpServletRequest request,HttpServletResponse response) {
-		System.out.println("Hola mundo");
-		pruebaservice.pruebaconexion();
-		
-		
-		return "index";
-	}*/
-	
 	@RequestMapping("/") 
 	
 	public String indice(HttpServletRequest req) {
@@ -65,10 +56,18 @@ public class Controlador  {
 		System.err.println("registrandose");
 		String mensaje;
 		
+		String user=req.getParameter("user");
+		String pass=req.getParameter("password");
+		String repass=req.getParameter("re_password");
+		String email=req.getParameter("email");
+		String alias=req.getParameter("alias");
+		String nombre=req.getParameter("nombre");
+		String apellidos=req.getParameter("apellidos");
+		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		if(req.getParameter("user").equals("") || req.getParameter("password").equals("") || req.getParameter("email").equals("") || 
-				req.getParameter("nombre").equals("") || req.getParameter("apellidos").equals("") || req.getParameter("alias").equals("")) { 
+		if(user.equals("") ||pass.equals("") || email.equals("") || 
+				nombre.equals("") || apellidos.equals("") || alias.equals("")) { 
 		
 			mensaje="Rellene todos los campos"; 
 			
@@ -77,10 +76,10 @@ public class Controlador  {
 		
 		}else {
 			
-			if(req.getParameter("password").equals(req.getParameter("re_password"))){
+			if(pass.equals(repass)){
 			
-			mensaje=usuarioservice.addusuario(req.getParameter("user"), req.getParameter("password"), req.getParameter("alias"), 
-					req.getParameter("nombre"), req.getParameter("apellidos"), req.getParameter("email"));
+			mensaje=usuarioservice.addusuario(user, pass, email,alias, 
+					nombre, apellidos );
 			
 			if(mensaje.equals("Este usuario ya existe")) {
 				
