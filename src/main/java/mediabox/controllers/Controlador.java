@@ -51,23 +51,30 @@ public class Controlador  {
 	@Autowired
 	private IUsuarioService usuarioservice;
 	
-	@RequestMapping("/registrarse") 
+	@RequestMapping("addusuario") 
 	public ModelAndView registrarse(HttpServletRequest req) {
 		System.err.println("registrandose");
 		String mensaje;
 		
-		String user=req.getParameter("user");
+		String user=req.getParameter("usu");
 		String pass=req.getParameter("password");
 		String repass=req.getParameter("re_password");
 		String email=req.getParameter("email");
-		String alias=req.getParameter("alias");
-		String nombre=req.getParameter("nombre");
-		String apellidos=req.getParameter("apellidos");
-		
+		String alias="";
+		//String alias=req.getParameter("alias");
+		String nombre="";
+		String apellidos="";
+		/*String nombre=req.getParameter("nombre");
+		String apellidos=req.getParameter("apellidos");*/
+	
 		ModelAndView modelAndview=new ModelAndView();
+		//modelAndview.setViewName("index");
 		
-		if(user.equals("") ||pass.equals("") || email.equals("") || 
-				nombre.equals("") || apellidos.equals("") || alias.equals("")) { 
+		System.err.println("Usuario: " + user + " Pass: " + pass + " Repass: " + repass + " email: " + email);
+		
+		/*if(user.equals("") ||pass.equals("") || email.equals("") || 
+				nombre.equals("") || apellidos.equals("") || alias.equals("")) { */
+		if(user.equals("") ||pass.equals("") || repass.equals("") || email.equals("")) {
 		
 			mensaje="Rellene todos los campos"; 
 			
