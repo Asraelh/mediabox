@@ -20,11 +20,6 @@ public class Prueba implements Serializable {
 	private String apellidos;
 	private String alias;
 	
-	
-	@Query(value="SELECT * FROM PELICULA WHERE DURACION!=\"null\" AND PROTAGONISTA!=\"null\" AND DIRECTOR!=\"null\" ORDER BY YEAR DESC LIMIT 5;",nativeQuery=true)
-	public Optional<List<Pelicula>> show5peliculas();
-	
-	
 	@Override
 	public String toString() {
 		return "Prueba [username=" + username + ", password=" + password + ", email=" + email + ", nombre=" + nombre
