@@ -39,9 +39,40 @@ public class Pelicula implements Serializable {
 	@Column(name="director")
 	private String director;
 	
-	@Column(name="trailer")
-	private String trailer; //url del trailer
 
+	@Column(name="imagen")
+	private String imagen; //url del trailer
+	
+
+	@Column(name="watch")
+	private String watch; //url del trailer
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Pelicula [idpelicula=" + idpelicula + ", categoria=" + categoria + ", titulo=" + titulo + ", year="
+				+ year + ", calificacion=" + calificacion + ", duracion=" + duracion + ", descripcion=" + descripcion
+				+ ", protagonista=" + protagonista + ", director=" + director + ", imagen=" + imagen + ", watch="
+				+ watch + "]";
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getWatch() {
+		return watch;
+	}
+
+	public void setWatch(String watch) {
+		this.watch = watch;
+	}
 
 	public int getIdpelicula() {
 		return idpelicula;
