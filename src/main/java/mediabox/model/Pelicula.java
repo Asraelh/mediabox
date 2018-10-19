@@ -5,14 +5,15 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table()
+@Table
 public class Pelicula implements Serializable {
 	
 	@Id //En principio, esto no es autoincrementable
-	
 	private int idpelicula;
 	private String categoria; 
 	private String titulo;
@@ -22,8 +23,8 @@ public class Pelicula implements Serializable {
 	private String descripcion;
 	private String protagonista;
 	private String director;
-	private String imagen; //url del trailer
-	private String watch; //url del trailer
+	private String imagen; //url de la imagen
+	private String watch; //url de la pelicula en Netflix
 	
 	
 	@Override
