@@ -56,6 +56,7 @@
 				<br><br><br>
 
 				<input id="btn_reg" type="submit" value="Registrar"/>
+
 			</form>
 
 			<div id="resRegistro">

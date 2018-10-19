@@ -49,7 +49,7 @@
 					<input type="password" class="imp_gen" name="password" placeholder="Contraseña" />
 					<br><br>
 
-	 				<input type="submit" class="btns" id="impIni"  value="Enviar"/>
+	 				<input type="submit" class="btns" id="impIni"  value="Acceder"/>
 
 					<p id="m_control"> ${ mensaje_login } </p>
 
@@ -112,7 +112,7 @@
 				</div>
 			</div>
 
-		<% } %> 
+		<% } %>
 
 	</body>
 </html>
