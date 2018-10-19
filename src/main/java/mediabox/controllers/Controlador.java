@@ -133,6 +133,27 @@ public class Controlador  {
 		return modelAndview;
 	}
 	
+	@RequestMapping("peliculaprovisional") 
+	
+	public ModelAndView Verpelicula(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
+		System.err.println("redirige a Ver pelicula");
+		
+		int Idpelicula=Integer.parseInt(req.getParameter("Idpelicula"));
+		
+		ModelAndView modelAndview=new ModelAndView();
+		
+		Pelicula pelicula=peliculaservice.buscarPeliculaporId(Idpelicula);
+		
+		System.err.println(pelicula);
+		
+		modelAndview.addObject("usr", session.getAttribute("usr"));
+		modelAndview.setViewName("pelicula");
+		modelAndview.addObject("pelicula", pelicula);
+				
+		return modelAndview;
+	}
+	
 	@RequestMapping("series") 
 	
 	public ModelAndView series(HttpServletRequest req) {

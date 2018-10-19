@@ -44,4 +44,14 @@ public class PeliculaService implements IPeliculaService {
 		
 	}
 
+	@Override
+	public Pelicula buscarPeliculaporId(int Idpelicula) {
+		// TODO Auto-generated method stub
+		
+		Pelicula pelicula=peliculasRepository.findFilmById(Idpelicula); 
+		//Crear funcion findFilmById(Idpelicula) que devuelva una pelicula dado su Idpelicula
+		
+		return pelicula;
+	}
+
 }

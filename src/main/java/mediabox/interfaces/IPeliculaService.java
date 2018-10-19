@@ -9,5 +9,7 @@ public interface IPeliculaService {
 	public List<Pelicula> listarPeliculas();
 	
 	public List<Pelicula> listarCincoPeliculas();
+	
+	public Pelicula buscarPeliculaporId(int Idpelicula);
 
 }
