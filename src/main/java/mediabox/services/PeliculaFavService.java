@@ -17,7 +17,7 @@ public class PeliculaFavService implements IPelFavoritaService {
 	private IPelFavoritaRepository pelFavRepository;
 	
 	@Override
-	public Optional<List<PeliculaFavorita>> listarPeliculasFavporUsuario(String user) {
+	public List<PeliculaFavorita> listarPeliculasFavporUsuario(String user) {
 		// TODO Auto-generated method stub
 		
 		Optional<List<PeliculaFavorita>> o=pelFavRepository.buscaPorUsuario(user);

@@ -17,7 +17,7 @@ public class SerieFavService implements ISerieFavService {
 		private ISerieFavRepository serieFavRepository;
 		
 		@Override
-		public Optional<List<SerieFavorita>> listarSeriesFavporUsuario(String user) {
+		public List<SerieFavorita> listarSeriesFavporUsuario(String user) {
 			// TODO Auto-generated method stub
 			
 			Optional<List<SerieFavorita>> serfav=serieFavRepository.buscaPorUsuario(user);

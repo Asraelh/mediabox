@@ -7,6 +7,6 @@ import mediabox.model.SerieFavorita;
 
 public interface ISerieFavService {
 	
-	public Optional<List<SerieFavorita>> listarSeriesFavporUsuario(String user);
+	public List<SerieFavorita> listarSeriesFavporUsuario(String user);
 
 }

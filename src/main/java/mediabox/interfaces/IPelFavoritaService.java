@@ -7,6 +7,6 @@ import mediabox.model.PeliculaFavorita;
 
 public interface IPelFavoritaService {
 	
-	public Optional<List<PeliculaFavorita>> listarPeliculasFavporUsuario(String user);
+	public List<PeliculaFavorita> listarPeliculasFavporUsuario(String user);
 
 }
