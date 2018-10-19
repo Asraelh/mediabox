@@ -118,7 +118,47 @@ public class Controlador  {
 		return modelAndview; 
 	}
 	
+	@RequestMapping("/iniSesion") 
+	public ModelAndView filtroporusuario(HttpServletRequest req) {
+		System.err.println("entra en inicio sesion");
+		HttpSession session = req.getSession(true);
+		
+		String user=req.getParameter("user");
+		String password=req.getParameter("password");
+		
+		String mensaje;
+		
+		ModelAndView modelAndview=new ModelAndView(); 
+		
+		if(user.equals("") || password.equals("")) {
+		
+			mensaje="Rellene todos los campos"; 
+			modelAndview.setViewName("index");
+			
+		}else {
+			
+			Usuario usuario=usuarioservice.comprobarusuario(user, password);
+		
+		if(usuario==null) { 
+			
+			mensaje="Usuario o contraseña incorrecto"; 
+			modelAndview.setViewName("index");
+			
+		}else {
+			
+			session.setAttribute("usr", usuario);
+			
+			//modelAndview.addObject("usr", user);
+			
+			modelAndview.setViewName("index");
+			mensaje="Sesión iniciada";
+			
+		}
+		}
+			modelAndview.addObject("mensaje_login", mensaje);
+			return modelAndview; 
 	
+	}
 	
 	
 	

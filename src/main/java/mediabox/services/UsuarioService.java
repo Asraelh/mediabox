@@ -66,36 +66,37 @@ public class UsuarioService implements IUsuarioService {
 //		}
 //		return mensaje;
 	}
+
+	@Override
+	public Usuario comprobarusuario(String user, String password) {
+		// TODO Auto-generated method stub
+		
+		System.err.println("Entra en comprobarusuario");
+		Usuario usuario=null;
+		Optional<Usuario> pro=usuariosRepository.findById(user); 
+		System.err.println("Comprueba si el usuario esta registrado");
+		if(pro.isPresent()) { //Si lo encuentra
+		System.err.println("Usuario encontrado");
+		
+		
+	if(pro.get().getPassword().equals(password)) { //Comprueba contraseña
+		System.err.println("Contraseña correcta");
+		
+		usuario=pro.get();
+		
+	}else {
+		System.err.println("Contraseña incorrecta");
+
+	}
 	
-//	@Override
-//	public Usuario comprobarusuario(String user, String password) {
-//		// TODO Auto-generated method stub
-//		
-//		Usuario usuario=null;
-//		Optional<Usuario> pro=usuariosRepository.findById(user); 
-//		
-//	
-//		if(pro.isPresent()) { //Si lo encuentra
-//			System.err.println("Usuario encontrado");
-//			
-//			
-//		if(pro.get().getPassword().equals(password)) { //Comprueba contraseña
-//			System.err.println("Contraseña correcta");
-//			
-//			usuario=pro.get();
-//			
-//		}else {
-//			System.err.println("Contraseña incorrecta");
-//
-//		}
-//		
-//		}else {
-//			
-//			System.err.println("Este usuario no existe");
-//			
-//		}
-//		
-//		return usuario;
-//}
+	}else {
+		
+		System.err.println("Este usuario no existe");
+		
+	}
+	
+	return usuario;
+		
+	}
 
 }
