@@ -7,5 +7,7 @@ import mediabox.model.Pelicula;
 public interface IPeliculaService {
 	
 	public List<Pelicula> listarPeliculas();
+	
+	public List<Pelicula> listarCincoPeliculas();
 
 }

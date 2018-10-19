@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import mediabox.interfaces.IPeliculaService;
 import mediabox.interfaces.IUsuarioService;
 import mediabox.model.*;
 import mediabox.services.*;
@@ -26,6 +27,8 @@ public class Controlador  {
 	private PruebaService pruebaservice;
 	@Autowired
 	private IUsuarioService usuarioservice;
+	@Autowired
+	private IPeliculaService peliculaservice;
 	
 	//*************************************PRUEBA AREA******************************************************************************
 	//*************************************************************************************************************************************
@@ -49,11 +52,26 @@ public class Controlador  {
 	
 	@RequestMapping("/") 
 	
-	public String indice(HttpServletRequest req) {
+	public ModelAndView indice(HttpServletRequest req) {
+		
+		ModelAndView modelAndview=new ModelAndView();
 		
 		System.err.println("entra indice");
-				
-		return "index";
+		
+		List<Pelicula> Cincopeliculas=peliculaservice.listarCincoPeliculas();
+		
+		for(Pelicula p:Cincopeliculas) {
+			
+			System.err.println(p);
+			//System.err.println(p.getIdpelicula() + " " + "Pelicula: " + p.getTitulo());
+			
+		}
+		
+		modelAndview.setViewName("index");
+		
+		modelAndview.addObject("5peliculas",Cincopeliculas);
+		
+		return modelAndview;
 	}
 	
 	@RequestMapping("altausuarios") 
@@ -78,11 +96,26 @@ public class Controlador  {
 	
 	@RequestMapping("pelis") 
 	
-	public String peliculas(HttpServletRequest req) {
+	public ModelAndView peliculas(HttpServletRequest req) {
 		
-		System.err.println("redirige a admin_usuario");
+		System.err.println("redirige a peliculas");
+		
+		ModelAndView modelAndview=new ModelAndView();
+		
+		List<Pelicula> peliculas=peliculaservice.listarPeliculas();
+		
+		int i=0;
+		while(i<10) {
+			
+		Pelicula pelicula=peliculas.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo());
+		i++;
+		}
+		
+		modelAndview.setViewName("peliculas");
+		modelAndview.addObject("peliculas", peliculas);
 				
-		return "peliculas";
+		return modelAndview;
 	}
 	
 	@RequestMapping("series") 
@@ -99,6 +132,8 @@ public class Controlador  {
 	public String peliculasfav(HttpServletRequest req) {
 		
 		System.err.println("redirige a peliculas favoritas");
+		
+		
 				
 		return "peliculas_favoritas";
 	}

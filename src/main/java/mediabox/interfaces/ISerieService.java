@@ -7,6 +7,7 @@ import mediabox.model.Serie;
 public interface ISerieService {
 	
 	public List<Serie> listarSeries();
-
+	
+	public List<Serie> listarCincoSeries();
 
 }
