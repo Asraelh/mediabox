@@ -85,6 +85,16 @@ public class Controlador  {
 		return "peliculas";
 	}
 	
+	@RequestMapping("cerrarSesion") 
+	
+	public String cerrarSesion(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(true);
+		session.invalidate();
+				
+		return "index";
+	}
+	
 	@RequestMapping("addusuario") 
 	public ModelAndView registrarse(HttpServletRequest req) {
 		System.err.println("registrandose");
@@ -152,7 +162,7 @@ public class Controlador  {
 	}
 	
 	@RequestMapping("/iniSesion") 
-	public ModelAndView filtroporusuario(HttpServletRequest req) {
+	public ModelAndView iniciosesion(HttpServletRequest req) {
 		System.err.println("entra en inicio sesion");
 		HttpSession session = req.getSession(true);
 		
