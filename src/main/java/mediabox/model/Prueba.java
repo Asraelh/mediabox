@@ -1,8 +1,12 @@
 package mediabox.model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.*;
+
+import org.springframework.data.jpa.repository.Query;
 
 @Entity
 @Table
@@ -17,7 +21,8 @@ public class Prueba implements Serializable {
 	private String alias;
 	
 	
-	
+	@Query(value="SELECT * FROM PELICULA WHERE DURACION!=\"null\" AND PROTAGONISTA!=\"null\" AND DIRECTOR!=\"null\" ORDER BY YEAR DESC LIMIT 5;",nativeQuery=true)
+	public Optional<List<Pelicula>> show5peliculas();
 	
 	
 	@Override

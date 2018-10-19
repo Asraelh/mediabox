@@ -8,46 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="netflix")
+@Table()
 public class Pelicula implements Serializable {
 	
 	@Id //En principio, esto no es autoincrementable
-	@Column(name="idpelicula")
+	
 	private int idpelicula;
-	
-	@Column(name="categoria")
-	private String categoria; //En principio, lo cojo como descripcion de categoria y no como id
-	
-	@Column(name="titulo")
+	private String categoria; 
 	private String titulo;
-	
-	@Column(name="year")
 	private int year;
-	
-	@Column(name="calificacion")
 	private String calificacion;
-	
-	@Column(name="duracion")
-	private int duracion;
-	
-	@Column(name="descripcion")
+	private String duracion;
 	private String descripcion;
-	
-	@Column(name="protagonista")
 	private String protagonista;
-	
-	@Column(name="director")
 	private String director;
-	
-
-	@Column(name="imagen")
 	private String imagen; //url del trailer
-	
-
-	@Column(name="watch")
 	private String watch; //url del trailer
-	
-	
 	
 	
 	@Override
@@ -57,6 +33,18 @@ public class Pelicula implements Serializable {
 				+ ", protagonista=" + protagonista + ", director=" + director + ", imagen=" + imagen + ", watch="
 				+ watch + "]";
 	}
+	
+	
+	public String getDuracion() {
+		return duracion;
+	}
+
+
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
+	}
+
+
 
 	public String getImagen() {
 		return imagen;
@@ -106,13 +94,7 @@ public class Pelicula implements Serializable {
 		this.calificacion = calificacion;
 	}
 
-	public int getDuracion() {
-		return duracion;
-	}
 
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
-	}
 
 	public String getDescripcion() {
 		return descripcion;

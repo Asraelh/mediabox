@@ -19,14 +19,19 @@ public class PruebaService implements IPruebaService {
 		
 		@Autowired
 		private IPruebaRepository pruebaRepository;
+		@Autowired
+		private IPeliculaRepository peliculaRepository;
 		
 		@Override
-		public List<Prueba> pruebaSelect() {
-			Optional<List<Prueba>> usuarios=pruebaRepository.pruebaselect();
+		public void pruebaSelect() {
+			Optional<List<Pelicula>> usuarios=peliculaRepository.show5peliculas();
+			
+			
 			if(usuarios.isPresent()) {
-				return usuarios.get();
+				List peliculas=usuarios.get();
+				peliculas.forEach(p->System.out.println(p));
+				
 			}
-			return null;
 		}
 		
 	

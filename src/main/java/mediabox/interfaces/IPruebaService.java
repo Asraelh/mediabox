@@ -12,7 +12,7 @@ import mediabox.model.Usuario;
 
 public interface IPruebaService {
 
-	List<Prueba> pruebaSelect();
+	void pruebaSelect();
 
 
 
