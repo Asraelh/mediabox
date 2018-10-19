@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -10,22 +9,20 @@
 		<meta charset="UTF-8">
 		<title>Media Box</title>
 
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-		        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-		        crossorigin="anonymous">
-		</script>
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+			  rel="stylesheet"
+			  id="bootstrap-css">
 
-		<link rel="stylesheet"
-		      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-		      crossorigin="anonymous">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
-
-		<link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
 
+		<link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
+
 	</head>
+
 	<body>
 		<div id="titulo" class="areas">
 

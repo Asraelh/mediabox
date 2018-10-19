@@ -84,6 +84,18 @@
 
 		<!--  A D M I N I S T R A C I O N     D E     U S U A R I O  -->
 
+		<div id="detalles">
+
+			<p> Categoría: </p>
+
+			<p> Titulo: </p>
+			<p> Año: </p>
+			<p> Calificación:: </p>
+			<p> Descripción: </p>
+			<p> Número de temporadas: </p>
+			<p> Número de capítulos: </p>
+
+		</div>
 
 	</body>
 </html>

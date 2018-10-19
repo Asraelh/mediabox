@@ -84,6 +84,19 @@
 
 		<!--  A D M I N I S T R A C I O N     D E     U S U A R I O  -->
 
+		<div id="detalles">
+
+			<p> Categoría: </p>
+
+			<p> Titulo: </p>
+			<p> Año: </p>
+			<p> Duración: </p>
+			<p> Director: </p>
+			<p> Protagonista: </p>
+			<p> Calificación:: </p>
+			<p> Descripción: </p>
+
+		</div>
 
 	</body>
 </html>
