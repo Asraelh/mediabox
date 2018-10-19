@@ -19,8 +19,9 @@ public class Pelicula implements Serializable {
 	private String titulo;
 	private int year;
 	private String calificacion;
-	private String duracion;
 	private String descripcion;
+	
+	private String duracion;
 	private String protagonista;
 	private String director;
 	private String imagen; //url de la imagen

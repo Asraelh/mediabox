@@ -13,14 +13,18 @@ import org.springframework.stereotype.Component;
 
 import mediabox.model.Pelicula;
 import mediabox.model.Prueba;
+import mediabox.model.Serie;
 
 
 @Component
 @Transactional
 public interface IPeliculaRepository extends CrudRepository<Pelicula, Integer> {
 
-	 @Query(nativeQuery = true,value = "call show5peliculas")  // call store procedure 
+	 @Query(nativeQuery = true,value = "CALL SHOW5PELICULAS")  // call store procedure 
 	    List<Pelicula> show5peliculas();
+
+	 @Query(nativeQuery = true,value = "CALL LISTALLPELICULAS")  // call store procedure 
+	    List<Pelicula> listarTodas();
 	
 	
 }

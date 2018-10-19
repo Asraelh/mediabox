@@ -37,16 +37,9 @@ public class SerieService implements ISerieService {
 		public List<Serie> listarCincoSeries() {
 			// TODO Auto-generated method stub
 			
-			Optional<List<Serie>> o=seriesRepository.show5Series(); //Incluir metodo show5Series en el dao
+			List<Serie> o=seriesRepository.show5Series(); //Incluir metodo show5Series en el dao
+			return o;
 			
-			if(o.isPresent()) {
-				
-				return o.get();
-				
-			}else {
-				
-				return null;
-		}
 		}
 
 }

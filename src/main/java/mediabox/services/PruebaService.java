@@ -22,12 +22,12 @@ public class PruebaService implements IPruebaService {
 			
 			System.out.println("Servicio Prueba");
 			
-			List<Pelicula> peliculas=pruebaRepository.show5peliculas();
-			
+//			List<Pelicula> lista=pruebaRepository.show5peliculas();
+//			List<Pelicula> lista=pruebaRepository.listarpeliculas();
+			List<Serie> lista=pruebaRepository.show5series();
+//			List<Serie> lista=pruebaRepository.listarseries();
 //			
-//			if(usuarios.isPresent()) {
-//				List peliculas=usuarios.get();
-				peliculas.forEach(p->System.out.println(p));
+			lista.forEach(p->System.out.println(p));
 				
 //			}
 		}

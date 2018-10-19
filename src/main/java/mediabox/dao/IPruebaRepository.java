@@ -19,11 +19,22 @@ import mediabox.services.*;
 
 @Component
 @Transactional
-public interface IPruebaRepository extends CrudRepository<Pelicula, Integer> {
+public interface IPruebaRepository extends CrudRepository<Serie, Integer> {
+
+//	 @Query(nativeQuery = true,value = "CALL SHOW5PELICULAS")  // call store procedure 
+//	    List<Pelicula> show5peliculas();
+//
+//	 @Query(nativeQuery = true,value = "CALL LISTALLPELICULAS")  // call store procedure 
+//	    List<Pelicula> listarpeliculas();
 
 
-	 @Query(nativeQuery = true,value = "call show5peliculas")  // call store procedure 
-	    List<Pelicula> show5peliculas();
+	 @Query(nativeQuery = true,value = "CALL SHOW5SERIES")  // call store procedure 
+	    List<Serie> show5series();
+	 
+	 @Query(nativeQuery = true,value = "CALL LISTALLSERIES")  // call store procedure 
+	    List<Serie> listarseries();
+
+
 	 
 
 }

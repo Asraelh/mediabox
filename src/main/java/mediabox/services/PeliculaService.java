@@ -39,16 +39,8 @@ public class PeliculaService implements IPeliculaService {
 	public List<Pelicula> listarCincoPeliculas() {
 		// TODO Auto-generated method stub
 	
-		Optional<List<Pelicula>> o=peliculasRepository.show5peliculas();
-		
-		if(o.isPresent()) {
-			
-			return o.get();
-			
-		}else {
-			
-			return null;
-	}
+		List<Pelicula> o=peliculasRepository.show5peliculas();
+		return o;
 		
 	}
 
