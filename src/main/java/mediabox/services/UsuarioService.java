@@ -73,27 +73,20 @@ public class UsuarioService implements IUsuarioService {
 		
 		System.err.println("Entra en comprobarusuario");
 		Usuario usuario=null;
-		Optional<Usuario> pro=usuariosRepository.findById(user); 
+		boolean check=usuariosRepository.checkUser(user, password);
 		System.err.println("Comprueba si el usuario esta registrado");
-		if(pro.isPresent()) { //Si lo encuentra
-		System.err.println("Usuario encontrado");
 		
+		if(check) {
 		
-	if(pro.get().getPassword().equals(password)) { //Comprueba contraseña
-		System.err.println("Contraseña correcta");
+		usuario.setIdusuario(user);
+		usuario.setPassword(password);
 		
-		usuario=pro.get();
+		}else {
+			
+			System.err.println("Este usuario no existe");
+			
+		}
 		
-	}else {
-		System.err.println("Contraseña incorrecta");
-
-	}
-	
-	}else {
-		
-		System.err.println("Este usuario no existe");
-		
-	}
 	
 	return usuario;
 		

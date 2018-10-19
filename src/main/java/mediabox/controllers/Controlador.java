@@ -137,7 +137,7 @@ public class Controlador  {
 			
 		}else {
 			
-			Usuario usuario=usuarioservice.comprobarusuario(user, password);
+			Usuario usuario=usuarioservice.comprobarusuario(user, password); //El Usuario que genera solo tiene id y password
 		
 		if(usuario==null) { 
 			
