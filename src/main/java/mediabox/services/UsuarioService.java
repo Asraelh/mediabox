@@ -17,11 +17,22 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public String addusuario(String user, String password, String email,String alias, String nombre, String apellidos) {
+		//System.err.println("Entra en el checkeo usuario");
 		boolean check=usuariosRepository.checkUser(user, password);
+		//System.err.println("Hace el checkeo usuario");
 		String mensaje;
 		if(!check) {
+			//System.err.println("Entra en el checkeo email");
+			boolean checkEmail=usuariosRepository.checkEmail(email);
+			//System.err.println("Hace el checkeo email");
+			if(!checkEmail) {
+			//System.err.println("Antes de insertar usuario");
 			usuariosRepository.insertUser(user,password,email,alias,nombre,apellidos);
+			//System.err.println("Despues de insertar usuario");
 			return mensaje="Usuario registrado correctamente";
+			}else {
+			return mensaje="Este email ya existe";
+		}
 		}else {
 			return mensaje="Este usuario ya existe";
 		}

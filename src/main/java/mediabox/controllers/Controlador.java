@@ -94,6 +94,11 @@ public class Controlador  {
 				modelAndview.addObject("mensaje_registro", mensaje);
 				modelAndview.setViewName("registro");
 				
+			}else if(mensaje.equals("Este email ya existe")){
+				
+				modelAndview.addObject("mensaje_registro", mensaje);
+				modelAndview.setViewName("registro");
+				
 			}else {
 			
 			modelAndview.addObject("mensaje_login", mensaje);
