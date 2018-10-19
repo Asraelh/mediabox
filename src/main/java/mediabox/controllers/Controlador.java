@@ -38,8 +38,7 @@ public class Controlador  {
 	public String prueba(HttpServletRequest req) {
 		
 		System.out.println("prueba");
-		List pruebas =pruebaservice.pruebaSelect();
-		pruebas.forEach(u-> System.out.println(u));
+		pruebaservice.pruebaSelect();
 				
 		return "index";
 	}
