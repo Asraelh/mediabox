@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import mediabox.interfaces.IPeliculaService;
+import mediabox.interfaces.ISerieService;
 import mediabox.interfaces.IUsuarioService;
 import mediabox.model.*;
 import mediabox.services.*;
@@ -29,6 +30,8 @@ public class Controlador  {
 	private IUsuarioService usuarioservice;
 	@Autowired
 	private IPeliculaService peliculaservice;
+	@Autowired
+	private ISerieService serieservice;
 	
 	//*************************************PRUEBA AREA******************************************************************************
 	//*************************************************************************************************************************************
@@ -59,6 +62,8 @@ public class Controlador  {
 		
 		List<Pelicula> Cincopeliculas=peliculaservice.listarCincoPeliculas();
 		
+		List<Serie> Cincoseries=serieservice.listarCincoSeries();
+		
 		for(Pelicula p:Cincopeliculas) {
 			
 			System.err.println(p);
@@ -66,9 +71,19 @@ public class Controlador  {
 			
 		}
 		
+		
+		for(Serie s:Cincoseries) {
+			
+			System.err.println(s);
+			//System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo());
+			
+		}
+		
 		modelAndview.setViewName("index");
 		
 		modelAndview.addObject("5peliculas",Cincopeliculas);
+		
+		modelAndview.addObject("5series",Cincoseries);
 		
 		return modelAndview;
 	}
@@ -125,18 +140,18 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		List<Pelicula> peliculas=peliculaservice.listarPeliculas();
+		List<Serie> series=serieservice.listarSeries();
 		
 		int i=0;
 		while(i<10) {
 			
-		Pelicula pelicula=peliculas.get(i);
-		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo());
+		Serie serie=series.get(i);
+		System.err.println(serie.getIdserie() + " " + "Serie: " + serie.getTitulo());
 		i++;
 		}
 		
-		modelAndview.setViewName("peliculas");
-		modelAndview.addObject("peliculas", peliculas);
+		modelAndview.setViewName("series");
+		modelAndview.addObject("series", series);
 				
 		return modelAndview;
 	}
