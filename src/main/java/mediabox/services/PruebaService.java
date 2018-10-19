@@ -21,8 +21,8 @@ public class PruebaService implements IPruebaService {
 		private IPruebaRepository pruebaRepository;
 		
 		@Override
-		public List<Usuario> pruebaSelect() {
-			Optional<List<Usuario>> usuarios=pruebaRepository.pruebaselect();
+		public List<Prueba> pruebaSelect() {
+			Optional<List<Prueba>> usuarios=pruebaRepository.pruebaselect();
 			if(usuarios.isPresent()) {
 				return usuarios.get();
 			}

@@ -11,10 +11,10 @@ import org.springframework.data.repository.query.Param;
 import mediabox.model.*;
 import mediabox.services.*;
 
-public interface IPruebaRepository extends CrudRepository<Usuario, Integer> {
+public interface IPruebaRepository extends CrudRepository<Prueba, Integer> {
 
 	
 	@Query(value="CALL pruebaselect()",nativeQuery=true)
-	public Optional<List<Usuario>> pruebaselect();
+	public Optional<List<Prueba>> pruebaselect();
 
 }
