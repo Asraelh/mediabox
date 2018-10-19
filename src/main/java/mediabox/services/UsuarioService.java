@@ -72,23 +72,22 @@ public class UsuarioService implements IUsuarioService {
 		// TODO Auto-generated method stub
 		
 		System.err.println("Entra en comprobarusuario");
-		Usuario usuario=null;
+		
 		boolean check=usuariosRepository.checkUser(user, password);
 		System.err.println("Comprueba si el usuario esta registrado");
 		
 		if(check) {
-		
+		System.err.println("Antes del inicio");
+		Usuario usuario=new Usuario();
 		usuario.setIdusuario(user);
 		usuario.setPassword(password);
-		
+		System.err.println("Despues del inicio");
+		return usuario;
 		}else {
 			
 			System.err.println("Este usuario no existe");
-			
+			return null;
 		}
-		
-	
-	return usuario;
 		
 	}
 

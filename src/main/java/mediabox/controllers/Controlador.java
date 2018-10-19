@@ -74,7 +74,7 @@ public class Controlador  {
 		return "admin_usuario";
 	}
 	
-	//Cerrar sesion deberia de rederigir a index olvidando el usuario
+	
 	
 	@RequestMapping("pelis") 
 	
@@ -83,6 +83,43 @@ public class Controlador  {
 		System.err.println("redirige a admin_usuario");
 				
 		return "peliculas";
+	}
+	
+	@RequestMapping("series") 
+	
+	public String series(HttpServletRequest req) {
+		
+		System.err.println("redirige a series");
+				
+		return "series";
+	}
+	
+	@RequestMapping("fav_pelis") 
+	
+	public String peliculasfav(HttpServletRequest req) {
+		
+		System.err.println("redirige a peliculas favoritas");
+				
+		return "peliculas_favoritas";
+	}
+	
+	@RequestMapping("fav_series") 
+	
+	public String seriesfav(HttpServletRequest req) {
+		
+		System.err.println("redirige a series favoritas");
+				
+		return "series_favoritas";
+	}
+	
+	@RequestMapping("cerrarSesion") 
+	
+	public String cerrarSesion(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(true);
+		session.invalidate();
+				
+		return "index";
 	}
 	
 	@RequestMapping("addusuario") 
@@ -152,7 +189,7 @@ public class Controlador  {
 	}
 	
 	@RequestMapping("/iniSesion") 
-	public ModelAndView filtroporusuario(HttpServletRequest req) {
+	public ModelAndView iniciosesion(HttpServletRequest req) {
 		System.err.println("entra en inicio sesion");
 		HttpSession session = req.getSession(true);
 		
