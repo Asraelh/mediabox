@@ -24,7 +24,7 @@ public class PeliculaService implements IPeliculaService {
 		System.err.println("Entra en PeliculaService");
 		List<Pelicula> peliculas=new ArrayList();
 		
-		for(Pelicula p:peliculasRepository.listarTodas()) { //Parece que hay que cambiar el metodo findAll
+		for(Pelicula p:peliculasRepository.listarTodas()) { //Incluir metodo listarTodas en el dao
 			
 			peliculas.add(p);
 			

@@ -24,7 +24,7 @@ public class SerieService implements ISerieService {
 			
 			List<Serie> series=new ArrayList();
 			
-			for(Serie s:seriesRepository.listarTodas()) {//Parece que hay que cambiar el metodo findAll
+			for(Serie s:seriesRepository.listarTodas()) {//Incluir metodo listarTodas en el dao
 				
 				series.add(s);
 				
@@ -37,7 +37,7 @@ public class SerieService implements ISerieService {
 		public List<Serie> listarCincoSeries() {
 			// TODO Auto-generated method stub
 			
-			Optional<List<Serie>> o=seriesRepository.show5Series();
+			Optional<List<Serie>> o=seriesRepository.show5Series(); //Incluir metodo show5Series en el dao
 			
 			if(o.isPresent()) {
 				

@@ -120,11 +120,26 @@ public class Controlador  {
 	
 	@RequestMapping("series") 
 	
-	public String series(HttpServletRequest req) {
+	public ModelAndView series(HttpServletRequest req) {
 		
 		System.err.println("redirige a series");
+		
+		ModelAndView modelAndview=new ModelAndView();
+		
+		List<Pelicula> peliculas=peliculaservice.listarPeliculas();
+		
+		int i=0;
+		while(i<10) {
+			
+		Pelicula pelicula=peliculas.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo());
+		i++;
+		}
+		
+		modelAndview.setViewName("peliculas");
+		modelAndview.addObject("peliculas", peliculas);
 				
-		return "series";
+		return modelAndview;
 	}
 	
 	@RequestMapping("fav_pelis") 
