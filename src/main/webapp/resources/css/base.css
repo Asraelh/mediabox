@@ -5,6 +5,7 @@ html{
   	-moz-background-size: cover;
  	-o-background-size: cover;
   	background-size: cover;
+  	font-family: fantasy;
 }
 
 #titulo{
@@ -18,31 +19,53 @@ html{
 	height: 60px;
 	width: 60px;
 	position: fixed;
-	margin-top: 30px;
-	margin-left: 200px;
+	margin-top: 20px;
+	margin-left: 185px;
+}
+
+#logoL{
+	height: 60px;
+	width: 60px;
+	position: fixed;
+	margin-top: 20px;
+	margin-left: 130px;
 }
 
 #titulo h3{
 	position: fixed;
-	top: 18px;
+	top: 10px;
+}
+
+#d_bienvenido h4{
+	position: fixed;
+	top: 0px;
+	margin-left: 50px;
 }
 
 #d_bienvenido h3{
 	position: fixed;
-	top: 17px;
+	top: 10px;
 }
 
 #media{
 	margin-left: 5%;
 }
 
+#mediaL{
+	margin-left: 60px;
+}
+
 #box{
 	margin-left: 15%;
 }
 
+#boxL{
+	margin-left: 210px;
+}
+
 #menu{
 	left: -40px;
-	width: 10%;
+	width: 14%;
 	height: 100px;
 	padding: 5px;
 }
@@ -247,16 +270,20 @@ html{
 
 ::-webkit-input-placeholder {
    text-align: center;
+   color: white;
 }
 
 :-moz-placeholder { /* Firefox 18- */
    text-align: center;
+   color: white;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
    text-align: center;
+   color: white;
 }
 
 :-ms-input-placeholder {
-   text-align: center;
+    text-align: center;
+	color: white;
 }

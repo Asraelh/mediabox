@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -6,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta charset="UTF-8">
 		<title>Media Box</title>
 
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
@@ -19,15 +20,13 @@
 		      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 		      crossorigin="anonymous">
 
-<!--
+
 		<link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
--->
-		<link rel="stylesheet" type="text/css" href="../../css/base.css">
-		<link rel="stylesheet" type="text/css" href="../../css/index.css">
+
+		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
 
 	</head>
 	<body>
-
 		<div id="titulo" class="areas">
 
 			<h3 id="media"> Media </h3>
@@ -44,7 +43,7 @@
 				<h4>Inicio</h4>
 				<form action="/iniSesion" method="post">
 
-					<input type="text"     class="imp_gen" name="user"     placeholder="Usuario" />
+					<input type="text"     class="imp_gen" name="user"     placeholder="Usuario o email" />
 					<br><br>
 
 					<input type="password" class="imp_gen" name="password" placeholder="Contraseña" />
@@ -52,27 +51,32 @@
 
 	 				<input type="submit" class="btns" id="impIni"  value="Enviar"/>
 
+					<p id="m_control"> ${ mensaje_login } </p>
+
 	 				<a href="altausuarios">
-	 					<input class="btns" type="button" value="Regístrate"/>
+	 					<input id="impReg" class="btns" type="button" value="Regístrate"/>
 	 				</a>
 				</form>
-				<br>
-				<p id="m_control"> ${ mensaje_login } </p>
 			</div>
 
-		<% }else{ %>
+			<% }else{ %>
 
 			<div id="d_bienvenido" class="areas">
-				<h3>
-					Bienvenido,
-				</h3>
+
+				<h3 id="mediaL"> Media </h3>
+					<img id="logoL" src="../../resources/img/logo.png" />
+				<h3 id="boxL"> Box </h3>
+
+				<h4>
+					Bienvenido,${ usr }
+				</h4>
 
 				<a href="admin_usuario">
 					<input id="btns_admin" class="btns" type="button" value="Configura tu cuenta"/>
 				</a>
 
 				<a href="cerrarSesion">
-					<input id="btns_close" class="btns" type="button" value="Salir"/>
+					<input id="btns_close" class="btns" type="button" value="Cerrar sesión"/>
 				</a>
 
 			</div>
@@ -108,6 +112,7 @@
 				</div>
 			</div>
 
-		<% } %>
+		<% } %> 
+
 	</body>
 </html>
