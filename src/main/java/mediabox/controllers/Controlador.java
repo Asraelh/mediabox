@@ -62,7 +62,7 @@ public class Controlador  {
 		
 		List<Pelicula> Cincopeliculas=peliculaservice.listarCincoPeliculas();
 		
-		List<Serie> Cincoseries=serieservice.listarCincoSeries();
+		//List<Serie> Cincoseries=serieservice.listarCincoSeries();
 		
 		for(Pelicula p:Cincopeliculas) {
 			
@@ -72,18 +72,18 @@ public class Controlador  {
 		}
 		
 		
-		for(Serie s:Cincoseries) {
+		/*for(Serie s:Cincoseries) {
 			
 			System.err.println(s);
 			//System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo());
 			
-		}
+		}*/
 		
 		modelAndview.setViewName("index");
 		
 		modelAndview.addObject("5peliculas",Cincopeliculas);
 		
-		modelAndview.addObject("5series",Cincoseries);
+		//modelAndview.addObject("5series",Cincoseries);
 		
 		return modelAndview;
 	}
@@ -111,7 +111,7 @@ public class Controlador  {
 	@RequestMapping("pelis") 
 	
 	public ModelAndView peliculas(HttpServletRequest req) {
-		
+		HttpSession session = req.getSession(true);
 		System.err.println("redirige a peliculas");
 		
 		ModelAndView modelAndview=new ModelAndView();
@@ -126,6 +126,7 @@ public class Controlador  {
 		i++;
 		}
 		
+		modelAndview.addObject("usr", session.getAttribute("usr"));
 		modelAndview.setViewName("peliculas");
 		modelAndview.addObject("peliculas", peliculas);
 				
