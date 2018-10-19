@@ -44,7 +44,6 @@ public class Controlador  {
 	//*************************************PUBLIC AREA******************************************************************************
 	//*************************************************************************************************************************************
 	
-	//Esto es muy bonito 
 	
 	@RequestMapping("/") 
 	
@@ -64,7 +63,25 @@ public class Controlador  {
 		return "registro";
 	}
 	
+	@RequestMapping("admin_usuario") 
 	
+	public String administrarusuario(HttpServletRequest req) {
+		
+		System.err.println("redirige a admin_usuario");
+				
+		return "admin_usuario";
+	}
+	
+	//Cerrar sesion deberia de rederigir a index olvidando el usuario
+	
+	@RequestMapping("pelis") 
+	
+	public String peliculas(HttpServletRequest req) {
+		
+		System.err.println("redirige a admin_usuario");
+				
+		return "peliculas";
+	}
 	
 	@RequestMapping("addusuario") 
 	public ModelAndView registrarse(HttpServletRequest req) {
@@ -83,12 +100,12 @@ public class Controlador  {
 		String apellidos=req.getParameter("apellidos");*/
 	
 		ModelAndView modelAndview=new ModelAndView();
-		//modelAndview.setViewName("index");
 		
 		System.err.println("Usuario: " + user + " Pass: " + pass + " Repass: " + repass + " email: " + email);
 		
 		/*if(user.equals("") ||pass.equals("") || email.equals("") || 
 				nombre.equals("") || apellidos.equals("") || alias.equals("")) { */
+		
 		if(user.equals("") ||pass.equals("") || repass.equals("") || email.equals("")) {
 		
 			mensaje="Rellene todos los campos"; 
@@ -147,7 +164,7 @@ public class Controlador  {
 		if(user.equals("") || password.equals("")) {
 		
 			mensaje="Rellene todos los campos"; 
-			modelAndview.setViewName("index");
+			
 			
 		}else {
 			
@@ -156,19 +173,19 @@ public class Controlador  {
 		if(usuario==null) { 
 			
 			mensaje="Usuario o contraseña incorrecto"; 
-			modelAndview.setViewName("index");
+			
 			
 		}else {
 			
 			session.setAttribute("usr", usuario);
 			
-			//modelAndview.addObject("usr", user);
+			modelAndview.addObject("usr", user);
 			
-			modelAndview.setViewName("index");
 			mensaje="Sesión iniciada";
 			
 		}
-		}
+		}	
+			modelAndview.setViewName("index");
 			modelAndview.addObject("mensaje_login", mensaje);
 			return modelAndview; 
 	
