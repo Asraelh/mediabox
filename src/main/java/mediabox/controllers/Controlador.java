@@ -80,10 +80,31 @@ public class Controlador  {
 			
 		}
 		
-		/*for(Pelicula pel:Cincopeliculas) {
+		/*for(Pelicula pel:CincopeliculasTodo) {
+			
 			
 			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
 			+ " Imagen: " + pel.getImagen());
+			
+			double duracion=Double.parseDouble(pel.getDuracion());
+			System.err.println("duracion: " + duracion);
+			double aux=duracion/60;
+			System.err.println("Aux: " + aux);
+			double horas=Math.round(aux);
+			
+			if((aux-horas)<0) {
+				
+			double minutos=(aux-horas+1)*60;
+			
+			System.err.println((int)horas+"h"+(int)minutos+"min");
+			
+			}else {
+				
+				double minutos=(aux-horas)*60;
+				
+				System.err.println((int)horas+"h"+(int)minutos+"min");
+				
+			}
 			
 		}*/
 		
@@ -149,9 +170,9 @@ public class Controlador  {
 		}
 		
 		/*int i=0;
-		while(i<10) {
+		while(i<5) {
 			
-		Pelicula pelicula=peliculas.get(i);
+		Pelicula pelicula=peliculasTodo.get(i);
 		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
 		i++;
 		}*/
