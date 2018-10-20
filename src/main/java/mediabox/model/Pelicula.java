@@ -21,7 +21,7 @@ public class Pelicula implements Serializable {
 	private String calificacion;
 	private String descripcion;
 	
-	private String duracion;
+	private Integer duracion;
 	private String protagonista;
 	private String director;
 	private String imagen; //url de la imagen
@@ -38,11 +38,11 @@ public class Pelicula implements Serializable {
 	
 	
 	public String getDuracion() {
-		return duracion;
+		return duracion.toString();
 	}
 
 
-	public void setDuracion(String duracion) {
+	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
 
