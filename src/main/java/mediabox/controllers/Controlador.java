@@ -1,6 +1,7 @@
 package mediabox.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -55,22 +56,36 @@ public class Controlador  {
 	@RequestMapping("/") 
 	
 	public ModelAndView indice(HttpServletRequest req) {
-		
+		HttpSession session = req.getSession(true);
 		ModelAndView modelAndview=new ModelAndView();
 		
 		System.err.println("entra indice");
 		
-		List<Pelicula> Cincopeliculas=peliculaservice.listarCincoPeliculas();
+		List<Pelicula> CincopeliculasTodo=peliculaservice.listarCincoPeliculas();
 		
 		//List<Serie> Cincoseries=serieservice.listarCincoSeries();
 		
-		for(Pelicula p:Cincopeliculas) {
+		List<Pelicula> Cincopeliculas= new ArrayList<Pelicula>();
+		
+		for(Pelicula p:CincopeliculasTodo) {
 			
-			System.err.println(p);
-			//System.err.println(p.getIdpelicula() + " " + "Pelicula: " + p.getTitulo());
+			//System.err.println(p);
+			
+			Pelicula pelicula=new Pelicula();
+			pelicula.setIdpelicula(p.getIdpelicula());
+			pelicula.setImagen(p.getImagen());
+			pelicula.setTitulo(p.getTitulo());
+			
+			Cincopeliculas.add(pelicula);
 			
 		}
 		
+		for(Pelicula pel:Cincopeliculas) {
+			
+			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
+			+ " Imagen: " + pel.getImagen());
+			
+		}
 		
 		/*for(Serie s:Cincoseries) {
 			
@@ -81,6 +96,7 @@ public class Controlador  {
 		
 		modelAndview.setViewName("index");
 		
+		session.setAttribute("Cincopeliculas", Cincopeliculas);
 		modelAndview.addObject("peliculas5",Cincopeliculas);
 		
 		//modelAndview.addObject("5series",Cincoseries);
@@ -116,17 +132,33 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		List<Pelicula> peliculas=peliculaservice.listarPeliculas();
+		List<Pelicula> peliculasTodo=peliculaservice.listarPeliculas();
 		
-		int i=0;
+		List<Pelicula> peliculas= new ArrayList<Pelicula>();
+		
+		for(Pelicula p:peliculasTodo) {
+			
+			Pelicula pelicula=new Pelicula();
+			
+			pelicula.setIdpelicula(p.getIdpelicula());
+			pelicula.setTitulo(p.getTitulo());
+			pelicula.setImagen(p.getImagen());
+			
+			peliculas.add(pelicula);
+			
+		}
+		
+		/*int i=0;
 		while(i<10) {
 			
 		Pelicula pelicula=peliculas.get(i);
-		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo());
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
 		i++;
-		}
+		}*/
 		
-		modelAndview.addObject("usr", session.getAttribute("usr"));
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("peliculas");
 		modelAndview.addObject("peliculas", peliculas);
 				
@@ -200,12 +232,22 @@ public class Controlador  {
 	
 	@RequestMapping("cerrarSesion") 
 	
-	public String cerrarSesion(HttpServletRequest req) {
-		
+	public ModelAndView cerrarSesion(HttpServletRequest req) {
+		ModelAndView modelAndview=new ModelAndView();
 		HttpSession session = req.getSession(true);
+		
+		/*List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+		modelAndview.addObject("peliculas5",Cincopeliculas);
+		for(Pelicula pel:Cincopeliculas) {
+			
+			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
+			+ " Imagen: " + pel.getImagen());
+			
+		}*/
+		
 		session.invalidate();
-				
-		return "index";
+		modelAndview.setViewName("index");
+		return modelAndview;
 	}
 	
 	@RequestMapping("addusuario") 
@@ -286,6 +328,14 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView(); 
 		
+		List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+		/*for(Pelicula pel:Cincopeliculas) {
+			
+			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
+			+ " Imagen: " + pel.getImagen());
+			
+		}*/
+		
 		if(user.equals("") || password.equals("")) {
 		
 			mensaje="Rellene todos los campos"; 
@@ -309,7 +359,7 @@ public class Controlador  {
 			mensaje="Sesión iniciada";
 			
 		}
-		}	
+		}	modelAndview.addObject("peliculas5",Cincopeliculas);
 			modelAndview.setViewName("index");
 			modelAndview.addObject("mensaje_login", mensaje);
 			return modelAndview; 
