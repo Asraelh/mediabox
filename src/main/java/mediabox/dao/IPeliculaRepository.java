@@ -25,6 +25,10 @@ public interface IPeliculaRepository extends CrudRepository<Pelicula, Integer> {
 
 	 @Query(nativeQuery = true,value = "CALL LISTALLPELICULAS")  // call store procedure 
 	    List<Pelicula> listarTodas();
+
+	 @Query(nativeQuery = true,value = "CALL FINDPELICULABYID(:idpelicula)")  // call store procedure 
+	    Pelicula findFilmById(@Param("idpelicula")int idpelicula);
+	 
 	
 	
 }
