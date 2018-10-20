@@ -18,7 +18,7 @@ public class UsuarioService implements IUsuarioService {
 	@Override
 	public String addusuario(String user, String password, String email,String alias, String nombre, String apellidos) {
 		//System.err.println("Entra en el checkeo usuario");
-		boolean check=usuariosRepository.checkUser(user, password);
+		boolean check=usuariosRepository.checkUser(user);
 		//System.err.println("Hace el checkeo usuario");
 		String mensaje;
 		if(!check) {
