@@ -80,12 +80,12 @@ public class Controlador  {
 			
 		}
 		
-		for(Pelicula pel:Cincopeliculas) {
+		/*for(Pelicula pel:Cincopeliculas) {
 			
 			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
 			+ " Imagen: " + pel.getImagen());
 			
-		}
+		}*/
 		
 		/*for(Serie s:Cincoseries) {
 			
@@ -233,19 +233,20 @@ public class Controlador  {
 	@RequestMapping("cerrarSesion") 
 	
 	public ModelAndView cerrarSesion(HttpServletRequest req) {
+		System.err.println("Entra en cerrar sesion");
 		ModelAndView modelAndview=new ModelAndView();
 		HttpSession session = req.getSession(true);
 		
-		/*List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+		List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
 		modelAndview.addObject("peliculas5",Cincopeliculas);
-		for(Pelicula pel:Cincopeliculas) {
+		/*for(Pelicula pel:Cincopeliculas) {
 			
 			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
 			+ " Imagen: " + pel.getImagen());
 			
 		}*/
 		
-		session.invalidate();
+		session.removeAttribute("usr");
 		modelAndview.setViewName("index");
 		return modelAndview;
 	}
