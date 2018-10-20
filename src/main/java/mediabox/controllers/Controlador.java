@@ -81,7 +81,7 @@ public class Controlador  {
 		
 		modelAndview.setViewName("index");
 		
-		modelAndview.addObject("5peliculas",Cincopeliculas);
+		modelAndview.addObject("peliculas5",Cincopeliculas);
 		
 		//modelAndview.addObject("5series",Cincoseries);
 		
