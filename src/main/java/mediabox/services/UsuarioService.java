@@ -36,35 +36,6 @@ public class UsuarioService implements IUsuarioService {
 		}else {
 			return mensaje="Este usuario ya existe";
 		}
-		
-		
-		
-//		Usuario usuario=new Usuario();
-//		usuario.setIdusuario(user);
-//		usuario.setPassword(password);
-//		usuario.setAlias(alias);
-//		usuario.setNombre(nombre);
-//		usuario.setApellidos(apellidos);
-//		usuario.setEmail(email);
-//		
-//		String mensaje;
-//		//System.out.println("addusuario antes");
-//		
-//		Optional<Usuario> pro=usuariosRepository.findById(user); 
-//		//System.out.println("addusuario despues");
-//		
-//		
-//	
-//		if(pro.isPresent()) {
-//			System.err.println("existe");
-//			mensaje="Este usuario ya existe";
-//			
-//		}else {
-//			System.err.println("no existe");
-//			usuariosRepository.save(usuario);
-//			mensaje="Usuario registrado correctamente";
-//		}
-//		return mensaje;
 	}
 
 	@Override
@@ -73,7 +44,7 @@ public class UsuarioService implements IUsuarioService {
 		
 		System.err.println("Entra en comprobarusuario");
 		
-		boolean check=usuariosRepository.checkUser(user, password);
+		boolean check=usuariosRepository.checkLogin(user, password);
 		System.err.println("Comprueba si el usuario esta registrado");
 		
 		if(check) {

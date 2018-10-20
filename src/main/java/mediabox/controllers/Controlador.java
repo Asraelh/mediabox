@@ -253,6 +253,7 @@ public class Controlador  {
 	
 	@RequestMapping("addusuario") 
 	public ModelAndView registrarse(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
 		System.err.println("registrandose");
 		String mensaje;
 		
@@ -300,6 +301,14 @@ public class Controlador  {
 				
 			}else {
 			
+				List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+				modelAndview.addObject("peliculas5",Cincopeliculas);
+				/*for(Pelicula pel:Cincopeliculas) {
+					
+					System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
+					+ " Imagen: " + pel.getImagen());
+					
+				}*/
 			modelAndview.addObject("mensaje_login", mensaje);
 			modelAndview.setViewName("index");
 			
