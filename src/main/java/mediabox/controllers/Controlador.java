@@ -178,18 +178,38 @@ public class Controlador  {
 		
 		List<Pelicula> peliculasTodo=peliculaservice.listarPeliculas();
 		
+		int npeliculas=peliculasTodo.size();
+		
+		int npaginas=npeliculas/8;
+		
 		int pelinicio;
 		int pelfinal;
+		
+		String identificador;
 		
 		if(id==null) {
 		
 		pelinicio=0;
 		pelfinal=8;
+		identificador=id;
+		
+		}else if(Integer.parseInt(id)<1) {
 			
-		}else {
+			identificador="1";
+			pelinicio=0;
+			pelfinal=8;
+			
+		}else if(Integer.parseInt(id)>npaginas) {
+			
+			identificador=String.valueOf(npaginas);
+			pelinicio=(Integer.parseInt(id)-2)*8;
+			pelfinal=pelinicio+8;
+			
+	}else {
 			
 			pelinicio=(Integer.parseInt(id)-1)*8;
 			pelfinal=pelinicio+8;
+			identificador=id;
 			
 		}
 		
@@ -210,14 +230,11 @@ public class Controlador  {
 		/*int i=0;
 		while(i<5) {
 			
-		Pelicula pelicula=peliculas.get(i);
-		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
+		Pelicula pelicula=peliculasTodo.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen()
+		+ " Enlace: " + pelicula.getWatch());
 		i++;
 		}*/
-		
-		int npeliculas=peliculasTodo.size();
-		
-		int npaginas=npeliculas/8;
 		
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
 		
@@ -227,7 +244,7 @@ public class Controlador  {
 		modelAndview.setViewName("peliculas");
 		modelAndview.addObject("pelis", peliculas);
 		modelAndview.addObject("npaginas", npaginas);
-		modelAndview.addObject("id", id);
+		modelAndview.addObject("id", identificador);
 				
 		return modelAndview;
 	}
@@ -310,12 +327,12 @@ public class Controlador  {
 		if(id==null) {
 		
 		serieinicio=0;
-		seriefinal=9;
+		seriefinal=8;
 			
 		}else {
 			
-			serieinicio=(Integer.parseInt(id)-1)*9;
-			seriefinal=serieinicio+9;
+			serieinicio=(Integer.parseInt(id)-1)*8;
+			seriefinal=serieinicio+8;
 			
 		}
 		
@@ -335,7 +352,7 @@ public class Controlador  {
 		
 		int nseries=series.size();
 		
-		int npaginas=nseries/9;
+		int npaginas=nseries/8;
 		
 		//System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
 		
@@ -345,9 +362,62 @@ public class Controlador  {
 		modelAndview.setViewName("series");
 		modelAndview.addObject("series", series);
 		modelAndview.addObject("npaginas", npaginas);
+		modelAndview.addObject("id", id);
 				
 		return modelAndview;
 		
+	}
+	
+@RequestMapping("serieprovisional") 
+	
+	public ModelAndView Verserie(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
+		System.err.println("redirige a Ver serie");
+		
+		int Idserie=Integer.parseInt(req.getParameter("Idserie"));
+		
+		ModelAndView modelAndview=new ModelAndView();
+		
+		/*Serie s=serieservice.buscarSerieporId(Idserie);
+		
+		System.err.println(s);
+		
+		Serie serie=new Serie();
+		
+		serie.setIdserie(s.getIdserie());
+		serie.setCategoria(s.getCategoria());
+		serie.setTitulo(s.getTitulo());
+		
+			
+			double duracion=Double.parseDouble(p.getDuracion());
+			System.err.println("duracion: " + duracion);
+			double aux=duracion/60;
+			System.err.println("Aux: " + aux);
+			double horas=Math.round(aux);
+			double minutos;
+			
+			if((aux-horas)<0) {
+				
+			minutos=(aux-horas+1)*60;
+			
+			horas=horas-1;
+			
+			}else {
+				
+				minutos=(aux-horas)*60;
+				
+			}
+			
+			
+			String duracionPelicula=(int)horas+"h"+(int)minutos+"min";
+			System.err.println(duracionPelicula);
+			
+		modelAndview.addObject("usr", session.getAttribute("usr"));
+		modelAndview.setViewName("pelicula");
+		modelAndview.addObject("pelicula", pelicula);
+		modelAndview.addObject("duracion", duracionPelicula);*/
+				
+		return modelAndview;
 	}
 	
 	@RequestMapping("fav_pelis") 
