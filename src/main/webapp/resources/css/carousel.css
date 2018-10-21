@@ -1,4 +1,10 @@
 
+/*
+      C A R O U S E L    S E R I E S
+*/
+
+
+
 .carousel-slide {
   margin: auto;
 }
@@ -26,19 +32,76 @@
 
 .carousel-inner{
   position: fixed;
-  top: 0px;
+  bottom: -60%;
+  width: 40%;
   margin-left: -7%;
 }
 
 .carousel-indicators{
   position: fixed;
   left: 20%;
-  top: 80%;
+  top: 90%;
 }
 
 #Carousel{
   border-radius: 25px;
   background-color: #00000087;
-  margin-top: 20%;
+  margin-top: 26%;
   height: 300px;
+}
+
+
+
+/*
+      C A R O U S E L    S E R I E S
+*/
+
+
+
+.carousel-slide2 {
+  margin: auto;
+  margin-left: 50%;
+}
+
+.item2 {
+  height: 100vh;
+}
+
+.item2 img {
+  margin-top: 310px;
+  margin-left: 50%;
+}
+
+.carousel2{
+  position: fixed;
+  width: 40%;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: 50%;
+}
+
+.carousel-control2 {
+  background : none!important;
+  margin-top: 0px;
+  margin-left: 50%;
+}
+
+.carousel-inner2{
+  position: fixed;
+  bottom: -15%;
+  width: 40%;
+  margin-left: -12%;
+}
+
+#carousel-indicators2{
+  left: 0%;
+  margin-left: 40%;
+}
+
+#Carousel2{
+  border-radius: 25px;
+  background-color: #00000087;
+  margin-top: 26%;
+  height: 300px;
+  left: 50%;
 }
