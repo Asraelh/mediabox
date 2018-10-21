@@ -15,7 +15,7 @@ public class Serie implements Serializable {
 	private int idserie;
 	private String categoria; //En principio, lo cojo como descripcion de categoria y no como id
 	private String titulo;
-	private int year;
+	private Integer year;
 	private String calificacion;
 	private String descripcion;
 	
@@ -24,8 +24,8 @@ public class Serie implements Serializable {
 	private String imagen; //url de la imagen
 	private String watch; //url de la pelicula en Netflix
 	
-	private int ncapitulos;
-	private int ntemporadas;
+	private Integer ncapitulos;
+	private Integer ntemporadas;
 	
 	
 	@Override

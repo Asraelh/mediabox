@@ -79,8 +79,6 @@ public class Controlador  {
 			
 		}
 		
-		//System.err.println("Probando: " + Cincopeliculas.get(0));
-		
 		/*for(Pelicula pel:CincopeliculasTodo) {
 			
 			
@@ -111,7 +109,7 @@ public class Controlador  {
 			
 		}*/
 		
-		/*List<Serie> CincoseriesTodo=serieservice.listarCincoSeries();
+		List<Serie> CincoseriesTodo=serieservice.listarCincoSeries();
 		
 		List<Serie> Cincoseries= new ArrayList<Serie>();
 		
@@ -126,22 +124,22 @@ public class Controlador  {
 			
 			Cincoseries.add(serie);
 			
-		}*/
+		}
 		
-		/*for(Serie s:Cincoseries) {
+		for(Serie s:Cincoseries) {
 			
-			System.err.println(s);
-			//System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo());
+			//System.err.println(s);
+			System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo());
 			
-		}*/
+		}
 		
 		modelAndview.setViewName("index");
 		
 		session.setAttribute("Cincopeliculas", Cincopeliculas);
 		modelAndview.addObject("peliculas5",Cincopeliculas);
 		
-		/*session.setAttribute("Cincoseries", Cincoseries);
-		modelAndview.addObject("series5",Cincoseries);*/
+		session.setAttribute("Cincoseries", Cincoseries);
+		modelAndview.addObject("series5",Cincoseries);
 		
 		return modelAndview;
 	}
@@ -249,13 +247,13 @@ public class Controlador  {
 		return modelAndview;
 	}
 	
-	@RequestMapping("peliculaprovisional") 
+	@RequestMapping("pelicula") 
 	
 	public ModelAndView Verpelicula(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
 		System.err.println("redirige a Ver pelicula");
 		
-		int Idpelicula=Integer.parseInt(req.getParameter("Idpelicula"));
+		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
@@ -368,7 +366,7 @@ public class Controlador  {
 		
 	}
 	
-@RequestMapping("serieprovisional") 
+	@RequestMapping("serieprovisional") 
 	
 	public ModelAndView Verserie(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
@@ -387,35 +385,19 @@ public class Controlador  {
 		serie.setIdserie(s.getIdserie());
 		serie.setCategoria(s.getCategoria());
 		serie.setTitulo(s.getTitulo());
+		serie.setYear(s.getYear());
+		serie.setCalificacion(s.getCalificacion());
+		serie.setDescripcion(s.getDescripcion());
+		serie.setDirector(s.getDirector());
+		serie.setProtagonista(s.getProtagonista());
+		serie.setImagen(s.getImagen());
+		serie.setWatch(s.getWatch());
 		
 			
-			double duracion=Double.parseDouble(p.getDuracion());
-			System.err.println("duracion: " + duracion);
-			double aux=duracion/60;
-			System.err.println("Aux: " + aux);
-			double horas=Math.round(aux);
-			double minutos;
-			
-			if((aux-horas)<0) {
-				
-			minutos=(aux-horas+1)*60;
-			
-			horas=horas-1;
-			
-			}else {
-				
-				minutos=(aux-horas)*60;
-				
-			}
-			
-			
-			String duracionPelicula=(int)horas+"h"+(int)minutos+"min";
-			System.err.println(duracionPelicula);
-			
 		modelAndview.addObject("usr", session.getAttribute("usr"));
-		modelAndview.setViewName("pelicula");
-		modelAndview.addObject("pelicula", pelicula);
-		modelAndview.addObject("duracion", duracionPelicula);*/
+		modelAndview.setViewName("serie");
+		modelAndview.addObject("serie", serie);*/
+		
 				
 		return modelAndview;
 	}
