@@ -9,9 +9,13 @@
 		<meta charset="UTF-8">
 		<title>Películas</title>
 
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-			  rel="stylesheet"
-			  id="bootstrap-css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
@@ -82,6 +86,54 @@
 		</div>
 
 		<!--  C O N T E N I D O    P A R A    M O S T R A R  -->
+
+		<div class="row">
+
+			<c:forEach var="peli" items="${pelis}">
+
+				<div class="col-md-4">
+    				<a href="pelicula?idPel=${peli.idPelicula}">
+	    				<img src="${peli.imagen}">
+	    				<c:out value = "${peli.titulo}"/>
+    				</a>
+				</div>
+		    </c:forEach>
+		</div>
+
+
+
+		<ul id="paginas" class="pagination">
+
+		    <a href="pelis?id=">&laquo;</a>
+
+		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
+
+				<c:if test = "${i == 1}">
+		        	<li><a href="pelis?id=<c:out value = "${i}"/>" class="active">
+		        		<c:out value = "${i}"/>
+		        	</a></li>
+		        </c:if>
+
+			  	<c:if test = "${i != 1}">
+		        	<li><a href="pelis?id=<c:out value = "${i}"/>">
+		        		<c:out value = "${i}"/>
+		        	</a></li>
+		        </c:if>
+
+		    </c:forEach>
+
+		    <a href="pelis?id=">&raquo;</a>
+		</ul>
+
+		<nav>
+		  	<ul class="pagination justify-content-center pagination-sm"></ul>
+		</nav>
+
+
+
+
+
+
 
 	</body>
 
