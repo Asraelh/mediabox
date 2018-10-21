@@ -177,11 +177,18 @@ public class Controlador  {
 		i++;
 		}*/
 		
+		int npeliculas=peliculas.size();
+		
+		int npaginas=npeliculas/9;
+		
+		//System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
+		
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("peliculas");
 		modelAndview.addObject("peliculas", peliculas);
+		modelAndview.addObject("npaginas", npaginas);
 				
 		return modelAndview;
 	}
