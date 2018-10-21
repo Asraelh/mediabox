@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus.Series;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -183,12 +184,12 @@ public class Controlador  {
 		if(id==null) {
 		
 		pelinicio=0;
-		pelfinal=9;
+		pelfinal=8;
 			
 		}else {
 			
-			pelinicio=(Integer.parseInt(id)-1)*9;
-			pelfinal=pelinicio+9;
+			pelinicio=(Integer.parseInt(id)-1)*8;
+			pelfinal=pelinicio+8;
 			
 		}
 		
@@ -216,7 +217,7 @@ public class Controlador  {
 		
 		int npeliculas=peliculasTodo.size();
 		
-		int npaginas=npeliculas/9;
+		int npaginas=npeliculas/8;
 		
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
 		
@@ -255,11 +256,36 @@ public class Controlador  {
 		pelicula.setDescripcion(p.getDescripcion());
 		pelicula.setDirector(p.getDirector());
 		pelicula.setProtagonista(p.getProtagonista());
-		
-		
+		pelicula.setImagen(p.getImagen());
+		pelicula.setWatch(p.getWatch());
+			
+			double duracion=Double.parseDouble(p.getDuracion());
+			System.err.println("duracion: " + duracion);
+			double aux=duracion/60;
+			System.err.println("Aux: " + aux);
+			double horas=Math.round(aux);
+			double minutos;
+			
+			if((aux-horas)<0) {
+				
+			minutos=(aux-horas+1)*60;
+			
+			horas=horas-1;
+			
+			}else {
+				
+				minutos=(aux-horas)*60;
+				
+			}
+			
+			
+			String duracionPelicula=(int)horas+"h"+(int)minutos+"min";
+			System.err.println(duracionPelicula);
+			
 		modelAndview.addObject("usr", session.getAttribute("usr"));
 		modelAndview.setViewName("pelicula");
 		modelAndview.addObject("pelicula", pelicula);
+		modelAndview.addObject("duracion", duracionPelicula);
 				
 		return modelAndview;
 	}
@@ -271,20 +297,37 @@ public class Controlador  {
 	public ModelAndView series(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
 		System.err.println("redirige a series");
+		String id=req.getParameter("id");
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
 		List<Serie> seriesTodo=serieservice.listarSeries();
 		
+		
+		int serieinicio;
+		int seriefinal;
+		
+		if(id==null) {
+		
+		serieinicio=0;
+		seriefinal=9;
+			
+		}else {
+			
+			serieinicio=(Integer.parseInt(id)-1)*9;
+			seriefinal=serieinicio+9;
+			
+		}
+		
 		List<Serie> series= new ArrayList<Serie>();
 		
-		for(Serie s:seriesTodo) {
+		for(int i=serieinicio; i<seriefinal; i++) {
 			
 			Serie serie=new Serie();
 			
-			serie.setIdserie(s.getIdserie());
-			serie.setTitulo(s.getTitulo());
-			serie.setImagen(s.getImagen());
+			serie.setIdserie(seriesTodo.get(i).getIdserie());
+			serie.setTitulo(seriesTodo.get(i).getTitulo());
+			serie.setImagen(seriesTodo.get(i).getImagen());
 			
 			series.add(serie);
 			
