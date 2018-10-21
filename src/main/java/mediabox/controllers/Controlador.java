@@ -63,8 +63,6 @@ public class Controlador  {
 		
 		List<Pelicula> CincopeliculasTodo=peliculaservice.listarCincoPeliculas();
 		
-		//List<Serie> Cincoseries=serieservice.listarCincoSeries();
-		
 		List<Pelicula> Cincopeliculas= new ArrayList<Pelicula>();
 		
 		for(Pelicula p:CincopeliculasTodo) {
@@ -79,6 +77,8 @@ public class Controlador  {
 			Cincopeliculas.add(pelicula);
 			
 		}
+		
+		//System.err.println("Probando: " + Cincopeliculas.get(0));
 		
 		/*for(Pelicula pel:CincopeliculasTodo) {
 			
@@ -96,6 +96,8 @@ public class Controlador  {
 				
 			double minutos=(aux-horas+1)*60;
 			
+			horas=horas-1;
+			
 			System.err.println((int)horas+"h"+(int)minutos+"min");
 			
 			}else {
@@ -105,6 +107,23 @@ public class Controlador  {
 				System.err.println((int)horas+"h"+(int)minutos+"min");
 				
 			}
+			
+		}*/
+		
+		/*List<Serie> CincoseriesTodo=serieservice.listarCincoSeries();
+		
+		List<Serie> Cincoseries= new ArrayList<Serie>();
+		
+		for(Serie s:CincoseriesTodo) {
+			
+			//System.err.println(p);
+			
+			Serie serie=new Serie();
+			serie.setIdserie(s.getIdserie());
+			serie.setTitulo(s.getTitulo());
+			serie.setImagen(s.getImagen());
+			
+			Cincoseries.add(serie);
 			
 		}*/
 		
@@ -120,7 +139,8 @@ public class Controlador  {
 		session.setAttribute("Cincopeliculas", Cincopeliculas);
 		modelAndview.addObject("peliculas5",Cincopeliculas);
 		
-		//modelAndview.addObject("5series",Cincoseries);
+		/*session.setAttribute("Cincoseries", Cincoseries);
+		modelAndview.addObject("series5",Cincoseries);*/
 		
 		return modelAndview;
 	}
@@ -151,19 +171,36 @@ public class Controlador  {
 		HttpSession session = req.getSession(true);
 		System.err.println("redirige a peliculas");
 		
+		String id=req.getParameter("id");
+		
 		ModelAndView modelAndview=new ModelAndView();
 		
 		List<Pelicula> peliculasTodo=peliculaservice.listarPeliculas();
 		
+		int pelinicio;
+		int pelfinal;
+		
+		if(id.equals("")) {
+		
+		pelinicio=0;
+		pelfinal=8;
+			
+		}else {
+			
+			pelinicio=(Integer.parseInt(id)-1)*9;
+			pelfinal=pelinicio+9;
+			
+		}
+		
 		List<Pelicula> peliculas= new ArrayList<Pelicula>();
 		
-		for(Pelicula p:peliculasTodo) {
+		for(int i=pelinicio; i<pelfinal; i++) {
 			
 			Pelicula pelicula=new Pelicula();
 			
-			pelicula.setIdpelicula(p.getIdpelicula());
-			pelicula.setTitulo(p.getTitulo());
-			pelicula.setImagen(p.getImagen());
+			pelicula.setIdpelicula(peliculasTodo.get(i).getIdpelicula());
+			pelicula.setTitulo(peliculasTodo.get(i).getTitulo());
+			pelicula.setImagen(peliculasTodo.get(i).getImagen());
 			
 			peliculas.add(pelicula);
 			
@@ -172,7 +209,7 @@ public class Controlador  {
 		/*int i=0;
 		while(i<5) {
 			
-		Pelicula pelicula=peliculasTodo.get(i);
+		Pelicula pelicula=peliculas.get(i);
 		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
 		i++;
 		}*/
@@ -203,9 +240,21 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		Pelicula pelicula=peliculaservice.buscarPeliculaporId(Idpelicula);
+		Pelicula p=peliculaservice.buscarPeliculaporId(Idpelicula);
 		
-		System.err.println(pelicula);
+		System.err.println(p);
+		
+		Pelicula pelicula=new Pelicula();
+		
+		pelicula.setIdpelicula(p.getIdpelicula());
+		pelicula.setCategoria(p.getCategoria());
+		pelicula.setTitulo(p.getTitulo());
+		pelicula.setYear(p.getYear());
+		pelicula.setCalificacion(p.getCalificacion());
+		pelicula.setDescripcion(p.getDescripcion());
+		pelicula.setDirector(p.getDirector());
+		pelicula.setProtagonista(p.getProtagonista());
+		
 		
 		modelAndview.addObject("usr", session.getAttribute("usr"));
 		modelAndview.setViewName("pelicula");
@@ -214,28 +263,47 @@ public class Controlador  {
 		return modelAndview;
 	}
 	
+	
+	
 	@RequestMapping("series") 
 	
 	public ModelAndView series(HttpServletRequest req) {
-		
+		HttpSession session = req.getSession(true);
 		System.err.println("redirige a series");
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		List<Serie> series=serieservice.listarSeries();
+		List<Serie> seriesTodo=serieservice.listarSeries();
 		
-		int i=0;
-		while(i<10) {
+		List<Serie> series= new ArrayList<Serie>();
+		
+		for(Serie s:seriesTodo) {
 			
-		Serie serie=series.get(i);
-		System.err.println(serie.getIdserie() + " " + "Serie: " + serie.getTitulo());
-		i++;
+			Serie serie=new Serie();
+			
+			serie.setIdserie(s.getIdserie());
+			serie.setTitulo(s.getTitulo());
+			serie.setImagen(s.getImagen());
+			
+			series.add(serie);
+			
 		}
 		
+		int nseries=series.size();
+		
+		int npaginas=nseries/9;
+		
+		//System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
+		
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("series");
 		modelAndview.addObject("series", series);
+		modelAndview.addObject("npaginas", npaginas);
 				
 		return modelAndview;
+		
 	}
 	
 	@RequestMapping("fav_pelis") 
