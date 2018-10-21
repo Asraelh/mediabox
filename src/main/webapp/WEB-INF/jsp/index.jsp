@@ -18,7 +18,6 @@
 
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
 		<link href="<c:url value="/resources/css/carousel.css" />" rel="stylesheet">
 
 		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">

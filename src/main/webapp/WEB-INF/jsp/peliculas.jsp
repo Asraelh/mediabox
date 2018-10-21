@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +8,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Películas</title>
-
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -87,14 +86,16 @@
 
 		<!--  C O N T E N I D O    P A R A    M O S T R A R  -->
 
-		<div class="row">
+		<div class="row" id="contenedor">
 
 			<c:forEach var="peli" items="${pelis}">
 
-				<div class="col-md-4">
-    				<a href="pelicula?idPel=${peli.idPelicula}">
-	    				<img src="${peli.imagen}">
-	    				<c:out value = "${peli.titulo}"/>
+				<div class="col-md-3">
+    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
+	    				<img src="${peli.imagen}"/>
+	    				<p>
+	    					<c:out value = "${peli.titulo}"/>
+	    				</p>
     				</a>
 				</div>
 		    </c:forEach>
@@ -104,25 +105,27 @@
 
 		<ul id="paginas" class="pagination">
 
-		    <a href="pelis?id=">&laquo;</a>
+		<a class="menos" href="pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
+
+
 
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
-				<c:if test = "${i == 1}">
+
 		        	<li><a href="pelis?id=<c:out value = "${i}"/>" class="active">
 		        		<c:out value = "${i}"/>
 		        	</a></li>
-		        </c:if>
 
+<!--
 			  	<c:if test = "${i != 1}">
 		        	<li><a href="pelis?id=<c:out value = "${i}"/>">
 		        		<c:out value = "${i}"/>
 		        	</a></li>
 		        </c:if>
-
+-->
 		    </c:forEach>
 
-		    <a href="pelis?id=">&raquo;</a>
+		    <a class="mas" href="pelis?id=<c:out value = "${id+1}"/>">&raquo;</a>
 		</ul>
 
 		<nav>

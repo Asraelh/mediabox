@@ -15,11 +15,11 @@ jQuery(document).ready(function(){
     (i === 0) ? $carousel.find('.carousel-indicators').append("<li data-target='#"+
                                                               $carousel.attr('id')+
                                                               "' data-slide-to='"+i+
-                                                              "' class='active'></li>") :
-      $carousel.find('.carousel-indicators').append("<li data-target='#"+
-                                                    $carousel.attr('id')+
-                                                    "' data-slide-to='"+i+
-                                                    "'></li>");
+                                                              "' class='active'></li>"
+    ) : $carousel.find('.carousel-indicators').append("<li data-target='#"+
+                                                      $carousel.attr('id')+
+                                                      "' data-slide-to='"+i+
+                                                      "'></li>");
     var src = $(this).find('img').attr('src');
 
     if(src) {
