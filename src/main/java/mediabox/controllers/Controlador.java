@@ -180,10 +180,10 @@ public class Controlador  {
 		int pelinicio;
 		int pelfinal;
 		
-		if(id.equals("")) {
+		if(id==null) {
 		
 		pelinicio=0;
-		pelfinal=8;
+		pelfinal=9;
 			
 		}else {
 			
@@ -214,18 +214,19 @@ public class Controlador  {
 		i++;
 		}*/
 		
-		int npeliculas=peliculas.size();
+		int npeliculas=peliculasTodo.size();
 		
 		int npaginas=npeliculas/9;
 		
-		//System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
+		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
 		
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("peliculas");
-		modelAndview.addObject("peliculas", peliculas);
+		modelAndview.addObject("pelis", peliculas);
 		modelAndview.addObject("npaginas", npaginas);
+		modelAndview.addObject("id", id);
 				
 		return modelAndview;
 	}
