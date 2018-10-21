@@ -115,73 +115,109 @@
 
 		<% } %>
 
+<!-- /////////////////////////////////////////////////////// -->
+<!-- C A R O U S E L    P E L I C U L A S -->
+<!-- /////////////////////////////////////////////////////// -->
+
+			<div id="Carousel" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#Carousel" data-slide-to="0"></li>
+			    <li data-target="#Carousel" data-slide-to="1"></li>
+			    <li data-target="#Carousel" data-slide-to="2"></li>
+			    <li data-target="#Carousel" data-slide-to="3"></li>
+			    <li data-target="#Carousel" data-slide-to="4"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
+				<c:forEach var = "i" items="${peliculas5}" varStatus="loopCount">
+
+					<c:if test="${loopCount.count eq 1}">
+			        	<div class="item active">
+							<img src="${i.imagen}" alt="${i.titulo}"/>
+						</div>
+			        </c:if>
+
+					<c:if test="${loopCount.count != 1}">
+			        	<div class="item">
+							<img src="${i.imagen}" alt="${i.titulo}"/>
+						</div>
+			        </c:if>
+
+			    </c:forEach>
+			  </div>
 
 
+			  <!-- Left and right controls -->
+			  <a class="left carousel-control"
+			  	 href="#Carousel"
+			  	 role="button"
+			  	 data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
 
-
-
-
-
-
-
-
-
-
-<div id="Carousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#Carousel" data-slide-to="0"></li>
-    <li data-target="#Carousel" data-slide-to="1"></li>
-    <li data-target="#Carousel" data-slide-to="2"></li>
-    <li data-target="#Carousel" data-slide-to="3"></li>
-    <li data-target="#Carousel" data-slide-to="4"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-	<c:forEach var = "i" items="${peliculas5}" varStatus="loopCount">
-
-		<c:if test="${loopCount.count eq 1}">
-        	<div class="item active">
-				<img src="${i.imagen}" alt="${i.titulo}"/>
+			  <a class="right carousel-control"
+			  	 href="#Carousel"
+			  	 role="button"
+			  	 data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
 			</div>
-        </c:if>
 
-		<c:if test="${loopCount.count != 1}">
-        	<div class="item">
-				<img src="${i.imagen}" alt="${i.titulo}"/>
+<!-- /////////////////////////////////////////////////////// -->
+<!-- C A R O U S E L    S E R I E S -->
+<!-- /////////////////////////////////////////////////////// -->
+
+			<div id="Carousel2" class="carousel slide2" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators" id="carousel-indicators2">
+			    <li data-target="#Carousel" data-slide-to="0"></li>
+			    <li data-target="#Carousel" data-slide-to="1"></li>
+			    <li data-target="#Carousel" data-slide-to="2"></li>
+			    <li data-target="#Carousel" data-slide-to="3"></li>
+			    <li data-target="#Carousel" data-slide-to="4"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner2" role="listbox">
+				<c:forEach var = "i" items="${peliculas5}" varStatus="loopCount">
+
+					<c:if test="${loopCount.count eq 1}">
+			        	<div class="item active">
+							<img src="${i.imagen}" alt="${i.titulo}"/>
+						</div>
+			        </c:if>
+
+					<c:if test="${loopCount.count != 1}">
+			        	<div class="item2">
+							<img src="${i.imagen}" alt="${i.titulo}"/>
+						</div>
+			        </c:if>
+
+			    </c:forEach>
+			  </div>
+
+
+			  <!-- Left and right controls -->
+			  <a class="left carousel-control"
+			  	 href="#Carousel"
+			  	 role="button"
+			  	 data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+
+			  <a class="right carousel-control"
+			  	 href="#Carousel"
+			  	 role="button"
+			  	 data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
 			</div>
-        </c:if>
-
-    </c:forEach>
-  </div>
-
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control"
-  	 href="#Carousel"
-  	 role="button"
-  	 data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-
-  <a class="right carousel-control"
-  	 href="#Carousel"
-  	 role="button"
-  	 data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-
-
-
-
-
-
-
 
 
 

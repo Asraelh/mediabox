@@ -30,7 +30,7 @@
 	<body>
 
 		<div id="titulo" class="areas">
-			<h1> Registrase </h1>
+			<h1> Registrate </h1>
 		</div>
 
 		<div id="formulario">
