@@ -174,7 +174,7 @@ public class Controlador  {
 		
 		modelAndview.addObject("usr", usuarioMod);
 		modelAndview.addObject("mensaje_admin", mensaje);
-		modelAndview.setViewName("admin_provisional");
+		modelAndview.setViewName("admin_usuario");
 		
 		return modelAndview;
 	}
@@ -600,6 +600,8 @@ public class Controlador  {
 		/*String categoriabuscador=req.getParameter("Categoria");
 		String titulobuscador=req.getParameter("Titulo");*/
 		
+		System.err.println(id);
+		
 		ModelAndView modelAndview=new ModelAndView();
 		
 		List<Pelicula> peliculasFav=peliculaservice.listarPeliculasFavporUsuario(usuario.getIdusuario());
@@ -629,35 +631,48 @@ public class Controlador  {
 		int pelfinal;
 		
 		if(id==null) {
-		
+		if(npeliculas<8) {
 		pelinicio=0;
 		pelfinal=npeliculas;
 		identificador=id;
-		npaginas=1;
+		npaginas=npeliculas/8+1;
+		}else {
+			
+			pelinicio=0;
+			pelfinal=8;
+			identificador=id;
+			npaginas=npeliculas/8+1;
+			
+		}
 		
 		}else if(Integer.parseInt(id)<1) {
 			
 			identificador="1";
 			pelinicio=0;
 			pelfinal=8;
+			npaginas=npeliculas/8+1;
+			System.err.println("Entra en id<1");
 			
 		}else if(Integer.parseInt(id)>npaginas) {
 			
 			identificador=String.valueOf(npaginas);
 			pelinicio=(Integer.parseInt(id)-2)*8;
 			pelfinal=pelinicio+8;
-			
+			npaginas=npeliculas/8+1;
+			System.err.println("Entra en id>npaginas");
 	}else if(npeliculas<8){
 		
 		npaginas=1;
 		pelinicio=0;
 		pelfinal=npeliculas;
 		identificador="1";
+		System.err.println("Entra en npeliculas<8");
 		
 	}else{
 			npaginas=npeliculas/8+1;
+			System.err.println("Entra donde quiero");
 			pelinicio=(Integer.parseInt(id)-1)*8;
-			pelfinal=npeliculas-npeliculas*(npaginas-1);
+			pelfinal=npeliculas-8*(npaginas-1);
 			identificador=id;
 			
 		}
@@ -683,13 +698,15 @@ public class Controlador  {
 			
 		}
 		
-		int i=0;
+		/*int i=0;
 		while(i<pelfinal) {
 			
 		Pelicula pelicula=peliculas.get(i);
 		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
 		i++;
-		}
+		}*/
+		
+		System.err.println("nuevo");
 		}
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
 		System.err.println("comp= " + comprobar);
