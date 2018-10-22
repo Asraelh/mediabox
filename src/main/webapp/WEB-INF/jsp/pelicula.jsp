@@ -146,8 +146,16 @@
 				Ver en Netflix
 			</a>
 			<br><br>
-			<a id="add_fav" href="addPelisFav?idPel=${pelicula.idpelicula}"> 		Añadir a favoritos
-		    </a>
+
+			<c:if test = "${favorito == false}">
+				<a id="add_fav" href="addPelisFav?idpel=${pelicula.idpelicula}"> 				Añadir a favoritos
+			    </a>
+			</c:if>
+
+			<c:if test = "${favorito == true}">
+				<a id="add_fav" href="delPelisFav?idpel=${pelicula.idpelicula}"> 				Eliminar de favoritos
+			    </a>
+			</c:if>
 
 		</div>
 

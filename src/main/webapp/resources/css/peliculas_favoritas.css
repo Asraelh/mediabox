@@ -98,3 +98,18 @@ li{
     transition: all 1s;
     max-height: 37%;
 }
+
+#mensaje{
+	position: fixed;
+	top: 30%;
+	left: 35%;
+	color: white;
+	height: 300px;
+	width: 500px;
+	text-align: center;
+	font-size: 100px;
+	background-color: #0000006b;
+	border: 1px solid white;
+	border-radius: 25px;
+	padding: 5px;
+}

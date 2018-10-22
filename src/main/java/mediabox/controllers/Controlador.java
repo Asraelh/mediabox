@@ -585,12 +585,13 @@ public class Controlador  {
 		int npaginas=1;
 		String mensaje="";
 		String identificador;
+		int comprobar=1;
 		
 		if(peliculasmostrar.size()==0) {
 			
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
-			identificador="0";
+			comprobar=0;
 			
 		}else {
 		
@@ -606,8 +607,9 @@ public class Controlador  {
 		if(id==null) {
 		
 		pelinicio=0;
-		pelfinal=8;
+		pelfinal=npeliculas;
 		identificador=id;
+		npaginas=1;
 		
 		}else if(Integer.parseInt(id)<1) {
 			
@@ -621,13 +623,25 @@ public class Controlador  {
 			pelinicio=(Integer.parseInt(id)-2)*8;
 			pelfinal=pelinicio+8;
 			
-	}else {
+	}else if(npeliculas<8){
+		
+		npaginas=1;
+		pelinicio=0;
+		pelfinal=npeliculas;
+		identificador="1";
+		
+	}else{
 			
 			pelinicio=(Integer.parseInt(id)-1)*8;
 			pelfinal=pelinicio+8;
 			identificador=id;
 			
 		}
+		
+		System.err.println(pelinicio);
+		System.err.println(pelfinal);
+		System.err.println("Numero peliculas: " + npeliculas);
+		System.err.println(peliculasmostrar.size());
 		
 		List<Pelicula> peliculas= new ArrayList<Pelicula>();
 		
@@ -654,10 +668,12 @@ public class Controlador  {
 		}
 		}
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
+		System.err.println("comp= " + comprobar);
 
 		modelAndview.addObject("mensaje", mensaje);
 		modelAndview.addObject("pelis", peliculas);
 		modelAndview.addObject("npaginas", npaginas);
+		modelAndview.addObject("comp", comprobar);
 		modelAndview.addObject("id", identificador);
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
@@ -690,12 +706,13 @@ public class Controlador  {
 		int npaginas=1;
 		String mensaje="";
 		String identificador;
+		String comprobar="";
 		
 		if(seriesmostrar.size()==0) {
 			
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
-			identificador="0";
+			comprobar="0";
 			
 		}else {
 		
@@ -764,6 +781,7 @@ public class Controlador  {
 		modelAndview.addObject("series", series);
 		modelAndview.addObject("npaginas", npaginas);
 		modelAndview.addObject("id", identificador);
+		modelAndview.addObject("comp", comprobar);
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("series_favoritas");
@@ -771,14 +789,14 @@ public class Controlador  {
 			
 	}
 	
-	@RequestMapping("addpeliculafav") 
+	@RequestMapping("addPelisFav") 
 	
 	public ModelAndView addpeliculafav(HttpServletRequest req) {
 		System.err.println("Entra en add pelicula favorita");
 		ModelAndView modelAndview=new ModelAndView();
 		HttpSession session = req.getSession(true);
 		
-		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
+		int Idpelicula=Integer.parseInt(req.getParameter("idpel"));
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		boolean insertar=peliculaservice.addpeliculafavoritos(usuario.getIdusuario(), Idpelicula);
@@ -860,14 +878,14 @@ public class Controlador  {
 		return modelAndview;
 	}
 	
-	@RequestMapping("deletepeliculafav") 
+	@RequestMapping("delPelisFav") 
 	
 	public ModelAndView deletepeliculafav(HttpServletRequest req) {
 		System.err.println("Entra en delete pelicula favorita");
 		ModelAndView modelAndview=new ModelAndView();
 		HttpSession session = req.getSession(true);
 		
-		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
+		int Idpelicula=Integer.parseInt(req.getParameter("idpel"));
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		peliculaservice.deletepeliculafavoritos(usuario.getIdusuario(), Idpelicula);
