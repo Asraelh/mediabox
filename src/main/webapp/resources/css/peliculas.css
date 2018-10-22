@@ -98,4 +98,5 @@ li{
     -mos-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s;
+    max-height: 40%;
 }

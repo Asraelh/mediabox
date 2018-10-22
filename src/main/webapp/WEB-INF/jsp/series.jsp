@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Películas</title>
+		<title>Series</title>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -86,19 +86,22 @@
 
 		<!--  C O N T E N I D O    P A R A    M O S T R A R  -->
 
-		<div class="row" id="contenedor">
+		<div class="container">
+			<div class="row" id="contenedor">
+				<c:forEach var="serie" items="${series}">
+					<div class="col-md-3">
+	    				<a class="imagenes" href="serie?idserie=${serie.idserie}">
 
-			<c:forEach var="serie" items="${series}">
+		    				<img src="${serie.imagen}"/>
 
-				<div class="col-md-3">
-    				<a class="imagenes" href="serie?idserie=${serie.idserie}">
-	    				<img src="${serie.imagen}"/>
-	    				<p>
-	    					<c:out value = "${serie.titulo}"/>
-	    				</p>
-    				</a>
-				</div>
-		    </c:forEach>
+		    				<p>
+		    					<c:out value = "${serie.titulo}"/>
+		    				</p>
+
+	    				</a>
+					</div>
+		    	</c:forEach>
+			</div>
 		</div>
 
 
