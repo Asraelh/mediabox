@@ -15,6 +15,6 @@ public interface ISerieService {
 	
 	public List<Serie> listarSeriesFavporUsuario(String user);
 	
-	//public boolean comprobarFavorito(int Idserie, String user);
+	public boolean comprobarFavorito(int Idserie, String user);
 
 }

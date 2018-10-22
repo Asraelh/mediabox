@@ -61,14 +61,14 @@ public class SerieService implements ISerieService {
 			return SeriesFav;
 		}
 		
-		/*@Override
+		@Override
 		public boolean comprobarFavorito(int Idserie, String user) {
 			// TODO Auto-generated method stub
 			
-			boolean comprobacion=seriesRepository.SayFav(Idserie,user);
+			boolean comprobacion=seriesRepository.checkSerieFav(user,Idserie);
 			
 			return comprobacion;
-		}*/
+		}
 
 }
 

@@ -12,7 +12,7 @@ public interface IPeliculaService {
 	
 	public Pelicula buscarPeliculaporId(int Idpelicula);
 	
-	//public boolean comprobarFavorito(int Idpelicula, String user);
+	public boolean comprobarFavorito(int Idpelicula, String user);
 	
 	public List<Pelicula> listarPeliculasFavporUsuario(String user);
 

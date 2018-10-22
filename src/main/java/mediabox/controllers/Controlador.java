@@ -128,14 +128,14 @@ public class Controlador  {
 		}
 		
 		/*System.err.println("Ejemplo serie: " + CincoseriesTodo.get(0));
-		System.err.println("Ejemplo pelicula: " + CincopeliculasTodo.get(0));*/
+		System.err.println("Ejemplo pelicula: " + CincopeliculasTodo.get(0));
 		
 		for(Serie s:Cincoseries) {
 			
 			//System.err.println(s);
 			System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo() + " Imagen: " + s.getImagen());
 			
-		}
+		}*/
 		
 		modelAndview.setViewName("index");
 		
@@ -654,7 +654,8 @@ public class Controlador  {
 		}
 		}
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
-		
+
+		modelAndview.addObject("mensaje", mensaje);
 		modelAndview.addObject("pelis", peliculas);
 		modelAndview.addObject("npaginas", npaginas);
 		modelAndview.addObject("id", identificador);
@@ -670,92 +671,105 @@ public class Controlador  {
 	public ModelAndView seriesfav(HttpServletRequest req) {
 		
 		System.err.println("redirige a series favoritas");
+		
+		HttpSession session = req.getSession(true);
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		String id=req.getParameter("id");
+		/*String categoriabuscador=req.getParameter("Categoria");
+		String titulobuscador=req.getParameter("Titulo");*/
+		
+		ModelAndView modelAndview=new ModelAndView();
+		
+		List<Serie> seriesFav=serieservice.listarSeriesFavporUsuario(usuario.getIdusuario());
+		
+		List<Serie> seriesmostrar=new ArrayList<Serie>();
+		seriesmostrar=seriesFav;
+		
+		int nseries=0;
+		int npaginas=1;
+		String mensaje="";
+		String identificador;
+		
+		if(seriesmostrar.size()==0) {
 			
-			HttpSession session = req.getSession(true);
-			Usuario usuario=(Usuario)session.getAttribute("usr");
+			mensaje="No hay favoritos";
+			System.err.println(mensaje);
+			identificador="0";
 			
-			String id=req.getParameter("id");
-			/*String categoriabuscador=req.getParameter("Categoria");
-			String titulobuscador=req.getParameter("Titulo");*/
+		}else {
+		
+		nseries=seriesmostrar.size();
+		
+		npaginas=nseries/8;
+		
+		}
+		
+		int serieinicio;
+		int seriefinal;
+		
+		if(id==null) {
+		
+		serieinicio=0;
+		seriefinal=8;
+		identificador=id;
+		
+		}else if(Integer.parseInt(id)<1) {
 			
-			ModelAndView modelAndview=new ModelAndView();
-			
-			List<Serie> seriesFav=serieservice.listarSeriesFavporUsuario(usuario.getIdusuario());
-			
-			List<Serie> seriesmostrar=new ArrayList<Serie>();
-			seriesmostrar=seriesFav;
-			
-			
-			int nseries=seriesmostrar.size();
-			
-			int npaginas=nseries/8;
-			
-			int serieinicio;
-			int seriefinal;
-			
-			String identificador;
-			
-			if(id==null) {
-			
+			identificador="1";
 			serieinicio=0;
 			seriefinal=8;
+			
+		}else if(Integer.parseInt(id)>npaginas) {
+			
+			identificador=String.valueOf(npaginas);
+			serieinicio=(Integer.parseInt(id)-2)*8;
+			seriefinal=serieinicio+8;
+			
+	}else {
+			
+			serieinicio=(Integer.parseInt(id)-1)*8;
+			seriefinal=serieinicio+8;
 			identificador=id;
 			
-			}else if(Integer.parseInt(id)<1) {
-				
-				identificador="1";
-				serieinicio=0;
-				seriefinal=8;
-				
-			}else if(Integer.parseInt(id)>npaginas) {
-				
-				identificador=String.valueOf(npaginas);
-				serieinicio=(Integer.parseInt(id)-2)*8;
-				seriefinal=serieinicio+8;
-				
-		}else {
-				
-				serieinicio=(Integer.parseInt(id)-1)*8;
-				seriefinal=serieinicio+8;
-				identificador=id;
-				
-			}
-			
-			List<Serie> series= new ArrayList<Serie>();
-			
-			
-			
-			for(int i=serieinicio; i<seriefinal; i++) {
-				
-				Serie serie=new Serie();
-				
-				serie.setIdserie(seriesmostrar.get(i).getIdserie());
-				serie.setTitulo(seriesmostrar.get(i).getTitulo());
-				serie.setImagen(seriesmostrar.get(i).getImagen());
-				
-				series.add(serie);
-				
-			}
-			
-			int i=0;
-			while(i<5) {
-				
-			Serie serie=series.get(i);
-			System.err.println(serie.getIdserie() + " " + "Serie: " + serie.getTitulo() + " Imagen: " + serie.getImagen());
-			i++;
-			}
-			
-			System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
-			
-			modelAndview.addObject("usr", usuario.getIdusuario());
-			modelAndview.setViewName("seriesFavoritas");
-			modelAndview.addObject("series", series);
-			modelAndview.addObject("npaginas", npaginas);
-			modelAndview.addObject("id", identificador);
-					
-			return modelAndview;
-				
 		}
+		
+		List<Serie> series= new ArrayList<Serie>();
+		
+		if(nseries!=0) {
+		
+		for(int i=serieinicio; i<seriefinal; i++) {
+			
+			Serie serie=new Serie();
+			
+			serie.setIdserie(seriesmostrar.get(i).getIdserie());
+			serie.setTitulo(seriesmostrar.get(i).getTitulo());
+			serie.setImagen(seriesmostrar.get(i).getImagen());
+			
+			series.add(serie);
+			
+		}
+		
+		int i=0;
+		while(i<5) {
+			
+		Serie serie=series.get(i);
+		System.err.println(serie.getIdserie() + " " + "Pelicula: " + serie.getTitulo() + " Imagen: " + serie.getImagen());
+		i++;
+		}
+		}
+		System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
+		
+		modelAndview.addObject("mensaje", mensaje);
+		modelAndview.addObject("series", series);
+		modelAndview.addObject("npaginas", npaginas);
+		modelAndview.addObject("id", identificador);
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("series_favoritas");
+		return modelAndview;
+			
+	}
 	
 	@RequestMapping("cerrarSesion") 
 	
@@ -766,6 +780,10 @@ public class Controlador  {
 		
 		List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
 		modelAndview.addObject("peliculas5",Cincopeliculas);
+		
+		List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
+		modelAndview.addObject("series5",Cincoseries);
+		
 		/*for(Pelicula pel:Cincopeliculas) {
 			
 			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
