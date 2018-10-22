@@ -146,7 +146,7 @@
 				Ver en Netflix
 			</a>
 			<br><br>
-			<a id="add_fav" href="addPelisFav?idPel=${pelicula.idpelicula}"> 		Añadir a favoritos
+			<a id="add_fav" href="addPelisFav?idpel=${pelicula.idpelicula}"> 		Añadir a favoritos
 		    </a>
 
 		</div>

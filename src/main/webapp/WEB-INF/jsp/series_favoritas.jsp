@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -85,6 +85,11 @@
 
 		<!--  A D M I N I S T R A C I O N     D E     U S U A R I O  -->
 
+		<c:if test = "${id == null}">
+         	<span id="mensaje"> <c:out value = "${mensaje}"/> </span>
+      	</c:if>
+
+		<c:if test = "${id != null}">
 			<div class="container-fluid" id="contenedor">
 
 			<c:forEach var="serie" items="${series}">
@@ -118,6 +123,6 @@
 
 		    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
 		</ul>
-
+		</c:if>
 	</body>
 </html>

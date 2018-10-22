@@ -85,39 +85,44 @@
 
 		<!--  A D M I N I S T R A C I O N     D E     U S U A R I O  -->
 
-		<div class="container-fluid" id="contenedor">
-
-			<c:forEach var="peli" items="${pelis}">
-				<div class="col-md-3 row">
-
-	    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
-		    				<img src="${peli.imagen}"/>
-		    				<p>
-		    					<c:out value = "${peli.titulo}"/>
-		    					<a href="delPelisFav?idPel=${peli.idpelicula"> Quitar </a>
-		    				</p>
-	    				</a>
-
-				</div>
-		    </c:forEach>
-		</div>
+		<c:if test = "${id == null}">
+         	<span id="mensaje"> <c:out value = "${mensaje}"/> </span>
+      	</c:if>
 
 
+		<c:if test = "${id != null}">
+			<div class="container-fluid" id="contenedor">
+				<c:forEach var="peli" items="${pelis}">
+					<div class="col-md-3 row">
 
-		<ul id="paginas" class="pagination">
+		    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
+			    				<img src="${peli.imagen}"/>
+			    				<p>
+			    					<c:out value = "${peli.titulo}"/>
+			    					<a href="delPelisFav?idPel=${peli.idpelicula}"> Quitar </a>
+			    				</p>
+		    				</a>
 
-			<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
+					</div>
+			    </c:forEach>
+			</div>
 
-		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
+			<ul id="paginas" class="pagination">
 
-	        	<li><a href="series?id=<c:out value = "${i}"/>" class="active">
-	        		<c:out value = "${i}"/>
-	        	</a></li>
+				<a class="menos" href="fav_pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
-		    </c:forEach>
+			    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
-		    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
-		</ul>
+		        	<li><a href="fav_pelis?id=<c:out value = "${i}"/>" class="active">
+		        		<c:out value = "${i}"/>
+		        	</a></li>
+
+			    </c:forEach>
+
+			    <a class="mas" href="fav_pelis?id=<c:out value = "${id+1}"/>">&raquo;</a>
+			</ul>
+
+		</c:if>
 
 	</body>
 </html>
