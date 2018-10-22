@@ -585,13 +585,13 @@ public class Controlador  {
 		int npaginas=1;
 		String mensaje="";
 		String identificador;
-		String comprobar="";
+		int comprobar=1;
 		
 		if(peliculasmostrar.size()==0) {
 			
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
-			comprobar="0";
+			comprobar=0;
 			
 		}else {
 		
@@ -607,8 +607,9 @@ public class Controlador  {
 		if(id==null) {
 		
 		pelinicio=0;
-		pelfinal=8;
+		pelfinal=npeliculas;
 		identificador=id;
+		npaginas=1;
 		
 		}else if(Integer.parseInt(id)<1) {
 			
@@ -636,6 +637,11 @@ public class Controlador  {
 			identificador=id;
 			
 		}
+		
+		System.err.println(pelinicio);
+		System.err.println(pelfinal);
+		System.err.println("Numero peliculas: " + npeliculas);
+		System.err.println(peliculasmostrar.size());
 		
 		List<Pelicula> peliculas= new ArrayList<Pelicula>();
 		
