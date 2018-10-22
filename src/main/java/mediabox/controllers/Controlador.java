@@ -693,12 +693,13 @@ public class Controlador  {
 		int npaginas=1;
 		String mensaje="";
 		String identificador;
+		String comprobar="";
 		
 		if(seriesmostrar.size()==0) {
 			
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
-			identificador="0";
+			comprobar="0";
 			
 		}else {
 		
@@ -767,6 +768,7 @@ public class Controlador  {
 		modelAndview.addObject("series", series);
 		modelAndview.addObject("npaginas", npaginas);
 		modelAndview.addObject("id", identificador);
+		modelAndview.addObject("comp", comprobar);
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("series_favoritas");
