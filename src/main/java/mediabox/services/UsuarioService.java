@@ -62,4 +62,21 @@ public class UsuarioService implements IUsuarioService {
 		
 	}
 
+	@Override
+	public Usuario buscarUsuarioPorId(String user) {
+		// TODO Auto-generated method stub
+		
+		Usuario usuario=usuariosRepository.selectUser(user);
+		
+		return usuario;
+	}
+
+	@Override
+	public void actualizarUsuario(String user, String password, String email) {
+		// TODO Auto-generated method stub
+		
+		usuariosRepository.updateUser(user, password, email);
+		
+	}
+
 }

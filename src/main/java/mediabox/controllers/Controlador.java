@@ -139,6 +139,11 @@ public class Controlador  {
 		
 		modelAndview.setViewName("index");
 		
+		if(session.getAttribute("usr")!=null) {
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		}
+		
 		session.setAttribute("Cincopeliculas", Cincopeliculas);
 		modelAndview.addObject("peliculas5",Cincopeliculas);
 		
@@ -159,14 +164,35 @@ public class Controlador  {
 	
 	@RequestMapping("admin_usuario") 
 	
-	public String administrarusuario(HttpServletRequest req) {
-		
+	public ModelAndView administrarusuario(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
 		System.err.println("redirige a admin_usuario");
-				
-		return "admin_usuario";
+		ModelAndView modelAndview=new ModelAndView();
+		String mensaje="";
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		Usuario usuarioMod=usuarioservice.buscarUsuarioPorId(usuario.getIdusuario());
+		
+		modelAndview.addObject("usr", usuarioMod);
+		modelAndview.addObject("mensaje_admin", mensaje);
+		modelAndview.setViewName("admin_provisional");
+		
+		return modelAndview;
 	}
 	
+	@RequestMapping("modificar_usuario") 
 	
+	public ModelAndView modificarusuario(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
+		System.err.println("redirige a modificar_usuario");
+		ModelAndView modelAndview=new ModelAndView();
+		String mensaje="";
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		Usuario usuarioMod=usuarioservice.buscarUsuarioPorId(usuario.getIdusuario());
+		
+		
+		
+		return modelAndview;
+	}
 	
 	@RequestMapping("pelis") 
 	
@@ -597,8 +623,6 @@ public class Controlador  {
 		
 		npeliculas=peliculasmostrar.size();
 		
-		npaginas=npeliculas/8;
-		
 		}
 		
 		int pelinicio;
@@ -631,9 +655,9 @@ public class Controlador  {
 		identificador="1";
 		
 	}else{
-			
+			npaginas=npeliculas/8+1;
 			pelinicio=(Integer.parseInt(id)-1)*8;
-			pelfinal=pelinicio+8;
+			pelfinal=npeliculas-npeliculas*(npaginas-1);
 			identificador=id;
 			
 		}
