@@ -660,7 +660,7 @@ public class Controlador  {
 		}
 		
 		int i=0;
-		while(i<5) {
+		while(i<pelfinal) {
 			
 		Pelicula pelicula=peliculas.get(i);
 		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
@@ -706,13 +706,13 @@ public class Controlador  {
 		int npaginas=1;
 		String mensaje="";
 		String identificador;
-		String comprobar="";
+		int comprobar=1;
 		
 		if(seriesmostrar.size()==0) {
 			
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
-			comprobar="0";
+			comprobar=0;
 			
 		}else {
 		
@@ -728,8 +728,9 @@ public class Controlador  {
 		if(id==null) {
 		
 		serieinicio=0;
-		seriefinal=8;
+		seriefinal=nseries;
 		identificador=id;
+		npaginas=1;
 		
 		}else if(Integer.parseInt(id)<1) {
 			
@@ -743,13 +744,25 @@ public class Controlador  {
 			serieinicio=(Integer.parseInt(id)-2)*8;
 			seriefinal=serieinicio+8;
 			
-	}else {
+	}else if(nseries<8){
+		
+		npaginas=1;
+		serieinicio=0;
+		seriefinal=nseries;
+		identificador="1";
+		
+	}else{
 			
 			serieinicio=(Integer.parseInt(id)-1)*8;
 			seriefinal=serieinicio+8;
 			identificador=id;
 			
 		}
+		
+		System.err.println(serieinicio);
+		System.err.println(seriefinal);
+		System.err.println("Numero series: " + nseries);
+		System.err.println(seriesmostrar.size());
 		
 		List<Serie> series= new ArrayList<Serie>();
 		
@@ -771,21 +784,23 @@ public class Controlador  {
 		while(i<5) {
 			
 		Serie serie=series.get(i);
-		System.err.println(serie.getIdserie() + " " + "Pelicula: " + serie.getTitulo() + " Imagen: " + serie.getImagen());
+		System.err.println(serie.getIdserie() + " " + "Serie: " + serie.getTitulo() + " Imagen: " + serie.getImagen());
 		i++;
 		}
 		}
-		System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
-		
+		System.err.println("Numero de series " + nseries + " Numero de paginas: " + npaginas);
+		System.err.println("comp= " + comprobar);
+
 		modelAndview.addObject("mensaje", mensaje);
 		modelAndview.addObject("series", series);
 		modelAndview.addObject("npaginas", npaginas);
-		modelAndview.addObject("id", identificador);
 		modelAndview.addObject("comp", comprobar);
+		modelAndview.addObject("id", identificador);
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("series_favoritas");
 		return modelAndview;
+			
 			
 	}
 	
