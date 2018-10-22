@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import mediabox.interfaces.IPelFavoritaService;
 import mediabox.interfaces.IPeliculaService;
 import mediabox.interfaces.ISerieService;
 import mediabox.interfaces.IUsuarioService;
@@ -32,6 +33,8 @@ public class Controlador  {
 	private IUsuarioService usuarioservice;
 	@Autowired
 	private IPeliculaService peliculaservice;
+	@Autowired
+	private IPelFavoritaService peliculaFavservice;
 	@Autowired
 	private ISerieService serieservice;
 	
@@ -184,7 +187,7 @@ public class Controlador  {
 		List<Pelicula> peliculasmostrar=new ArrayList<Pelicula>();
 		peliculasmostrar=peliculasTodo;
 		
-		if(titulobuscador.equals("") || categoriabuscador.equals("")) {
+		/*if(titulobuscador.equals("") || categoriabuscador.equals("")) {
 			
 			peliculasmostrar=peliculasTodo;
 			System.err.println("Mostrará todas las peliculas disponibles");
@@ -193,7 +196,7 @@ public class Controlador  {
 			
 			
 			
-		}
+		}*/
 		
 		/*if(categoriabuscador.equals("")) {
 			
@@ -311,12 +314,14 @@ public class Controlador  {
 	public ModelAndView Verpelicula(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
 		System.err.println("redirige a Ver pelicula");
+		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
 		Pelicula p=peliculaservice.buscarPeliculaporId(Idpelicula);
+		//boolean comprobacion=peliculaservice.comprobarFavorito(Idpelicula, usuario.getIdusuario());
 		
 		System.err.println(p);
 		System.err.println("Categoria: " + p.getCategoria());
@@ -329,8 +334,25 @@ public class Controlador  {
 		pelicula.setYear(p.getYear());
 		pelicula.setCalificacion(p.getCalificacion());
 		pelicula.setDescripcion(p.getDescripcion());
-		pelicula.setDirector(p.getDirector());
-		pelicula.setProtagonista(p.getProtagonista());
+		if(p.getDirector().equals("null")) {
+			
+			pelicula.setDirector("No disponible");
+			
+		}else {
+			
+			pelicula.setDirector(p.getDirector());
+			
+		}
+		
+		if(p.getProtagonista().equals("null")) {
+			
+			pelicula.setProtagonista("No disponible");
+			
+		}else {
+			
+			pelicula.setProtagonista(p.getProtagonista());
+			
+		}
 		pelicula.setImagen(p.getImagen());
 		pelicula.setWatch(p.getWatch());
 		
@@ -364,9 +386,8 @@ public class Controlador  {
 			System.err.println(duracionPelicula);
 			
 		}
-			
-		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
+		//modelAndview.addObject("favorito", comprobacion);
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("pelicula");
 		modelAndview.addObject("pelicula", pelicula);
@@ -504,68 +525,31 @@ public class Controlador  {
 		
 		Serie serie=new Serie();
 		
-		//Inicio pelicula
-		/*pelicula.setIdpelicula(p.getIdpelicula());
-		pelicula.setCategoria(p.getCategoria());
-		pelicula.setTitulo(p.getTitulo());
-		pelicula.setYear(p.getYear());
-		pelicula.setCalificacion(p.getCalificacion());
-		pelicula.setDescripcion(p.getDescripcion());
-		pelicula.setDirector(p.getDirector());
-		pelicula.setProtagonista(p.getProtagonista());
-		pelicula.setImagen(p.getImagen());
-		pelicula.setWatch(p.getWatch());
-		
-		String duracionPelicula;
-		
-		if(p.getDuracion()==null) {
-			
-			duracionPelicula="No está disponible";
-			
-		}else {
-			double duracion=Double.parseDouble(p.getDuracion());
-			System.err.println("duracion: " + duracion);
-			double aux=duracion/60;
-			System.err.println("Aux: " + aux);
-			double horas=Math.round(aux);
-			double minutos;
-			
-			if((aux-horas)<0) {
-				
-			minutos=(aux-horas+1)*60;
-			
-			horas=horas-1;
-			
-			}else {
-				
-				minutos=(aux-horas)*60;
-				
-			}
-			
-			duracionPelicula=(int)horas+"h"+(int)minutos+"min";
-			System.err.println(duracionPelicula);
-			
-		}
-			
-		Usuario usuario=(Usuario)session.getAttribute("usr");
-		
-		modelAndview.addObject("usr", usuario.getIdusuario());
-		modelAndview.setViewName("pelicula");
-		modelAndview.addObject("pelicula", pelicula);
-		modelAndview.addObject("duracion", duracionPelicula);
-				
-		return modelAndview;*/
-		
-		//Finaliza pelicula
-		
 		serie.setIdserie(s.getIdserie());
 		serie.setCategoria(s.getCategoria());
 		serie.setTitulo(s.getTitulo());
 		serie.setYear(s.getYear());
 		serie.setCalificacion(s.getCalificacion());
 		serie.setDescripcion(s.getDescripcion());
-		serie.setDirector(s.getDirector());
-		serie.setProtagonista(s.getProtagonista());
+		if(s.getDirector().equals("null")) {
+			
+			serie.setDirector("No disponible");
+			
+		}else {
+			
+			serie.setDirector(s.getDirector());
+			
+		}
+		
+		if(s.getProtagonista().equals("null")) {
+			
+			serie.setProtagonista("No disponible");
+			
+		}else {
+			
+			serie.setProtagonista(s.getProtagonista());
+			
+		}
 		serie.setImagen(s.getImagen());
 		serie.setWatch(s.getWatch());
 		
@@ -581,13 +565,96 @@ public class Controlador  {
 	
 	@RequestMapping("fav_pelis") 
 	
-	public String peliculasfav(HttpServletRequest req) {
+	public ModelAndView peliculasfav(HttpServletRequest req) {
 		
 		System.err.println("redirige a peliculas favoritas");
 		
+		HttpSession session = req.getSession(true);
+		System.err.println("redirige a peliculas favoritas");
+		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
+		String id=req.getParameter("id");
+		/*String categoriabuscador=req.getParameter("Categoria");
+		String titulobuscador=req.getParameter("Titulo");*/
+		
+		ModelAndView modelAndview=new ModelAndView();
+		
+		List<Pelicula> peliculasFav=peliculaFavservice.listarPeliculasFavporUsuario(usuario.getIdusuario());
+		
+		List<Pelicula> peliculasmostrar=new ArrayList<Pelicula>();
+		peliculasmostrar=peliculasFav;
+		
+		
+		int npeliculas=peliculasmostrar.size();
+		
+		int npaginas=npeliculas/8;
+		
+		int pelinicio;
+		int pelfinal;
+		
+		String identificador;
+		
+		if(id==null) {
+		
+		pelinicio=0;
+		pelfinal=8;
+		identificador=id;
+		
+		}else if(Integer.parseInt(id)<1) {
+			
+			identificador="1";
+			pelinicio=0;
+			pelfinal=8;
+			
+		}else if(Integer.parseInt(id)>npaginas) {
+			
+			identificador=String.valueOf(npaginas);
+			pelinicio=(Integer.parseInt(id)-2)*8;
+			pelfinal=pelinicio+8;
+			
+	}else {
+			
+			pelinicio=(Integer.parseInt(id)-1)*8;
+			pelfinal=pelinicio+8;
+			identificador=id;
+			
+		}
+		
+		List<Pelicula> peliculas= new ArrayList<Pelicula>();
+		
+		
+		
+		for(int i=pelinicio; i<pelfinal; i++) {
+			
+			Pelicula pelicula=new Pelicula();
+			
+			pelicula.setIdpelicula(peliculasmostrar.get(i).getIdpelicula());
+			pelicula.setTitulo(peliculasmostrar.get(i).getTitulo());
+			pelicula.setImagen(peliculasmostrar.get(i).getImagen());
+			
+			peliculas.add(pelicula);
+			
+		}
+		
+		/*int i=0;
+		while(i<5) {
+			
+		Pelicula pelicula=peliculasTodo.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen()
+		+ " Enlace: " + pelicula.getWatch());
+		i++;
+		}*/
+		
+		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("peliculasFavoritas");
+		modelAndview.addObject("pelis", peliculas);
+		modelAndview.addObject("npaginas", npaginas);
+		modelAndview.addObject("id", identificador);
 				
-		return "peliculas_favoritas";
+		return modelAndview;
+			
 	}
 	
 	@RequestMapping("fav_series") 
