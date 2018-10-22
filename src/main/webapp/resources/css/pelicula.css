@@ -29,13 +29,35 @@
 
 .contenido{
 	margin-left: 250px;
-
+	padding-top: 30px;
 }
 
 #portada{
-	position: fixed;
-    top: 40%;
-    height: 250px;
-    width: 350px;
-    right: 5px;
+	position: absolute;
+	top: 22%;
+	height: 290px;
+	width: 380px;
+	right: 31.5%;
+	border-radius: 25px;
+	border: 3px solid white;
+	padding: 20px;
 }
+
+#vNet{
+	text-align: center;
+	top: 80%;
+	border: 3px solid white;
+	border-radius: 25px;
+	padding: 5px 0px;
+	background-color: #025152;
+	margin-right: 10px;
+	color: white;
+	margin-left: 15%;
+	position: absolute;
+	width: 250px;
+}
+
+#cCats{
+	width: 40%;
+}
+

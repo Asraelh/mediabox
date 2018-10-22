@@ -50,12 +50,16 @@ li{
 	border-radius: 25px;
 }
 
-
-
 .imagenes img{
 	height: 120px;
 	width:  170px;
-	margin-top: 15px;
+	margin-top: 60px;
+	margin-left: 30px;
+}
+
+.imagenes p{
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
 #contenedor{
@@ -71,12 +75,8 @@ li{
 	background-color: #00000087
 }
 
-.col-md-4 a{
+.col-md-3 a{
 	text-decoration: none;
 	color: white;
 	text-align: center;
-}
-
-.col-md-4{
-	position: absolute;
 }

@@ -18,6 +18,8 @@
 
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+		<script src="/resources/js/carousel.js"></script>
+
 		<link href="<c:url value="/resources/css/carousel.css" />" rel="stylesheet">
 
 		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
@@ -182,17 +184,17 @@
 
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner2" role="listbox">
-				<c:forEach var = "i" items="${peliculas5}" varStatus="loopCount">
+				<c:forEach var = "s" items="${series5}" varStatus="loopCount">
 
 					<c:if test="${loopCount.count eq 1}">
 			        	<div class="item active">
-							<img src="${i.imagen}" alt="${i.titulo}"/>
+							<img src="${s.imagen}" alt="${s.titulo}"/>
 						</div>
 			        </c:if>
 
 					<c:if test="${loopCount.count != 1}">
 			        	<div class="item2">
-							<img src="${i.imagen}" alt="${i.titulo}"/>
+							<img src="${s.imagen}" alt="${s.titulo}"/>
 						</div>
 			        </c:if>
 
@@ -216,13 +218,6 @@
 			    <span class="sr-only">Next</span>
 			  </a>
 			</div>
-
-
-
-
-
-
-
 
 	</body>
 </html>

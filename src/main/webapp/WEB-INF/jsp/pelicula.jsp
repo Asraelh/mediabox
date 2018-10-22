@@ -89,7 +89,7 @@
 
 			<p class="titulos"> Categoría:</p>
 
-			<p class="contenido">
+			<p id="cCats" class="contenido">
 				${pelicula.categoria}
 			</p>
 
@@ -108,7 +108,7 @@
 			<p class="titulos"> Duración:</p>
 
 			<p class="contenido">
-
+				${duracion}
 			</p>
 
 			<p class="titulos"> Director:</p>
@@ -136,16 +136,16 @@
 				${pelicula.descripcion}
 			</p>
 
-			<p>
-				<a href="${pelicula.watch}">
-					Ver en Netflix
-				</a>
-			</p>
-
 		</div>
 
 		<div id="portada">
+
 			<img src="${pelicula.imagen}" />
+			<br>
+			<a id="vNet" href="${pelicula.watch}">
+				Ver en Netflix
+			</a>
+
 		</div>
 
 	</body>

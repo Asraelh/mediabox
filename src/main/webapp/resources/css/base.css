@@ -13,6 +13,8 @@ html{
 	width: 25%;
 	height: 100px;
 	padding: 5px;
+	padding-top: 15px;
+	text-align: center;
 }
 
 #logo{
@@ -20,7 +22,7 @@ html{
 	width: 60px;
 	position: fixed;
 	margin-top: 20px;
-	margin-left: 200px;
+	margin-left: -35px;
 }
 
 #logoL{
