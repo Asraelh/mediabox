@@ -1,1 +1,102 @@
 @charset "ISO-8859-1";
+
+@charset "UTF-8";
+
+body{
+	background-color: #0ff0;
+}
+
+#paginas{
+	position: fixed;
+	bottom: 51px;
+	background-color: #0000006b;
+	border-radius: 25px;
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: white;
+	width: 70%;
+	margin-left: 5%;
+}
+
+li{
+	background-color: #0000006b;
+	color: white;
+}
+
+.pagination a {
+    color: white;
+    float: left;
+    padding: 3px 12px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #0000006b;
+    font-size: 22px;
+}
+
+ p {
+    color: white;
+    float: left;
+    padding: 3px 5px;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 25px;
+    font-size: 15px;
+    text-align: center;
+    width: 200px;
+}
+
+.pagination a.active {
+	background-color: #0000006b;
+    color: white;
+    border: 1px solid white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #0000006b;
+	border: 1px solid white;
+	border-radius: 25px;
+}
+
+.imagenes img{
+	height: 120px;
+	width:  170px;
+	margin-top: 60px;
+	margin-left: 30px;
+
+}
+
+.imagenes p{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+#contenedor{
+	color: white;
+	position: absolute;
+	height: 60%;
+	padding-top: 20px;
+	padding-left: 130px;
+	width: 75%;
+	top: 20%;
+	left: 3%;
+	border-radius: 25px;
+	background-color: #00000087;
+
+}
+
+.col-md-3 a{
+	text-decoration: none;
+	color: white;
+	text-align: center;
+}
+
+
+
+.col-md-3{
+	-webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -mos-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}

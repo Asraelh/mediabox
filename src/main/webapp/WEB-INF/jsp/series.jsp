@@ -22,7 +22,7 @@
 
 		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
 
-		<link href="<c:url value="/resources/css/peliculas.css" />" rel="stylesheet">
+		<link href="<c:url value="/resources/css/series.css" />" rel="stylesheet">
 
 	</head>
 
@@ -105,7 +105,7 @@
 
 		<ul id="paginas" class="pagination">
 
-		<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
+			<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
@@ -125,6 +125,8 @@
 
 		    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
 		</ul>
+
+
 
 		<nav>
 		  	<ul class="pagination justify-content-center pagination-sm"></ul>

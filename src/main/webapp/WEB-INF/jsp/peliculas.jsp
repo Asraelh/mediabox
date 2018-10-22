@@ -109,7 +109,7 @@
 
 		<ul id="paginas" class="pagination">
 
-		<a class="menos" href="pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
+			<a class="menos" href="pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
