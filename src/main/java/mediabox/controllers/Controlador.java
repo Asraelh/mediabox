@@ -610,7 +610,7 @@ public class Controlador  {
 		peliculasmostrar=peliculasFav;
 		
 		int npeliculas=0;
-		int npaginas=1;
+		int npaginas;
 		String mensaje="";
 		String identificador;
 		int comprobar=1;
@@ -620,22 +620,27 @@ public class Controlador  {
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
 			comprobar=0;
+			npaginas=1;
+			System.err.println("Entra en el if");
 			
 		}else {
 		
 		npeliculas=peliculasmostrar.size();
-		
+		npaginas=npeliculas/8+1;
+		System.err.println("Entra en el else");
 		}
 		
 		int pelinicio;
 		int pelfinal;
+		
+		System.err.println("Numero de paginas es" + npaginas);
 		
 		if(id==null) {
 		if(npeliculas<8) {
 		pelinicio=0;
 		pelfinal=npeliculas;
 		identificador=id;
-		npaginas=npeliculas/8+1;
+		npaginas=1;
 		}else {
 			
 			pelinicio=0;
@@ -645,6 +650,14 @@ public class Controlador  {
 			
 		}
 		
+		}else if(npeliculas<8){
+			
+			npaginas=1;
+			pelinicio=0;
+			pelfinal=npeliculas;
+			identificador=id;
+			System.err.println("Entra en npeliculas<8");
+			
 		}else if(Integer.parseInt(id)<1) {
 			
 			identificador="1";
@@ -657,25 +670,28 @@ public class Controlador  {
 			
 			identificador=String.valueOf(npaginas);
 			pelinicio=(Integer.parseInt(id)-2)*8;
-			pelfinal=pelinicio+8;
+			pelfinal=(npeliculas-8*(npaginas-1))+pelinicio;
 			npaginas=npeliculas/8+1;
 			System.err.println("Entra en id>npaginas");
-	}else if(npeliculas<8){
-		
-		npaginas=1;
-		pelinicio=0;
-		pelfinal=npeliculas;
-		identificador="1";
-		System.err.println("Entra en npeliculas<8");
-		
 	}else{
+		
+		if(Integer.parseInt(id)==npaginas) {
 			npaginas=npeliculas/8+1;
 			System.err.println("Entra donde quiero");
 			pelinicio=(Integer.parseInt(id)-1)*8;
-			pelfinal=npeliculas-8*(npaginas-1);
+			pelfinal=(npeliculas-8*(npaginas-1))+pelinicio;
+			identificador=id;
+			
+		}else {
+			
+			npaginas=npeliculas/8+1;
+			System.err.println("Entra donde quiero");
+			pelinicio=(Integer.parseInt(id)-1)*8;
+			pelfinal=pelinicio+8;
 			identificador=id;
 			
 		}
+	}
 		
 		System.err.println(pelinicio);
 		System.err.println(pelfinal);
