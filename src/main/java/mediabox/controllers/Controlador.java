@@ -319,7 +319,7 @@ public class Controlador  {
 		ModelAndView modelAndview=new ModelAndView();
 		
 		Pelicula p=peliculaservice.buscarPeliculaporId(Idpelicula);
-		//boolean comprobacion=peliculaservice.comprobarFavorito(Idpelicula, usuario.getIdusuario());
+		boolean comprobacion=peliculaservice.comprobarFavorito(Idpelicula, usuario.getIdusuario());
 		
 		System.err.println(p);
 		System.err.println("Categoria: " + p.getCategoria());
@@ -385,7 +385,7 @@ public class Controlador  {
 			
 		}
 		
-		//modelAndview.addObject("favorito", comprobacion);
+		modelAndview.addObject("favorito", comprobacion);
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("pelicula");
 		modelAndview.addObject("pelicula", pelicula);
@@ -509,8 +509,11 @@ public class Controlador  {
 	public ModelAndView Verserie(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
 		System.err.println("redirige a Ver serie");
+		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		int Idserie=Integer.parseInt(req.getParameter("idserie"));
+		
+		boolean comprobacion=serieservice.comprobarFavorito(Idserie, usuario.getIdusuario());
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
@@ -551,11 +554,10 @@ public class Controlador  {
 		serie.setImagen(s.getImagen());
 		serie.setWatch(s.getWatch());
 		
-		Usuario usuario=(Usuario)session.getAttribute("usr");
-		
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("serie");
 		modelAndview.addObject("serie", serie);
+		modelAndview.addObject("favorito", comprobacion);
 		
 				
 		return modelAndview;
@@ -884,6 +886,8 @@ public class Controlador  {
 		ModelAndView modelAndview=new ModelAndView(); 
 		
 		List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+		List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
+		
 		/*for(Pelicula pel:Cincopeliculas) {
 			
 			System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
@@ -915,6 +919,7 @@ public class Controlador  {
 			
 		}
 		}	modelAndview.addObject("peliculas5",Cincopeliculas);
+			modelAndview.addObject("series5",Cincoseries);
 			modelAndview.setViewName("index");
 			modelAndview.addObject("mensaje_login", mensaje);
 			return modelAndview; 
