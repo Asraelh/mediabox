@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -107,14 +106,12 @@
 
 		<a class="menos" href="pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
-
-
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
 
-		        	<li><a href="pelis?id=<c:out value = "${i}"/>" class="active">
-		        		<c:out value = "${i}"/>
-		        	</a></li>
+	        	<li><a href="pelis?id=<c:out value = "${i}"/>" class="active">
+	        		<c:out value = "${i}"/>
+	        	</a></li>
 
 <!--
 			  	<c:if test = "${i != 1}">
@@ -131,12 +128,6 @@
 		<nav>
 		  	<ul class="pagination justify-content-center pagination-sm"></ul>
 		</nav>
-
-
-
-
-
-
 
 	</body>
 
