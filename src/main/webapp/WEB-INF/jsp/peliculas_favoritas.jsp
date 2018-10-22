@@ -94,15 +94,12 @@
 			<div class="container-fluid" id="contenedor">
 				<c:forEach var="peli" items="${pelis}">
 					<div class="col-md-3 row">
-
-		    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
-			    				<img src="${peli.imagen}"/>
-			    				<p>
-			    					<c:out value = "${peli.titulo}"/>
-			    					<a href="delPelisFav?idPel=${peli.idpelicula}"> Quitar </a>
-			    				</p>
-		    				</a>
-
+	    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
+		    				<img src="${peli.imagen}"/>
+		    				<p>
+		    					<c:out value = "${peli.titulo}"/>
+		    				</p>
+	    				</a>
 					</div>
 			    </c:forEach>
 			</div>
@@ -113,9 +110,11 @@
 
 			    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
-		        	<li><a href="fav_pelis?id=<c:out value = "${i}"/>" class="active">
-		        		<c:out value = "${i}"/>
-		        	</a></li>
+		        	<li>
+		        		<a href="fav_pelis?id=<c:out value = "${i}"/>" class="active">
+		        			<c:out value = "${i}"/>
+		        		</a>
+		        	</li>
 
 			    </c:forEach>
 
