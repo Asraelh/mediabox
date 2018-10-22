@@ -85,12 +85,11 @@
 
 		<!--  A D M I N I S T R A C I O N     D E     U S U A R I O  -->
 
-		<c:if test = "${id == null}">
+		<c:if test = "${comp == 0}">
          	<span id="mensaje"> <c:out value = "${mensaje}"/> </span>
       	</c:if>
 
-
-		<c:if test = "${id != null}">
+		<c:if test = "${comp != 0}">
 			<div class="container-fluid" id="contenedor">
 				<c:forEach var="peli" items="${pelis}">
 					<div class="col-md-3 row">
