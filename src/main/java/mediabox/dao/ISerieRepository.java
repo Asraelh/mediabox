@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
@@ -32,8 +33,8 @@ public interface ISerieRepository extends CrudRepository<Serie, Integer> {
 	 @Query(nativeQuery = true,value = "SELECT insertFavorito(:username,:idpelicula)")  // call store procedure 
 	 boolean insertarSerieFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
 	 
-	 @Query(nativeQuery = true,value = "CALL deleteFavorito(:username,:idpelicula)")  // call store procedure 
-	 void borrarSerieFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
+	 @Procedure(name = "deleteFavorito")
+	 void deleteFavorito(@Param("username")String username, @Param("idpelicula") int idpelicula); 
 	 
 	 @Query(nativeQuery = true,value = "SELECT checkFavorito(:username,:idpelicula)")  // call store procedure 
 	 boolean checkSerieFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 

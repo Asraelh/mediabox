@@ -83,7 +83,7 @@ public class SerieService implements ISerieService {
 		public void deleteseriefavoritos(String user, int Idserie) {
 			// TODO Auto-generated method stub
 			
-			seriesRepository.borrarSerieFav(user, Idserie);
+			seriesRepository.deleteFavorito(user, Idserie);
 			
 		}
 

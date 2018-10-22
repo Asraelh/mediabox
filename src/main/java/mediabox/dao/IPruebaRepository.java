@@ -35,6 +35,9 @@ public interface IPruebaRepository extends CrudRepository<Pelicula, Integer> {
 	 
 	 @Query(nativeQuery = true,value = "CALL LISTALLSERIES")  // call store procedure 
 	    List<Serie> listarseries();
+	 
+	 @Query(nativeQuery = true,value = "SELECT checkFavorito(:username,:idpelicula)")  // call store procedure 
+	 boolean checkPeliculaFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
 
 
 	 

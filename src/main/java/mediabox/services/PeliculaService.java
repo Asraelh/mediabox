@@ -84,7 +84,7 @@ public class PeliculaService implements IPeliculaService {
 	public void deletepeliculafavoritos(String user, int Idpelicula) {
 		// TODO Auto-generated method stub
 		
-		peliculasRepository.borrarPeliculaFav(user, Idpelicula);
+		peliculasRepository.deleteFavorito(user, Idpelicula);
 				
 	}
 

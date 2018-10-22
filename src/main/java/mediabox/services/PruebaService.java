@@ -18,7 +18,8 @@ public class PruebaService implements IPruebaService {
 		private IPruebaRepository pruebaRepository;
 		@Autowired
 		private IUsuarioRepository usuariorepository;
-		
+		@Autowired
+		private IPeliculaRepository pelicularepository;
 		
 		@Override
 		public void pruebaSelect() {
@@ -30,8 +31,8 @@ public class PruebaService implements IPruebaService {
 //			Pelicula media=pruebaRepository.findFilmById(242142);
 //			List<Serie> lista=pruebaRepository.show5series();
 //			List<Serie> lista=pruebaRepository.listarseries();
-			boolean check=usuariorepository.checkUser("diego4");
-			System.out.println(check);
+			pelicularepository.deleteFavorito("root", 70243358);
+			//System.out.println(check);
 			
 //			lista.forEach(p->System.out.println(p));
 
