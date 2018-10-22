@@ -6,9 +6,15 @@ body{
 
 #paginas{
 	position: fixed;
-	bottom: 0px;
+	bottom: 51px;
 	background-color: #0000006b;
+	border-radius: 25px;
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	color: white;
+	width: 70%;
+	margin-left: 5%;
 }
 
 li{
@@ -24,6 +30,7 @@ li{
     transition: background-color .3s;
     border: 1px solid #0000006b;
     font-size: 22px;
+
 }
 
  p {
@@ -55,6 +62,7 @@ li{
 	width:  170px;
 	margin-top: 60px;
 	margin-left: 30px;
+
 }
 
 .imagenes p{
@@ -67,16 +75,27 @@ li{
 	position: absolute;
 	height: 60%;
 	padding-top: 20px;
-	padding-left: 15px;
+	padding-left: 130px;
 	width: 75%;
 	top: 20%;
 	left: 3%;
 	border-radius: 25px;
-	background-color: #00000087
+	background-color: #00000087;
+
 }
 
 .col-md-3 a{
 	text-decoration: none;
 	color: white;
 	text-align: center;
+}
+
+
+
+.col-md-3{
+	-webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -mos-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
 }

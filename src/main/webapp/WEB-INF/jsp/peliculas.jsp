@@ -23,6 +23,10 @@
 
 		<link href="<c:url value="/resources/css/peliculas.css" />" rel="stylesheet">
 
+		<script src="/resources/js/pag.js"></script>
+
+		<link href="<c:url value="/resources/css/pag.css" />" rel="stylesheet">
+
 	</head>
 
 	<body>
@@ -85,17 +89,18 @@
 
 		<!--  C O N T E N I D O    P A R A    M O S T R A R  -->
 
-		<div class="row" id="contenedor">
+		<div class="container-fluid" id="contenedor">
 
 			<c:forEach var="peli" items="${pelis}">
+				<div class="col-md-3 row">
 
-				<div class="col-md-3">
-    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
-	    				<img src="${peli.imagen}"/>
-	    				<p>
-	    					<c:out value = "${peli.titulo}"/>
-	    				</p>
-    				</a>
+	    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
+		    				<img src="${peli.imagen}"/>
+		    				<p>
+		    					<c:out value = "${peli.titulo}"/>
+		    				</p>
+	    				</a>
+
 				</div>
 		    </c:forEach>
 		</div>
@@ -125,9 +130,11 @@
 		    <a class="mas" href="pelis?id=<c:out value = "${id+1}"/>">&raquo;</a>
 		</ul>
 
-		<nav>
-		  	<ul class="pagination justify-content-center pagination-sm"></ul>
-		</nav>
+		<div id="pagination">
+
+		</div>
+
+
 
 	</body>
 
