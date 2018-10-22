@@ -25,5 +25,8 @@ public interface ISerieRepository extends CrudRepository<Serie, Integer> {
 	 
 	 @Query(nativeQuery = true,value = "CALL FINDSERIEBYID(:idserie)")  // call store procedure 
 	    Serie findSerieById(@Param("idserie")int idserie);
+	 
+	 @Query(nativeQuery = true,value = "CALL listAllFavoriteSeries(:username)")  // call store procedure 
+	 List<Serie> listAllFavoriteSeries(@Param("username")String username);
 
 }
