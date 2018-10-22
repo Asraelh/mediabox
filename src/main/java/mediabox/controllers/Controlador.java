@@ -783,7 +783,7 @@ public class Controlador  {
 		ModelAndView modelAndview=new ModelAndView();
 		HttpSession session = req.getSession(true);
 		
-		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
+		int Idpelicula=Integer.parseInt(req.getParameter("idpel"));
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		boolean insertar=peliculaservice.addpeliculafavoritos(usuario.getIdusuario(), Idpelicula);
