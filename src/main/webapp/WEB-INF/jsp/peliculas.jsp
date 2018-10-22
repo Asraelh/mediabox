@@ -113,18 +113,10 @@
 
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
-
 	        	<li><a href="pelis?id=<c:out value = "${i}"/>" class="active">
 	        		<c:out value = "${i}"/>
 	        	</a></li>
 
-<!--
-			  	<c:if test = "${i != 1}">
-		        	<li><a href="pelis?id=<c:out value = "${i}"/>">
-		        		<c:out value = "${i}"/>
-		        	</a></li>
-		        </c:if>
--->
 		    </c:forEach>
 
 		    <a class="mas" href="pelis?id=<c:out value = "${id+1}"/>">&raquo;</a>
@@ -133,8 +125,6 @@
 		<div id="pagination">
 
 		</div>
-
-
 
 	</body>
 

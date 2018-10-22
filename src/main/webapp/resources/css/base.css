@@ -30,7 +30,7 @@ html{
 	width: 60px;
 	position: fixed;
 	margin-top: 20px;
-	margin-left: 115px;
+	margin-left: 110px;
 }
 
 #titulo h3{
@@ -46,7 +46,7 @@ html{
 
 #d_bienvenido h3{
 	position: fixed;
-	top: 20px;
+	top: 10px;
 }
 
 #media{
