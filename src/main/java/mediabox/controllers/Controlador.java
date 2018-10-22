@@ -850,6 +850,9 @@ public class Controlador  {
 			
 				List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
 				modelAndview.addObject("peliculas5",Cincopeliculas);
+				List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
+				modelAndview.addObject("series5",Cincoseries);
+				
 				/*for(Pelicula pel:Cincopeliculas) {
 					
 					System.err.println("Idpelicula: " + pel.getIdpelicula() + " Titulo: " + pel.getTitulo()
