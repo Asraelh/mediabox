@@ -178,10 +178,30 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		
 		List<Pelicula> peliculasTodo=peliculaservice.listarPeliculas();
 		
-		int npeliculas=peliculasTodo.size();
+		List<Pelicula> peliculasmostrar=new ArrayList<Pelicula>();
+		peliculasmostrar=peliculasTodo;
+		/*if(categoriabuscador.equals("")) {
+			
+			peliculasmostrar=peliculasTodo;
+			System.err.println("Mostrará todas las peliculas disponibles");
+			
+		}else {
+			
+			for(Pelicula p:peliculasTodo) {
+				
+				if(p.getCategoria().contains(categoriabuscador)) {
+					
+					peliculasmostrar.add(p);
+					
+				}
+				
+			}
+			
+		}*/
+		
+		int npeliculas=peliculasmostrar.size();
 		
 		int npaginas=npeliculas/8;
 		
@@ -218,13 +238,15 @@ public class Controlador  {
 		
 		List<Pelicula> peliculas= new ArrayList<Pelicula>();
 		
+		
+		
 		for(int i=pelinicio; i<pelfinal; i++) {
 			
 			Pelicula pelicula=new Pelicula();
 			
-			pelicula.setIdpelicula(peliculasTodo.get(i).getIdpelicula());
-			pelicula.setTitulo(peliculasTodo.get(i).getTitulo());
-			pelicula.setImagen(peliculasTodo.get(i).getImagen());
+			pelicula.setIdpelicula(peliculasmostrar.get(i).getIdpelicula());
+			pelicula.setTitulo(peliculasmostrar.get(i).getTitulo());
+			pelicula.setImagen(peliculasmostrar.get(i).getImagen());
 			
 			peliculas.add(pelicula);
 			
@@ -328,47 +350,96 @@ public class Controlador  {
 	public ModelAndView series(HttpServletRequest req) {
 		HttpSession session = req.getSession(true);
 		System.err.println("redirige a series");
+		
 		String id=req.getParameter("id");
+		//String categoriabuscador=req.getParameter("Categoria");
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
 		List<Serie> seriesTodo=serieservice.listarSeries();
 		
+		List<Serie> seriesmostrar=new ArrayList<Serie>();
+		seriesmostrar=seriesTodo;
+		/*if(categoriabuscador.equals("")) {
+			
+			peliculasmostrar=peliculasTodo;
+			System.err.println("Mostrará todas las peliculas disponibles");
+			
+		}else {
+			
+			for(Pelicula p:peliculasTodo) {
+				
+				if(p.getCategoria().contains(categoriabuscador)) {
+					
+					peliculasmostrar.add(p);
+					
+				}
+				
+			}
+			
+		}*/
+		
+		int nseries=seriesmostrar.size();
+		
+		int npaginas=nseries/8;
 		
 		int serieinicio;
 		int seriefinal;
+		
+		String identificador;
 		
 		if(id==null) {
 		
 		serieinicio=0;
 		seriefinal=8;
+		identificador=id;
+		
+		}else if(Integer.parseInt(id)<1) {
 			
-		}else {
+			identificador="1";
+			serieinicio=0;
+			seriefinal=8;
+			
+		}else if(Integer.parseInt(id)>npaginas) {
+			
+			identificador=String.valueOf(npaginas);
+			serieinicio=(Integer.parseInt(id)-2)*8;
+			seriefinal=serieinicio+8;
+			
+	}else {
 			
 			serieinicio=(Integer.parseInt(id)-1)*8;
 			seriefinal=serieinicio+8;
+			identificador=id;
 			
 		}
 		
 		List<Serie> series= new ArrayList<Serie>();
 		
+		
+		
 		for(int i=serieinicio; i<seriefinal; i++) {
 			
 			Serie serie=new Serie();
 			
-			serie.setIdserie(seriesTodo.get(i).getIdserie());
-			serie.setTitulo(seriesTodo.get(i).getTitulo());
-			serie.setImagen(seriesTodo.get(i).getImagen());
+			serie.setIdserie(seriesmostrar.get(i).getIdserie());
+			serie.setTitulo(seriesmostrar.get(i).getTitulo());
+			serie.setImagen(seriesmostrar.get(i).getImagen());
 			
 			series.add(serie);
 			
 		}
 		
-		int nseries=series.size();
+		/*int i=0;
+		while(i<5) {
+			
+		Pelicula pelicula=peliculasTodo.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen()
+		+ " Enlace: " + pelicula.getWatch());
+		i++;
+		}*/
 		
-		int npaginas=nseries/8;
-		
-		//System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
+		System.err.println("Numero de peliculas: " + nseries + " Numero de paginas: " + npaginas);
 		
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
@@ -376,7 +447,7 @@ public class Controlador  {
 		modelAndview.setViewName("series");
 		modelAndview.addObject("series", series);
 		modelAndview.addObject("npaginas", npaginas);
-		modelAndview.addObject("id", id);
+		modelAndview.addObject("id", identificador);
 				
 		return modelAndview;
 		
