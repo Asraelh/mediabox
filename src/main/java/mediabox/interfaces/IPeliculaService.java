@@ -15,5 +15,9 @@ public interface IPeliculaService {
 	public boolean comprobarFavorito(int Idpelicula, String user);
 	
 	public List<Pelicula> listarPeliculasFavporUsuario(String user);
+	
+	public boolean addpeliculafavoritos(String user, int Idpelicula);
+	
+	public void deletepeliculafavoritos(String user, int Idpelicula);
 
 }

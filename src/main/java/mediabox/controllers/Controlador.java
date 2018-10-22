@@ -517,8 +517,6 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		//Empieza pelicula
-		
 		Serie s=serieservice.buscarSerieporId(Idserie);
 		
 		System.err.println(s);
@@ -771,6 +769,300 @@ public class Controlador  {
 		modelAndview.setViewName("series_favoritas");
 		return modelAndview;
 			
+	}
+	
+	@RequestMapping("addpeliculafav") 
+	
+	public ModelAndView addpeliculafav(HttpServletRequest req) {
+		System.err.println("Entra en add pelicula favorita");
+		ModelAndView modelAndview=new ModelAndView();
+		HttpSession session = req.getSession(true);
+		
+		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		boolean insertar=peliculaservice.addpeliculafavoritos(usuario.getIdusuario(), Idpelicula);
+		
+		//Pelicula
+		
+		Pelicula p=peliculaservice.buscarPeliculaporId(Idpelicula);
+		boolean comprobacion=peliculaservice.comprobarFavorito(Idpelicula, usuario.getIdusuario());
+		
+		/*System.err.println(p);
+		System.err.println("Categoria: " + p.getCategoria());*/
+		
+		Pelicula pelicula=new Pelicula();
+		
+		pelicula.setIdpelicula(p.getIdpelicula());
+		pelicula.setCategoria(p.getCategoria());
+		pelicula.setTitulo(p.getTitulo());
+		pelicula.setYear(p.getYear());
+		pelicula.setCalificacion(p.getCalificacion());
+		pelicula.setDescripcion(p.getDescripcion());
+		if(p.getDirector().equals("null")) {
+			
+			pelicula.setDirector("No disponible");
+			
+		}else {
+			
+			pelicula.setDirector(p.getDirector());
+			
+		}
+		
+		if(p.getProtagonista().equals("null")) {
+			
+			pelicula.setProtagonista("No disponible");
+			
+		}else {
+			
+			pelicula.setProtagonista(p.getProtagonista());
+			
+		}
+		pelicula.setImagen(p.getImagen());
+		pelicula.setWatch(p.getWatch());
+		
+		String duracionPelicula;
+		
+		if(p.getDuracion()==null) {
+			
+			duracionPelicula="No está disponible";
+			
+		}else {
+			double duracion=Double.parseDouble(p.getDuracion());
+			System.err.println("duracion: " + duracion);
+			double aux=duracion/60;
+			System.err.println("Aux: " + aux);
+			double horas=Math.round(aux);
+			double minutos;
+			
+			if((aux-horas)<0) {
+				
+			minutos=(aux-horas+1)*60;
+			
+			horas=horas-1;
+			
+			}else {
+				
+				minutos=(aux-horas)*60;
+				
+			}
+			
+			duracionPelicula=(int)horas+"h"+(int)minutos+"min";
+			System.err.println(duracionPelicula);
+			
+		}
+		
+		modelAndview.addObject("favorito", comprobacion);
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("pelicula");
+		modelAndview.addObject("pelicula", pelicula);
+		modelAndview.addObject("duracion", duracionPelicula);
+		return modelAndview;
+	}
+	
+	@RequestMapping("deletepeliculafav") 
+	
+	public ModelAndView deletepeliculafav(HttpServletRequest req) {
+		System.err.println("Entra en delete pelicula favorita");
+		ModelAndView modelAndview=new ModelAndView();
+		HttpSession session = req.getSession(true);
+		
+		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		peliculaservice.deletepeliculafavoritos(usuario.getIdusuario(), Idpelicula);
+		
+		//Pelicula
+		
+		Pelicula p=peliculaservice.buscarPeliculaporId(Idpelicula);
+		boolean comprobacion=peliculaservice.comprobarFavorito(Idpelicula, usuario.getIdusuario());
+		
+		/*System.err.println(p);
+		System.err.println("Categoria: " + p.getCategoria());*/
+		
+		Pelicula pelicula=new Pelicula();
+		
+		pelicula.setIdpelicula(p.getIdpelicula());
+		pelicula.setCategoria(p.getCategoria());
+		pelicula.setTitulo(p.getTitulo());
+		pelicula.setYear(p.getYear());
+		pelicula.setCalificacion(p.getCalificacion());
+		pelicula.setDescripcion(p.getDescripcion());
+		if(p.getDirector().equals("null")) {
+			
+			pelicula.setDirector("No disponible");
+			
+		}else {
+			
+			pelicula.setDirector(p.getDirector());
+			
+		}
+		
+		if(p.getProtagonista().equals("null")) {
+			
+			pelicula.setProtagonista("No disponible");
+			
+		}else {
+			
+			pelicula.setProtagonista(p.getProtagonista());
+			
+		}
+		pelicula.setImagen(p.getImagen());
+		pelicula.setWatch(p.getWatch());
+		
+		String duracionPelicula;
+		
+		if(p.getDuracion()==null) {
+			
+			duracionPelicula="No está disponible";
+			
+		}else {
+			double duracion=Double.parseDouble(p.getDuracion());
+			System.err.println("duracion: " + duracion);
+			double aux=duracion/60;
+			System.err.println("Aux: " + aux);
+			double horas=Math.round(aux);
+			double minutos;
+			
+			if((aux-horas)<0) {
+				
+			minutos=(aux-horas+1)*60;
+			
+			horas=horas-1;
+			
+			}else {
+				
+				minutos=(aux-horas)*60;
+				
+			}
+			
+			duracionPelicula=(int)horas+"h"+(int)minutos+"min";
+			System.err.println(duracionPelicula);
+			
+		}
+		
+		modelAndview.addObject("favorito", comprobacion);
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("pelicula");
+		modelAndview.addObject("pelicula", pelicula);
+		modelAndview.addObject("duracion", duracionPelicula);
+		return modelAndview;
+	}
+	
+	
+	
+	@RequestMapping("addseriefav") 
+	
+	public ModelAndView addseriefav(HttpServletRequest req) {
+		System.err.println("Entra en add serie favorita");
+		ModelAndView modelAndview=new ModelAndView();
+		HttpSession session = req.getSession(true);
+		
+		int Idserie=Integer.parseInt(req.getParameter("idSerie"));
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		boolean insertar=serieservice.addseriefavoritos(usuario.getIdusuario(), Idserie);
+		
+		//Pelicula
+		
+		Serie s=serieservice.buscarSerieporId(Idserie);
+		boolean comprobacion=serieservice.comprobarFavorito(Idserie, usuario.getIdusuario());
+		
+		/*System.err.println(p);
+		System.err.println("Categoria: " + p.getCategoria());*/
+		
+		Serie serie=new Serie();
+		
+		serie.setIdserie(s.getIdserie());
+		serie.setCategoria(s.getCategoria());
+		serie.setTitulo(s.getTitulo());
+		serie.setYear(s.getYear());
+		serie.setCalificacion(s.getCalificacion());
+		serie.setDescripcion(s.getDescripcion());
+		if(s.getDirector().equals("null")) {
+			
+			serie.setDirector("No disponible");
+			
+		}else {
+			
+			serie.setDirector(s.getDirector());
+			
+		}
+		
+		if(s.getProtagonista().equals("null")) {
+			
+			serie.setProtagonista("No disponible");
+			
+		}else {
+			
+			serie.setProtagonista(s.getProtagonista());
+			
+		}
+		serie.setImagen(s.getImagen());
+		serie.setWatch(s.getWatch());
+		
+		modelAndview.addObject("favorito", comprobacion);
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("serie");
+		modelAndview.addObject("serie", serie);
+		return modelAndview;
+	}
+	
+	@RequestMapping("deleteseriefav") 
+	
+	public ModelAndView deleteseriefav(HttpServletRequest req) {
+		System.err.println("Entra en delete serie favorita");
+		ModelAndView modelAndview=new ModelAndView();
+		HttpSession session = req.getSession(true);
+		
+		int Idserie=Integer.parseInt(req.getParameter("idSerie"));
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		serieservice.deleteseriefavoritos(usuario.getIdusuario(), Idserie);
+		
+		//Pelicula
+		
+		Serie s=serieservice.buscarSerieporId(Idserie);
+		boolean comprobacion=serieservice.comprobarFavorito(Idserie, usuario.getIdusuario());
+		
+		/*System.err.println(p);
+		System.err.println("Categoria: " + p.getCategoria());*/
+		
+		Serie serie=new Serie();
+		
+		serie.setIdserie(s.getIdserie());
+		serie.setCategoria(s.getCategoria());
+		serie.setTitulo(s.getTitulo());
+		serie.setYear(s.getYear());
+		serie.setCalificacion(s.getCalificacion());
+		serie.setDescripcion(s.getDescripcion());
+		if(s.getDirector().equals("null")) {
+			
+			serie.setDirector("No disponible");
+			
+		}else {
+			
+			serie.setDirector(s.getDirector());
+			
+		}
+		
+		if(s.getProtagonista().equals("null")) {
+			
+			serie.setProtagonista("No disponible");
+			
+		}else {
+			
+			serie.setProtagonista(s.getProtagonista());
+			
+		}
+		serie.setImagen(s.getImagen());
+		serie.setWatch(s.getWatch());
+		
+		modelAndview.addObject("favorito", comprobacion);
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("serie");
+		modelAndview.addObject("serie", serie);
+		return modelAndview;
 	}
 	
 	@RequestMapping("cerrarSesion") 

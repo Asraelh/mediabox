@@ -70,6 +70,23 @@ public class SerieService implements ISerieService {
 			return comprobacion;
 		}
 
+		@Override
+		public boolean addseriefavoritos(String user, int Idserie) {
+			// TODO Auto-generated method stub
+				
+				boolean addserie=seriesRepository.insertarSerieFav(user, Idserie);
+				
+				return addserie;
+			}
+
+		@Override
+		public void deleteseriefavoritos(String user, int Idserie) {
+			// TODO Auto-generated method stub
+			
+			seriesRepository.borrarSerieFav(user, Idserie);
+			
+		}
+
 }
 
 

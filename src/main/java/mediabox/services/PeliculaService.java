@@ -71,4 +71,21 @@ public class PeliculaService implements IPeliculaService {
 		
 	}
 
+	@Override
+	public boolean addpeliculafavoritos(String user, int Idpelicula) {
+		// TODO Auto-generated method stub
+		
+		boolean addpelicula=peliculasRepository.insertarPeliculaFav(user, Idpelicula);
+		
+		return addpelicula;
+	}
+
+	@Override
+	public void deletepeliculafavoritos(String user, int Idpelicula) {
+		// TODO Auto-generated method stub
+		
+		peliculasRepository.borrarPeliculaFav(user, Idpelicula);
+				
+	}
+
 }
