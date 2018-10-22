@@ -90,13 +90,12 @@ li{
 	text-align: center;
 }
 
-
-
 .col-md-3{
 	-webkit-transition: all 1s;
     -moz-transition: all 1s;
     -mos-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s;
-    max-height: 40%;
+
+    max-height: 37%;
 }

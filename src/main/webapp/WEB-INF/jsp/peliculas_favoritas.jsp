@@ -21,7 +21,7 @@
 
 		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
 
-		<link href="<c:url value="/resources/css/peliculas.css" />" rel="stylesheet">
+		<link href="<c:url value="/resources/css/peliculas_favoritas.css" />" rel="stylesheet">
 
 	</head>
 
@@ -64,7 +64,7 @@
  				<a href="series" class="med_gen">
  					<img src=""/> Series
  				</a>
-				</div>
+			</div>
 
 		</div>
 
@@ -94,6 +94,7 @@
 		    				<img src="${peli.imagen}"/>
 		    				<p>
 		    					<c:out value = "${peli.titulo}"/>
+		    					<a href="delPelisFav?idPel=${peli.idpelicula"> Quitar </a>
 		    				</p>
 	    				</a>
 
@@ -105,17 +106,17 @@
 
 		<ul id="paginas" class="pagination">
 
-			<a class="menos" href="pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
+			<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
-	        	<li><a href="pelis?id=<c:out value = "${i}"/>" class="active">
+	        	<li><a href="series?id=<c:out value = "${i}"/>" class="active">
 	        		<c:out value = "${i}"/>
 	        	</a></li>
 
 		    </c:forEach>
 
-		    <a class="mas" href="pelis?id=<c:out value = "${id+1}"/>">&raquo;</a>
+		    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
 		</ul>
 
 	</body>

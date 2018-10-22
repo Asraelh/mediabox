@@ -96,9 +96,10 @@
 
 	    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
 		    				<img src="${peli.imagen}"/>
+		    				<br>
 		    				<p>
 		    					<c:out value = "${peli.titulo}"/>
-		    				</p>
+							</p>
 	    				</a>
 
 				</div>

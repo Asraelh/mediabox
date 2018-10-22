@@ -145,6 +145,9 @@
 			<a id="vNet" href="${pelicula.watch}">
 				Ver en Netflix
 			</a>
+			<br><br>
+			<a id="add_fav" href="addPelisFav?idPel=${pelicula.idpelicula}"> 		Añadir a favoritos
+		    </a>
 
 		</div>
 
