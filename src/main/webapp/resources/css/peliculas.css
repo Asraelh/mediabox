@@ -13,17 +13,29 @@ body{
 
 li{
 	background-color: #0000006b;
+	color: white;
 }
 
 .pagination a {
-
     color: white;
     float: left;
-    padding: 8px 16px;
+    padding: 3px 12px;
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #0000006b;
     font-size: 22px;
+}
+
+ p {
+    color: white;
+    float: left;
+    padding: 3px 5px;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 25px;
+    font-size: 15px;
+    text-align: center;
+    width: 200px;
 }
 
 .pagination a.active {
@@ -43,17 +55,18 @@ li{
 .imagenes img{
 	height: 120px;
 	width:  170px;
-	margin-top: 30px;
+	margin-top: 15px;
 }
 
 #contenedor{
+	color: white;
 	position: absolute;
 	height: 60%;
 	padding-top: 20px;
 	padding-left: 15px;
 	width: 75%;
 	top: 20%;
-	left: 5%;
+	left: 3%;
 	border-radius: 25px;
 	background-color: #00000087
 }
@@ -61,6 +74,7 @@ li{
 .col-md-4 a{
 	text-decoration: none;
 	color: white;
+	text-align: center;
 }
 
 .col-md-4{
