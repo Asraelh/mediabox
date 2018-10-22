@@ -126,6 +126,9 @@ public class Controlador  {
 			
 		}
 		
+		/*System.err.println("Ejemplo serie: " + CincoseriesTodo.get(0));
+		System.err.println("Ejemplo pelicula: " + CincopeliculasTodo.get(0));*/
+		
 		for(Serie s:Cincoseries) {
 			
 			//System.err.println(s);
