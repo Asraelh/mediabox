@@ -41,6 +41,16 @@ public class SerieService implements ISerieService {
 			return o;
 			
 		}
+		
+		@Override
+		public Serie buscarSerieporId(int Idserie) {
+			// TODO Auto-generated method stub
+			
+			Serie serie=seriesRepository.findSerieById(Idserie); 
+			//Crear funcion findFilmById(Idpelicula) que devuelva una pelicula dado su Idpelicula
+			
+			return serie;
+		}
 
 }
 
