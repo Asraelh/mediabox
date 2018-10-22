@@ -132,7 +132,7 @@ public class Controlador  {
 		for(Serie s:Cincoseries) {
 			
 			//System.err.println(s);
-			System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo());
+			System.err.println(s.getIdserie() + " " + "Serie: " + s.getTitulo() + " Imagen: " + s.getImagen());
 			
 		}
 		
@@ -174,8 +174,10 @@ public class Controlador  {
 		System.err.println("redirige a peliculas");
 		
 		String id=req.getParameter("id");
+		//String categoriabuscador=req.getParameter("Categoria");
 		
 		ModelAndView modelAndview=new ModelAndView();
+		
 		
 		List<Pelicula> peliculasTodo=peliculaservice.listarPeliculas();
 		
@@ -263,6 +265,7 @@ public class Controlador  {
 		Pelicula p=peliculaservice.buscarPeliculaporId(Idpelicula);
 		
 		System.err.println(p);
+		System.err.println("Categoria: " + p.getCategoria());
 		
 		Pelicula pelicula=new Pelicula();
 		
@@ -276,7 +279,14 @@ public class Controlador  {
 		pelicula.setProtagonista(p.getProtagonista());
 		pelicula.setImagen(p.getImagen());
 		pelicula.setWatch(p.getWatch());
+		
+		String duracionPelicula;
+		
+		if(p.getDuracion()==null) {
 			
+			duracionPelicula="No está disponible";
+			
+		}else {
 			double duracion=Double.parseDouble(p.getDuracion());
 			System.err.println("duracion: " + duracion);
 			double aux=duracion/60;
@@ -296,11 +306,14 @@ public class Controlador  {
 				
 			}
 			
-			
-			String duracionPelicula=(int)horas+"h"+(int)minutos+"min";
+			duracionPelicula=(int)horas+"h"+(int)minutos+"min";
 			System.err.println(duracionPelicula);
 			
-		modelAndview.addObject("usr", session.getAttribute("usr"));
+		}
+			
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("pelicula");
 		modelAndview.addObject("pelicula", pelicula);
 		modelAndview.addObject("duracion", duracionPelicula);
