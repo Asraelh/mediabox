@@ -8,11 +8,12 @@ body{
 
 #paginas{
 	position: fixed;
-	bottom: 51px;
+	bottom: 0px;
 	background-color: #0000006b;
 	border-radius: 25px;
+	padding-right: 20px;
 	padding-left: 20px;
-	padding-top: 15px;
+	padding-top: 20px;
 	padding-bottom: 15px;
 	color: white;
 	width: 70%;

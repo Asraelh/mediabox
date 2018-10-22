@@ -30,7 +30,7 @@
 		<% if ( session.getAttribute("usr").equals("") || session.getAttribute("usr") == null ) { response.sendRedirect("index"); } %>
 
 		<div id="titulo" class="areas">
-			<h1> Peliculas </h1>
+			<h1> Series </h1>
 		</div>
 
 		<div id="d_bienvenido" class="areas">
@@ -91,7 +91,7 @@
 			<c:forEach var="serie" items="${series}">
 
 				<div class="col-md-3">
-    				<a class="imagenes" href="serie?idSerie=${serie.idserie}">
+    				<a class="imagenes" href="serie?idserie=${serie.idserie}">
 	    				<img src="${serie.imagen}"/>
 	    				<p>
 	    					<c:out value = "${serie.titulo}"/>
