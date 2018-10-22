@@ -774,7 +774,7 @@ public class Controlador  {
 			
 	}
 	
-	@RequestMapping("addpeliculafav") 
+	@RequestMapping("addPelisFav") 
 	
 	public ModelAndView addpeliculafav(HttpServletRequest req) {
 		System.err.println("Entra en add pelicula favorita");
