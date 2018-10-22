@@ -139,6 +139,16 @@
 			<a id="vNet" href="${serie.watch}">
 				Ver en Netflix
 			</a>
+			<br><br>
+			<c:if test = "${favorito == false}">
+				<a id="add_fav" href="addseriefav?idSerie=${serie.idserie}"> 				Añadir a favoritos
+			    </a>
+			</c:if>
+
+			<c:if test = "${favorito == true}">
+				<a id="add_fav" href="deleteseriefav?idSerie=${serie.idserie}"> 		Eliminar de favoritos
+			    </a>
+			</c:if>
 
 		</div>
 

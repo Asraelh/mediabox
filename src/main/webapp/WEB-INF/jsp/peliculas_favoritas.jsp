@@ -90,17 +90,20 @@
       	</c:if>
 
 		<c:if test = "${comp != 0}">
-			<div class="container-fluid" id="contenedor">
-				<c:forEach var="peli" items="${pelis}">
-					<div class="col-md-3 row">
-	    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
-		    				<img src="${peli.imagen}"/>
-		    				<p>
-		    					<c:out value = "${peli.titulo}"/>
-		    				</p>
-	    				</a>
-					</div>
-			    </c:forEach>
+
+			<div class="container">
+				<div class="row" id="contenedor">
+					<c:forEach var="peli" items="${pelis}">
+						<div class="col-md-3">
+		    				<a class="imagenes" href="pelicula?idPel=${peli.idpelicula}">
+			    				<img src="${peli.imagen}"/>
+			    				<p>
+			    					<c:out value = "${peli.titulo}"/>
+			    				</p>
+		    				</a>
+						</div>
+				    </c:forEach>
+				</div>
 			</div>
 
 			<ul id="paginas" class="pagination">

@@ -85,44 +85,42 @@
 
 		<!--  A D M I N I S T R A C I O N     D E     U S U A R I O  -->
 
-		<c:if test = "${id == null}">
+		<c:if test = "${comp == 0}">
          	<span id="mensaje"> <c:out value = "${mensaje}"/> </span>
       	</c:if>
 
-		<c:if test = "${id != null}">
-			<div class="container-fluid" id="contenedor">
+		<c:if test = "${comp != 0}">
+			<div class="container">
+				<div class="row" id="contenedor">
+					<c:forEach var="serie" items="${series}">
+						<div class="col-md-3">
 
-			<c:forEach var="serie" items="${series}">
-				<div class="col-md-3 row">
+		    				<a class="imagenes" href="serie?idPel=${serie.idserie}">
+			    				<img src="${serie.imagen}"/>
+			    				<p>
+			    					<c:out value = "${serie.titulo}"/>
+			    					<a href="delSeriesFav?idserie=${serie.idserie}"> Quitar </a>
+			    				</p>
+		    				</a>
+						</div>
+				    </c:forEach>
+			    </div>
+			</div>
 
-	    				<a class="imagenes" href="serie?idPel=${serie.idserie}">
-		    				<img src="${serie.imagen}"/>
-		    				<p>
-		    					<c:out value = "${serie.titulo}"/>
-		    					<a href="delSeriesFav?idserie=${serie.idserie}"> Quitar </a>
-		    				</p>
-	    				</a>
+			<ul id="paginas" class="pagination">
 
-				</div>
-		    </c:forEach>
-		</div>
+				<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
+			    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
+		        	<li><a href="series?id=<c:out value = "${i}"/>" class="active">
+		        		<c:out value = "${i}"/>
+		        	</a></li>
 
-		<ul id="paginas" class="pagination">
+			    </c:forEach>
 
-			<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
-
-		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
-
-	        	<li><a href="series?id=<c:out value = "${i}"/>" class="active">
-	        		<c:out value = "${i}"/>
-	        	</a></li>
-
-		    </c:forEach>
-
-		    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
-		</ul>
+			    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
+			</ul>
 		</c:if>
 	</body>
 </html>
