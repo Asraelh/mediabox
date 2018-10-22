@@ -153,7 +153,7 @@
 			</c:if>
 
 			<c:if test = "${favorito == true}">
-				<a id="add_fav" href="delPelisFav?idpel=${pelicula.idpelicula}"> 				Añadir a favoritos
+				<a id="add_fav" href="delPelisFav?idpel=${pelicula.idpelicula}"> 				Eliminar de favoritos
 			    </a>
 			</c:if>
 
