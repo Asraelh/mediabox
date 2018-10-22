@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -55,8 +55,8 @@
 
 		<div id="menu" class="areas">
 
-			<div id="series">
- 				<a href="series" class="med_gen">
+			<div id="pelis">
+ 				<a href="pelis" class="med_gen">
  					<img src=""/> Peliculas
  				</a> <br><br>
 			</div>
@@ -91,7 +91,7 @@
 			<c:forEach var="serie" items="${series}">
 
 				<div class="col-md-3">
-    				<a class="imagenes" href="pelicula?idPel=${serie.idpelicula}">
+    				<a class="imagenes" href="serie?idSerie=${serie.idserie}">
 	    				<img src="${serie.imagen}"/>
 	    				<p>
 	    					<c:out value = "${serie.titulo}"/>
@@ -105,7 +105,7 @@
 
 		<ul id="paginas" class="pagination">
 
-		<a class="menos" href="pelis?id=<c:out value = "${id-1}"/>">&laquo;</a>
+		<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
 		    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
@@ -123,7 +123,7 @@
 -->
 		    </c:forEach>
 
-		    <a class="mas" href="pelis?id=<c:out value = "${id+1}"/>">&raquo;</a>
+		    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
 		</ul>
 
 		<nav>
