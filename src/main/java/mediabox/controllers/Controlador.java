@@ -504,6 +504,7 @@ public class Controlador  {
 		
 		Serie serie=new Serie();
 		
+		//Inicio pelicula
 		/*pelicula.setIdpelicula(p.getIdpelicula());
 		pelicula.setCategoria(p.getCategoria());
 		pelicula.setTitulo(p.getTitulo());
@@ -568,8 +569,9 @@ public class Controlador  {
 		serie.setImagen(s.getImagen());
 		serie.setWatch(s.getWatch());
 		
-			
-		modelAndview.addObject("usr", session.getAttribute("usr"));
+		Usuario usuario=(Usuario)session.getAttribute("usr");
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("serie");
 		modelAndview.addObject("serie", serie);
 		
