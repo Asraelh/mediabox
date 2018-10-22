@@ -35,7 +35,7 @@ public interface ISerieRepository extends CrudRepository<Serie, Integer> {
 	 @Query(nativeQuery = true,value = "CALL deleteFavorito(:username,:idpelicula)")  // call store procedure 
 	 void borrarSerieFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
 	 
-	 @Query(nativeQuery = true,value = "CALL checkFavorito(:username,:idpelicula)")  // call store procedure 
+	 @Query(nativeQuery = true,value = "SELECT checkFavorito(:username,:idpelicula)")  // call store procedure 
 	 boolean checkSerieFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
 
 }
