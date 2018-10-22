@@ -585,12 +585,13 @@ public class Controlador  {
 		int npaginas=1;
 		String mensaje="";
 		String identificador;
+		String comprobar="";
 		
 		if(peliculasmostrar.size()==0) {
 			
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
-			identificador="0";
+			comprobar="0";
 			
 		}else {
 		
@@ -654,10 +655,12 @@ public class Controlador  {
 		}
 		}
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
+		System.err.println("comp= " + comprobar);
 
 		modelAndview.addObject("mensaje", mensaje);
 		modelAndview.addObject("pelis", peliculas);
 		modelAndview.addObject("npaginas", npaginas);
+		modelAndview.addObject("comp", comprobar);
 		modelAndview.addObject("id", identificador);
 		
 		modelAndview.addObject("usr", usuario.getIdusuario());
