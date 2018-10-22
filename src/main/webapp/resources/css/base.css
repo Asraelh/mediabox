@@ -21,8 +21,8 @@ html{
 	height: 60px;
 	width: 60px;
 	position: fixed;
-	margin-top: 20px;
-	amargin-left: -35px;
+	margin-top: 12px;
+	margin-left: -35px;
 }
 
 #logoL{
@@ -35,7 +35,7 @@ html{
 
 #titulo h3{
 	position: fixed;
-	top: 20px;
+	top: 10px;
 }
 
 #d_bienvenido h4{

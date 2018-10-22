@@ -120,6 +120,15 @@
 <!-- C A R O U S E L    P E L I C U L A S -->
 <!-- /////////////////////////////////////////////////////// -->
 
+			<div id="estrenos">
+				Estrenos
+			</div>
+
+
+			<div id="titCarPel" class="titCar">
+				Películas
+			</div>
+
 			<div id="Carousel" class="carousel slide" data-ride="carousel">
 			  <!-- Indicators -->
 				<ol class="carousel-indicators">
@@ -171,6 +180,10 @@
 <!-- /////////////////////////////////////////////////////// -->
 <!-- C A R O U S E L    S E R I E S -->
 <!-- /////////////////////////////////////////////////////// -->
+
+			<div id="titCarSer" class="titCar">
+				Series
+			</div>
 
 			<div id="Carousel2" class="carousel slide" data-ride="carousel2">
 			  <!-- Indicators -->

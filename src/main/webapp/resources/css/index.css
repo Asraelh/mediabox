@@ -1,1 +1,38 @@
 @charset "ISO-8859-1";
+
+.titCar{
+	background-color: #103E55C2;
+	border: 3px solid #ffffff;
+	border-radius: 25px;
+	padding-top: 5px;
+	color: white;
+	top: 45%;
+	position: fixed;
+	height: 50px;
+	width: 300px;
+	text-align: center;
+	font-size: 30px;
+}
+
+#titCarPel{
+	left: 13%;
+}
+
+#titCarSer{
+	left: 63%;
+}
+
+#estrenos{
+	background-color: #00000085;
+	border: 5px solid #103E55C2;
+	border-radius: 25px;
+	padding-top: 5px;
+	color: white;
+	top: 20%;
+	left: 30%;
+	position: fixed;
+	height: 100px;
+	width: 670px;
+	text-align: center;
+	font-size: 50px;
+}
