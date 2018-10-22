@@ -622,7 +622,14 @@ public class Controlador  {
 			pelinicio=(Integer.parseInt(id)-2)*8;
 			pelfinal=pelinicio+8;
 			
-	}else {
+	}else if(npeliculas<8){
+		
+		npaginas=1;
+		pelinicio=0;
+		pelfinal=npeliculas;
+		identificador="1";
+		
+	}else{
 			
 			pelinicio=(Integer.parseInt(id)-1)*8;
 			pelfinal=pelinicio+8;
@@ -865,14 +872,14 @@ public class Controlador  {
 		return modelAndview;
 	}
 	
-	@RequestMapping("deletepeliculafav") 
+	@RequestMapping("delPelisFav") 
 	
 	public ModelAndView deletepeliculafav(HttpServletRequest req) {
 		System.err.println("Entra en delete pelicula favorita");
 		ModelAndView modelAndview=new ModelAndView();
 		HttpSession session = req.getSession(true);
 		
-		int Idpelicula=Integer.parseInt(req.getParameter("idPel"));
+		int Idpelicula=Integer.parseInt(req.getParameter("idpel"));
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		peliculaservice.deletepeliculafavoritos(usuario.getIdusuario(), Idpelicula);
