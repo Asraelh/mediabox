@@ -6,7 +6,7 @@
 <html>
 	<head>
 		 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Administrar cuenta</title>
+		<title>Serie</title>
 
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
@@ -28,7 +28,7 @@
 		<% if ( session.getAttribute("usr").equals("") || session.getAttribute("usr") == null ) { response.sendRedirect("index"); } %>
 
 		<div id="titulo" class="areas">
-			<h1> Peliculas </h1>
+			<h1> Serie </h1>
 		</div>
 
 		<div id="d_bienvenido" class="areas">
