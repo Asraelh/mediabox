@@ -52,6 +52,24 @@ public class SerieService implements ISerieService {
 			return serie;
 		}
 
+		@Override
+		public List<Serie> listarSeriesFavporUsuario(String user) {
+			// TODO Auto-generated method stub
+			
+			List<Serie> SeriesFav=seriesRepository.listAllFavoriteSeries(user);
+			
+			return SeriesFav;
+		}
+		
+		/*@Override
+		public boolean comprobarFavorito(int Idserie, String user) {
+			// TODO Auto-generated method stub
+			
+			boolean comprobacion=seriesRepository.SayFav(Idserie,user);
+			
+			return comprobacion;
+		}*/
+
 }
 
 

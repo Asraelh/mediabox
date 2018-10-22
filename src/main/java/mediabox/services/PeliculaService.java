@@ -54,4 +54,21 @@ public class PeliculaService implements IPeliculaService {
 		return pelicula;
 	}
 
+	/*@Override
+	public boolean comprobarFavorito(int Idpelicula, String user) {
+		// TODO Auto-generated method stub
+		
+		boolean comprobacion=peliculasRepository.SayFav(Idpelicula,user);
+		
+		return comprobacion;
+	}*/
+
+	@Override
+	public List<Pelicula> listarPeliculasFavporUsuario(String user) {
+		List<Pelicula> PeliculasFav=peliculasRepository.listAllFavoritePeliculas(user);
+			
+			return PeliculasFav;
+		
+	}
+
 }

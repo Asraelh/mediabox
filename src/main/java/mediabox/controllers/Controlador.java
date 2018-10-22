@@ -34,8 +34,6 @@ public class Controlador  {
 	@Autowired
 	private IPeliculaService peliculaservice;
 	@Autowired
-	private IPelFavoritaService peliculaFavservice;
-	@Autowired
 	private ISerieService serieservice;
 	
 	//*************************************PRUEBA AREA******************************************************************************
@@ -570,7 +568,6 @@ public class Controlador  {
 		System.err.println("redirige a peliculas favoritas");
 		
 		HttpSession session = req.getSession(true);
-		System.err.println("redirige a peliculas favoritas");
 		Usuario usuario=(Usuario)session.getAttribute("usr");
 		
 		String id=req.getParameter("id");
@@ -579,20 +576,32 @@ public class Controlador  {
 		
 		ModelAndView modelAndview=new ModelAndView();
 		
-		List<Pelicula> peliculasFav=peliculaFavservice.listarPeliculasFavporUsuario(usuario.getIdusuario());
+		List<Pelicula> peliculasFav=peliculaservice.listarPeliculasFavporUsuario(usuario.getIdusuario());
 		
 		List<Pelicula> peliculasmostrar=new ArrayList<Pelicula>();
 		peliculasmostrar=peliculasFav;
 		
+		int npeliculas=0;
+		int npaginas=1;
+		String mensaje="";
+		String identificador;
 		
-		int npeliculas=peliculasmostrar.size();
+		if(peliculasmostrar.size()==0) {
+			
+			mensaje="No hay favoritos";
+			System.err.println(mensaje);
+			identificador="0";
+			
+		}else {
 		
-		int npaginas=npeliculas/8;
+		npeliculas=peliculasmostrar.size();
+		
+		npaginas=npeliculas/8;
+		
+		}
 		
 		int pelinicio;
 		int pelfinal;
-		
-		String identificador;
 		
 		if(id==null) {
 		
@@ -622,7 +631,7 @@ public class Controlador  {
 		
 		List<Pelicula> peliculas= new ArrayList<Pelicula>();
 		
-		
+		if(npeliculas!=0) {
 		
 		for(int i=pelinicio; i<pelfinal; i++) {
 			
@@ -636,35 +645,117 @@ public class Controlador  {
 			
 		}
 		
-		/*int i=0;
+		int i=0;
 		while(i<5) {
 			
-		Pelicula pelicula=peliculasTodo.get(i);
-		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen()
-		+ " Enlace: " + pelicula.getWatch());
+		Pelicula pelicula=peliculas.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
 		i++;
-		}*/
-		
+		}
+		}
 		System.err.println("Numero de peliculas: " + npeliculas + " Numero de paginas: " + npaginas);
 		
-		modelAndview.addObject("usr", usuario.getIdusuario());
-		modelAndview.setViewName("peliculasFavoritas");
 		modelAndview.addObject("pelis", peliculas);
 		modelAndview.addObject("npaginas", npaginas);
 		modelAndview.addObject("id", identificador);
-				
+		
+		modelAndview.addObject("usr", usuario.getIdusuario());
+		modelAndview.setViewName("peliculas_favoritas");
 		return modelAndview;
 			
 	}
 	
 	@RequestMapping("fav_series") 
 	
-	public String seriesfav(HttpServletRequest req) {
+	public ModelAndView seriesfav(HttpServletRequest req) {
 		
 		System.err.println("redirige a series favoritas");
+			
+			HttpSession session = req.getSession(true);
+			Usuario usuario=(Usuario)session.getAttribute("usr");
+			
+			String id=req.getParameter("id");
+			/*String categoriabuscador=req.getParameter("Categoria");
+			String titulobuscador=req.getParameter("Titulo");*/
+			
+			ModelAndView modelAndview=new ModelAndView();
+			
+			List<Serie> seriesFav=serieservice.listarSeriesFavporUsuario(usuario.getIdusuario());
+			
+			List<Serie> seriesmostrar=new ArrayList<Serie>();
+			seriesmostrar=seriesFav;
+			
+			
+			int nseries=seriesmostrar.size();
+			
+			int npaginas=nseries/8;
+			
+			int serieinicio;
+			int seriefinal;
+			
+			String identificador;
+			
+			if(id==null) {
+			
+			serieinicio=0;
+			seriefinal=8;
+			identificador=id;
+			
+			}else if(Integer.parseInt(id)<1) {
 				
-		return "series_favoritas";
-	}
+				identificador="1";
+				serieinicio=0;
+				seriefinal=8;
+				
+			}else if(Integer.parseInt(id)>npaginas) {
+				
+				identificador=String.valueOf(npaginas);
+				serieinicio=(Integer.parseInt(id)-2)*8;
+				seriefinal=serieinicio+8;
+				
+		}else {
+				
+				serieinicio=(Integer.parseInt(id)-1)*8;
+				seriefinal=serieinicio+8;
+				identificador=id;
+				
+			}
+			
+			List<Serie> series= new ArrayList<Serie>();
+			
+			
+			
+			for(int i=serieinicio; i<seriefinal; i++) {
+				
+				Serie serie=new Serie();
+				
+				serie.setIdserie(seriesmostrar.get(i).getIdserie());
+				serie.setTitulo(seriesmostrar.get(i).getTitulo());
+				serie.setImagen(seriesmostrar.get(i).getImagen());
+				
+				series.add(serie);
+				
+			}
+			
+			int i=0;
+			while(i<5) {
+				
+			Serie serie=series.get(i);
+			System.err.println(serie.getIdserie() + " " + "Serie: " + serie.getTitulo() + " Imagen: " + serie.getImagen());
+			i++;
+			}
+			
+			System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
+			
+			modelAndview.addObject("usr", usuario.getIdusuario());
+			modelAndview.setViewName("seriesFavoritas");
+			modelAndview.addObject("series", series);
+			modelAndview.addObject("npaginas", npaginas);
+			modelAndview.addObject("id", identificador);
+					
+			return modelAndview;
+				
+		}
 	
 	@RequestMapping("cerrarSesion") 
 	

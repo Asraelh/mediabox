@@ -11,5 +11,9 @@ public interface IPeliculaService {
 	public List<Pelicula> listarCincoPeliculas();
 	
 	public Pelicula buscarPeliculaporId(int Idpelicula);
+	
+	//public boolean comprobarFavorito(int Idpelicula, String user);
+	
+	public List<Pelicula> listarPeliculasFavporUsuario(String user);
 
 }
