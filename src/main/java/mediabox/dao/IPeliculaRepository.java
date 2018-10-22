@@ -32,6 +32,13 @@ public interface IPeliculaRepository extends CrudRepository<Pelicula, Integer> {
 	 @Query(nativeQuery = true,value = "CALL listAllFavoritePeliculas(:username)")  // call store procedure 
 	 List<Pelicula> listAllFavoritePeliculas(@Param("username")String username); 
 	 
-	
+	 @Query(nativeQuery = true,value = "CALL insertFavorito(:username,:idpelicula)")  // call store procedure 
+	 boolean insertarPeliculaFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
+	 
+	 @Query(nativeQuery = true,value = "CALL deleteFavorito(:username,:idpelicula)")  // call store procedure 
+	 void borrarPeliculaFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
+	 
+	 @Query(nativeQuery = true,value = "CALL checkFavorito(:username,:idpelicula)")  // call store procedure 
+	 boolean checkPeliculaFav(@Param("username")String username, @Param("idpelicula") int idpelicula); 
 	
 }
