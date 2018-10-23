@@ -81,7 +81,5 @@ function checkForm(form){
     }
 
   }
-
-  alert("Cambios realizados con éxito.");
   return true;
 };
