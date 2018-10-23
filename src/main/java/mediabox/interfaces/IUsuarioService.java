@@ -11,6 +11,8 @@ public interface IUsuarioService {
 	public Usuario buscarUsuarioPorId(String user);
 	
 	public String actualizarUsuario(String user, String password, String email);
+	
+	public boolean comprobarEmail(String email);
 
 
 }

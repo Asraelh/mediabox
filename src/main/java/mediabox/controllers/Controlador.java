@@ -207,58 +207,45 @@ public class Controlador  {
 		/*if(user.equals("") ||pass.equals("") || email.equals("") || 
 				nombre.equals("") || apellidos.equals("") || alias.equals("")) { */
 		
-		if(oldpass.equals("") || newpass.equals("") || repass.equals("") || email.equals("")) {
-		
-			mensaje="Rellene todos los campos"; 
-			
-			modelAndview.setViewName("admin_usuario");
-			modelAndview.addObject("mensaje_registro", mensaje);
-		
-		}else {
-			
+	
 			if(oldpass.equals(usuario.getPassword())){
-				
-				if(repass.equals(newpass)) {
 					
-					mensaje=usuarioservice.actualizarUsuario(user, newpass, email);
+					boolean check=usuarioservice.comprobarEmail(email);
 					
-					if(mensaje.equals("Este email ya existe")) {
+					if(check==true && usuario.getEmail().equals(email)) {
 						
+						mensaje=usuarioservice.actualizarUsuario(user, newpass, email);
+						
+						List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+						modelAndview.addObject("peliculas5",Cincopeliculas);
+						List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
+						modelAndview.addObject("series5",Cincoseries);
+						
+						modelAndview.addObject("mensaje_login", mensaje);
+						modelAndview.setViewName("index");
+						
+						mensaje="Este email ya existe";
 						modelAndview.addObject("mensaje_admin", mensaje);
 						modelAndview.setViewName("admin_usuario");
 						System.err.println("Entra en email");
 					
 				}else{
 					
-					List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
-					modelAndview.addObject("peliculas5",Cincopeliculas);
-					List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
-					modelAndview.addObject("series5",Cincoseries);
-					
-					modelAndview.addObject("mensaje_login", mensaje);
-					modelAndview.setViewName("index");
+					mensaje="Este email ya existe";
+					modelAndview.addObject("mensaje_admin", mensaje);
+					modelAndview.setViewName("admin_usuario");
+					System.err.println("Entra en email");
 					
 				}
 				}else {
-					
-					mensaje="Revise la nueva contraseña";
-					modelAndview.addObject("mensaje_admin", mensaje);
-					modelAndview.setViewName("admin_usuario");
-					System.err.println("Entra en revise nueva contraseña");
-					
-				}
-			}else {
 				
-				mensaje="La contraseña introducida no coincide con la de este usuario";
+				mensaje="Contraseña antigua incorrecta";
 				modelAndview.addObject("mensaje_admin", mensaje);
 				modelAndview.setViewName("admin_usuario");
 				System.err.println("Entra en no coincide con la contraseña del usuario");
 				
 			}
 				
-				
-		
-		}		
 		return modelAndview;
 	}
 	
