@@ -752,6 +752,8 @@ public class Controlador  {
 		/*String categoriabuscador=req.getParameter("Categoria");
 		String titulobuscador=req.getParameter("Titulo");*/
 		
+		System.err.println(id);
+		
 		ModelAndView modelAndview=new ModelAndView();
 		
 		List<Serie> seriesFav=serieservice.listarSeriesFavporUsuario(usuario.getIdusuario());
@@ -760,7 +762,7 @@ public class Controlador  {
 		seriesmostrar=seriesFav;
 		
 		int nseries=0;
-		int npaginas=1;
+		int npaginas;
 		String mensaje="";
 		String identificador;
 		int comprobar=1;
@@ -770,51 +772,78 @@ public class Controlador  {
 			mensaje="No hay favoritos";
 			System.err.println(mensaje);
 			comprobar=0;
+			npaginas=1;
+			//System.err.println("Entra en el if");
 			
 		}else {
 		
 		nseries=seriesmostrar.size();
-		
-		npaginas=nseries/8;
-		
+		npaginas=nseries/8+1;
+		//System.err.println("Entra en el else");
 		}
 		
 		int serieinicio;
 		int seriefinal;
 		
-		if(id==null) {
+		System.err.println("Numero de paginas es" + npaginas);
 		
+		if(id==null) {
+		if(nseries<8) {
 		serieinicio=0;
 		seriefinal=nseries;
 		identificador=id;
 		npaginas=1;
+		}else {
+			
+			serieinicio=0;
+			seriefinal=8;
+			identificador=id;
+			npaginas=nseries/8+1;
+			
+		}
 		
+		}else if(nseries<8){
+			
+			npaginas=1;
+			serieinicio=0;
+			seriefinal=nseries;
+			identificador=id;
+			//System.err.println("Entra en npeliculas<8");
+			
 		}else if(Integer.parseInt(id)<1) {
 			
 			identificador="1";
 			serieinicio=0;
 			seriefinal=8;
+			npaginas=nseries/8+1;
+			//System.err.println("Entra en id<1");
 			
 		}else if(Integer.parseInt(id)>npaginas) {
 			
 			identificador=String.valueOf(npaginas);
 			serieinicio=(Integer.parseInt(id)-2)*8;
-			seriefinal=serieinicio+8;
-			
-	}else if(nseries<8){
-		
-		npaginas=1;
-		serieinicio=0;
-		seriefinal=nseries;
-		identificador="1";
-		
+			seriefinal=(nseries-8*(npaginas-1))+serieinicio;
+			npaginas=nseries/8+1;
+			//System.err.println("Entra en id>npaginas");
 	}else{
+		
+		if(Integer.parseInt(id)==npaginas) {
+			npaginas=nseries/8+1;
+			//System.err.println("Entra donde quiero");
+			serieinicio=(Integer.parseInt(id)-1)*8;
+			seriefinal=(nseries-8*(npaginas-1))+serieinicio;
+			identificador=id;
 			
+		}else {
+			
+			npaginas=nseries/8+1;
+			//System.err.println("Entra donde quiero");
 			serieinicio=(Integer.parseInt(id)-1)*8;
 			seriefinal=serieinicio+8;
 			identificador=id;
 			
 		}
+	}
 		
 		System.err.println(serieinicio);
 		System.err.println(seriefinal);
@@ -837,15 +866,17 @@ public class Controlador  {
 			
 		}
 		
-		int i=0;
-		while(i<5) {
+		/*int i=0;
+		while(i<pelfinal) {
 			
-		Serie serie=series.get(i);
-		System.err.println(serie.getIdserie() + " " + "Serie: " + serie.getTitulo() + " Imagen: " + serie.getImagen());
+		Pelicula pelicula=peliculas.get(i);
+		System.err.println(pelicula.getIdpelicula() + " " + "Pelicula: " + pelicula.getTitulo() + " Imagen: " + pelicula.getImagen());
 		i++;
+		}*/
+		
+		//System.err.println("nuevo");
 		}
-		}
-		System.err.println("Numero de series " + nseries + " Numero de paginas: " + npaginas);
+		System.err.println("Numero de series: " + nseries + " Numero de paginas: " + npaginas);
 		System.err.println("comp= " + comprobar);
 
 		modelAndview.addObject("mensaje", mensaje);
@@ -857,7 +888,6 @@ public class Controlador  {
 		modelAndview.addObject("usr", usuario.getIdusuario());
 		modelAndview.setViewName("series_favoritas");
 		return modelAndview;
-			
 			
 	}
 	
