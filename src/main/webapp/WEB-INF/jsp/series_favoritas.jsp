@@ -58,7 +58,7 @@
 
 			<div id="pelis">
  				<a href="pelis" class="med_gen">
- 					<img src=""/> Peliculas
+ 					<img src=""/> Películas
  				</a> <br><br>
 			</div>
 

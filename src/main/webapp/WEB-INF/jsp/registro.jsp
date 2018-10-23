@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Registrate</title>
+		<title>Regístrate</title>
 
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
@@ -25,7 +25,7 @@
 
 		<link rel="stylesheet" href="<c:url value="/resources/css/alertify.default.css" />" />
 
-		<script src="/resources/js/valReg.js"></script>
+		<script src="/resources/js/valreg.js"></script>
 
 		<link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
 
@@ -38,7 +38,7 @@
 	<body>
 
 		<div id="titulo" class="areas">
-			<h1> Registrate </h1>
+			<h1> Regístrate </h1>
 		</div>
 
 		<div id="formulario">

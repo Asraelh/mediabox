@@ -33,7 +33,7 @@
 		<% if ( session.getAttribute("usr").equals("") || session.getAttribute("usr") == null ) { response.sendRedirect("index"); } %>
 
 		<div id="titulo" class="areas">
-			<h1> Peliculas </h1>
+			<h1> Películas </h1>
 		</div>
 
 		<div id="d_bienvenido" class="areas">
@@ -61,7 +61,7 @@
 
 			<div id="pelis">
  				<a href="pelis" class="med_gen">
- 					<img src=""/> Peliculas
+ 					<img src=""/> Películas
  				</a> <br><br>
 			</div>
 
