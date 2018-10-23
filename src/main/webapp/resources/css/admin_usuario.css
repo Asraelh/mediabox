@@ -116,3 +116,10 @@ p{
     transition-duration: 0.5s;
     cursor: pointer;
 }
+
+#resAdmin{
+	width: 250px;
+	position: fixed;
+	top: 20%;
+	left: 57%;
+}

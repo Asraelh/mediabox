@@ -130,7 +130,7 @@
 
 			</form>
 
-			<div id="resRegistro">
+			<div id="resAdmin">
 				<p> ${ mensaje_admin } </p>
 			</div>
 
