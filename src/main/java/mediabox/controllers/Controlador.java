@@ -207,13 +207,62 @@ public class Controlador  {
 		/*if(user.equals("") ||pass.equals("") || email.equals("") || 
 				nombre.equals("") || apellidos.equals("") || alias.equals("")) { */
 		
-	
+		/*if(oldpass.equals(usuario.getPassword())){
+			
+			boolean check=usuarioservice.comprobarEmail(email);
+			
+			if(check==true && usuario.getEmail().equals(email)) {
+				
+				mensaje=usuarioservice.actualizarUsuario(user, newpass, email);
+				
+				List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+				modelAndview.addObject("peliculas5",Cincopeliculas);
+				List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
+				modelAndview.addObject("series5",Cincoseries);
+				
+				modelAndview.addObject("mensaje_login", mensaje);
+				modelAndview.setViewName("index");
+				
+				System.err.println("Entra en check=true");
+			
+		}else if(!check){
+			
+			mensaje=usuarioservice.actualizarUsuario(user, newpass, email);
+			
+			List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
+			modelAndview.addObject("peliculas5",Cincopeliculas);
+			List<Serie> Cincoseries=(List<Serie>)session.getAttribute("Cincoseries");
+			modelAndview.addObject("series5",Cincoseries);
+			
+			modelAndview.addObject("mensaje_login", mensaje);
+			modelAndview.setViewName("index");
+			
+			mensaje="Este email ya existe";
+			modelAndview.addObject("mensaje_login", mensaje);
+			modelAndview.setViewName("index");
+			
+			System.err.println("Entra en !check");
+			
+		}else {
+			
+			mensaje="Este email ya existe";
+			modelAndview.addObject("mensaje_admin", mensaje);
+			modelAndview.setViewName("admin_usuario");
+			System.err.println("Entra en email");
+			
+		}
+		}else {
+		
+		mensaje="Contraseña antigua incorrecta";
+		modelAndview.addObject("mensaje_admin", mensaje);
+		modelAndview.setViewName("admin_usuario");
+		System.err.println("Entra en no coincide con la contraseña del usuario");
+		
+	}*/
+		
 			if(oldpass.equals(usuario.getPassword())){
 					
-					boolean check=usuarioservice.comprobarEmail(email);
 					
-					if(check==true && usuario.getEmail().equals(email)) {
-						
 						mensaje=usuarioservice.actualizarUsuario(user, newpass, email);
 						
 						List<Pelicula> Cincopeliculas=(List<Pelicula>)session.getAttribute("Cincopeliculas");
@@ -224,19 +273,8 @@ public class Controlador  {
 						modelAndview.addObject("mensaje_login", mensaje);
 						modelAndview.setViewName("index");
 						
-						mensaje="Este email ya existe";
-						modelAndview.addObject("mensaje_admin", mensaje);
-						modelAndview.setViewName("admin_usuario");
-						System.err.println("Entra en email");
+						System.err.println("Entra en check=true");
 					
-				}else{
-					
-					mensaje="Este email ya existe";
-					modelAndview.addObject("mensaje_admin", mensaje);
-					modelAndview.setViewName("admin_usuario");
-					System.err.println("Entra en email");
-					
-				}
 				}else {
 				
 				mensaje="Contraseña antigua incorrecta";
