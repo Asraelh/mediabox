@@ -20,6 +20,12 @@ function checkForm(form){
     return false;
   }
 
+  if(form.email.value == ""){
+    alertify.error("Error: Debe introducir un email válido. Formato: 'x@x.com/es'");
+    form.pwd0.focus();
+    return false;
+  }
+
   if (form.pwd1.value != ""){
 
     if(form.pwd0.value == form.pwd1.value){

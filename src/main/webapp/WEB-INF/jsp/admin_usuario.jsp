@@ -45,10 +45,11 @@
 		</div>
 
 		<div id="d_bienvenido" class="areas">
-
-			<h3 id="mediaL"> Media </h3>
-				<img id="logoL" src="../../resources/img/logo.png" />
-			<h3 id="boxL"> Box </h3>
+			<a href="/">
+				<h3 id="mediaL"> Media </h3>
+					<img id="logoL" src="../../resources/img/logo.png" />
+				<h3 id="boxL"> Box </h3>
+			</a>
 
 			<h4>
 				Bienvenido,${usr.idusuario}
@@ -116,7 +117,7 @@
 				<br><br><br>
 
 				<p> Repita la contraseña: </p>
-				<input class="imp_gen_mod" type="password" name="pwd2"  id="password"  placeholder="Nueva contraseña"/>
+				<input class="imp_gen_mod" type="password" name="pwd2"  id="password"  placeholder="Repita la contraseña"/>
 				<br><br><br>
 
 				<p> Email: </p>

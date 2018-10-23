@@ -35,9 +35,11 @@
 
 		<div id="d_bienvenido" class="areas">
 
-			<h3 id="mediaL"> Media </h3>
-				<img id="logoL" src="../../resources/img/logo.png" />
-			<h3 id="boxL"> Box </h3>
+			<a href="/">
+				<h3 id="mediaL"> Media </h3>
+					<img id="logoL" src="../../resources/img/logo.png" />
+				<h3 id="boxL"> Box </h3>
+			</a>
 
 			<h4>
 				Bienvenido,${usr}
