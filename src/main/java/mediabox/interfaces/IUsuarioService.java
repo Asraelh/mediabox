@@ -10,7 +10,7 @@ public interface IUsuarioService {
 	
 	public Usuario buscarUsuarioPorId(String user);
 	
-	public void actualizarUsuario(String user, String password, String email);
+	public String actualizarUsuario(String user, String password, String email);
 
 
 }

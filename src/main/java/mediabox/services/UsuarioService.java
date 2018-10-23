@@ -21,6 +21,7 @@ public class UsuarioService implements IUsuarioService {
 		boolean check=usuariosRepository.checkUser(user);
 		//System.err.println("Hace el checkeo usuario");
 		String mensaje;
+
 		if(!check) {
 			//System.err.println("Entra en el checkeo email");
 			boolean checkEmail=usuariosRepository.checkEmail(email);
@@ -72,11 +73,24 @@ public class UsuarioService implements IUsuarioService {
 	}
 
 	@Override
-	public void actualizarUsuario(String user, String password, String email) {
+	public String actualizarUsuario(String user, String password, String email) {
 		// TODO Auto-generated method stub
 		
 		usuariosRepository.updateUser(user, password, email);
 		
+			//System.err.println("Entra en el checkeo usuario");
+				String mensaje;
+					//System.err.println("Entra en el checkeo email");
+					boolean checkEmail=usuariosRepository.checkEmail(email);
+					//System.err.println("Hace el checkeo email");
+					if(!checkEmail) {
+					//System.err.println("Antes de insertar usuario");
+					usuariosRepository.updateUser(user, password, email);
+					//System.err.println("Despues de insertar usuario");
+					return mensaje="Usuario registrado correctamente";
+					}else {
+					return mensaje="Este email ya existe";
+				}
 	}
 
 }
