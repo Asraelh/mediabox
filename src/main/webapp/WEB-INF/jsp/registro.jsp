@@ -19,11 +19,19 @@
 		      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 		      crossorigin="anonymous">
 
-	<link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
+		<script type="text/javascript" src="/resources/js/alertify.js"></script>
 
-	<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
+		<link rel="stylesheet" href="<c:url value="/resources/css/alertify.core.css" />" />
 
-	<link href="<c:url value="/resources/css/registro.css" />" rel="stylesheet">
+		<link rel="stylesheet" href="<c:url value="/resources/css/alertify.default.css" />" />
+
+		<script src="/resources/js/valReg.js"></script>
+
+		<link href="<c:url value="/resources/css/index.css" />" rel="stylesheet">
+
+		<link href="<c:url value="/resources/css/base.css" />" rel="stylesheet">
+
+		<link href="<c:url value="/resources/css/registro.css" />" rel="stylesheet">
 
 	</head>
 

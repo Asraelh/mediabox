@@ -97,11 +97,10 @@
 					<c:forEach var="serie" items="${series}">
 						<div class="col-md-3">
 
-		    				<a class="imagenes" href="serie?idPel=${serie.idserie}">
+		    				<a class="imagenes" href="serie?idserie=${serie.idserie}">
 			    				<img src="${serie.imagen}"/>
 			    				<p>
 			    					<c:out value = "${serie.titulo}"/>
-			    					<a href="delSeriesFav?idserie=${serie.idserie}"> Quitar </a>
 			    				</p>
 		    				</a>
 						</div>
@@ -111,17 +110,17 @@
 
 			<ul id="paginas" class="pagination">
 
-				<a class="menos" href="series?id=<c:out value = "${id-1}"/>">&laquo;</a>
+				<a class="menos" href="fav_series?id=<c:out value = "${id-1}"/>">&laquo;</a>
 
 			    <c:forEach var = "i" begin = "1" end = "${npaginas}">
 
-		        	<li><a href="series?id=<c:out value = "${i}"/>" class="active">
+		        	<li><a href="fav_series?id=<c:out value = "${i}"/>" class="active">
 		        		<c:out value = "${i}"/>
 		        	</a></li>
 
 			    </c:forEach>
 
-			    <a class="mas" href="series?id=<c:out value = "${id+1}"/>">&raquo;</a>
+			    <a class="mas" href="fav_series?id=<c:out value = "${id+1}"/>">&raquo;</a>
 			</ul>
 		</c:if>
 	</body>

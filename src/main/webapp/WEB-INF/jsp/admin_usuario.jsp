@@ -26,7 +26,9 @@
 
 
 		<script type="text/javascript" src="/resources/js/alertify.js"></script>
+
 		<link rel="stylesheet" href="<c:url value="/resources/css/alertify.core.css" />" />
+
 		<link rel="stylesheet" href="<c:url value="/resources/css/alertify.default.css" />" />
 
 		<script src="/resources/js/validaciones.js"></script>
